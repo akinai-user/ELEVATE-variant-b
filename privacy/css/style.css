@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+/* Privacy policy page. */
+
+.renewal-original .innner-privacy { max-width: 1000px; margin-inline: auto; padding: 36px 48px; background: #fff; border: 1px solid var(--line); border-radius: 14px; }
+
+.renewal-original .privacy__item + .privacy__item { margin-top: 38px; }
+
+.renewal-original .privacy h2 { font-size: 22px; }
+
+.renewal-original .privacy-list { padding: 0; list-style: none; font-size: 14px; }
+
+.renewal-original .privacy-list li + li { margin-top: 12px; }
+
+@media (max-width: 767px) {
+  .renewal-original .innner-privacy { padding: 24px; }
+  .renewal-original .privacy h2 { font-size: 19px; }
+}

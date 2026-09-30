@@ -1,0 +1,57 @@
+@charset "UTF-8";
+
+.registration-hero { min-height: 440px; }
+.registration-hero__inner {
+  width: var(--page-width);
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  align-items: center;
+  gap: 30px;
+  padding: 64px 0 90px;
+}
+.registration-hero__copy { position: relative; z-index: 1; }
+.registration-category { display: flex; align-items: center; gap: 12px; margin: 0 0 24px; font-size: 14px; font-weight: 700; }
+.registration-category::before { content: ""; width: 11px; height: 11px; border-radius: 50%; background: var(--purple); flex-shrink: 0; }
+.registration-hero h1 { font-size: clamp(34px, 4.5vw, 60px); line-height: 1.4; letter-spacing: 0; }
+.registration-hero .advance-hero__description { margin-top: 20px; font-size: 14px; }
+.registration-hero__visual { position: relative; isolation: isolate; display: grid; align-content: center; min-height: 300px; padding: 24px; text-align: center; }
+.registration-hero__visual::before {
+  content: ""; position: absolute; inset: -20px -60px; z-index: -1;
+  border-radius: 65% 35% 60% 40%;
+  background: linear-gradient(rgb(240 249 255 / 72%), rgb(240 249 255 / 80%)), url("../../images/top/news-message.webp") center 20% / 100% auto;
+  filter: blur(2px);
+}
+.registration-hero__visual p { margin: 8px 0; font-size: 14px; font-weight: 700; }
+.registration-hero__visual .registration-signature { font-family: var(--site-font); font-size: clamp(28px, 3vw, 42px); font-weight: 500; font-style: italic; transform: rotate(-8deg); margin-bottom: 22px; }
+.registration-hero__visual small { margin-top: 14px; font-size: 10px; font-weight: 800; letter-spacing: .2em; }
+.registration-hero .dx-orb--01 { left: 35%; top: 8%; width: 68px; height: 68px; }
+.registration-card { display: block; padding: clamp(28px, 4vw, 56px); }
+.registration-card .advance-form__row { grid-template-columns: minmax(160px, 230px) minmax(0, 1fr); padding-block: 20px; }
+.registration-card .advance-form__row:first-child { padding-top: 0; }
+.registration-pair { display: grid; gap: 6px; }
+.registration-pair:has([name="family_name"]), .registration-pair:has([name="family_kana"]) { max-width: 360px; }
+.registration-options { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
+.registration-options .check-control { font-weight: 500; }
+.registration-birthday { gap: 10px; }
+.registration-birthday label { display: flex; align-items: center; gap: 6px; font-size: 14px; }
+.registration-birthday select { min-height: 44px; padding: 8px; border: 1px solid #d9d7e5; border-radius: 5px; color: var(--navy); background: #fff; font-size: 16px; }
+.registration-card input[type="tel"] { width: 100%; min-height: 48px; padding: 11px 16px; border: 1px solid #d9d7e5; border-radius: 5px; background: #fff; color: var(--navy); font-size: 14px; }
+.registration-card input[name="postal_code"] { max-width: 200px; }
+.registration-card input[type="file"] { padding: 8px; border: 1px solid #d9d7e5; border-radius: 5px; }
+.registration-card .advance-form__consent a { text-decoration: underline; }
+@media (max-width: 900px) {
+  .registration-hero__inner { grid-template-columns: 1.2fr 1fr; gap: 20px; }
+  .registration-hero .advance-hero__description br { display: none; }
+}
+@media (max-width: 767px) {
+  .registration-hero__inner { grid-template-columns: 1fr; padding: 54px 0 70px; }
+  .registration-hero h1 { font-size: clamp(30px, 8vw, 42px); }
+  .registration-category { font-size: 12px; }
+  .registration-hero .advance-hero__description { font-size: 12px; }
+  .registration-hero__visual { min-height: 210px; }
+  .registration-hero__visual::before { inset: 0 -10px; }
+  .registration-card { padding: 26px 20px 34px; }
+  .registration-card .advance-form__row { grid-template-columns: 1fr; }
+  .registration-card input[type="tel"] { font-size: 16px; }
+  .registration-pair { max-width: none; }
+}

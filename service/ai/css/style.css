@@ -1,0 +1,466 @@
+@charset "UTF-8";
+
+.ai-hero {
+  min-height: 540px;
+}
+
+.ai-hero .renewal-hero__inner {
+  padding-block: 72px;
+}
+
+.ai-hero h1 {
+  font-size: clamp(32px, 3.7vw, 50px);
+}
+
+.ai-hero h1 span {
+  color: var(--purple);
+}
+
+.ai-hero__points {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin: 30px auto 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ai-hero__points li {
+  position: relative;
+  padding: 0 clamp(18px, 2.8vw, 38px);
+  color: var(--navy);
+  font-size: clamp(12px, 1.15vw, 15px);
+  font-weight: 800;
+}
+
+.ai-hero__points li::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 10px;
+  border-radius: 50%;
+  background: var(--purple);
+}
+
+.ai-hero__points li + li {
+  border-left: 1px solid #ddd5f7;
+}
+
+.ai-hero__actions {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 32px;
+}
+
+.ai-hero .ai-hero__actions .renewal-button {
+  margin: 0;
+}
+
+.ai-challenges,
+.ai-reasons {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.ai-quote {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 138px;
+  margin: 0;
+  padding: 30px 32px 30px 64px;
+  border: 1px solid #ece8fb;
+  border-radius: 14px;
+  color: var(--navy);
+  background: rgb(255 255 255 / 94%);
+  box-shadow: 0 10px 30px rgb(38 27 110 / 4%);
+  font-size: clamp(15px, 1.45vw, 19px);
+  font-weight: 700;
+  line-height: 1.8;
+}
+
+.ai-quote::before {
+  content: "“";
+  position: absolute;
+  top: 19px;
+  left: 25px;
+  color: #b69aff;
+  font-family: Georgia, serif;
+  font-size: 46px;
+  line-height: 1;
+}
+
+.ai-use-case {
+  position: relative;
+  min-height: 220px;
+  padding-top: 60px;
+  text-align: left;
+}
+
+.ai-use-case__icon {
+  position: absolute;
+  top: 22px;
+  left: 26px;
+  color: #a17bfa;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .12em;
+}
+
+.ai-use-case__icon::after {
+  content: "";
+  display: inline-block;
+  width: 34px;
+  height: 1px;
+  margin: 0 0 4px 10px;
+  background: #d8cafb;
+}
+
+.ai-use-case h3,
+.ai-use-case p {
+  text-align: left;
+}
+
+.ai-subheading {
+  margin: 64px 0 28px;
+  text-align: center;
+}
+
+.ai-subheading h3 {
+  margin: 0;
+  font-size: clamp(23px, 2.5vw, 34px);
+}
+
+.ai-industry {
+  min-height: 245px;
+  text-align: left;
+  background: linear-gradient(145deg, rgb(255 255 255 / 98%), rgb(246 242 255 / 96%));
+}
+
+.ai-industry h3,
+.ai-industry p {
+  text-align: left;
+}
+
+.ai-industry__label {
+  margin-bottom: 8px !important;
+  color: var(--violet) !important;
+  font-size: 9px !important;
+  font-weight: 900;
+  letter-spacing: .12em;
+}
+
+.ai-reason {
+  display: grid;
+  grid-template-columns: 62px minmax(0, 1fr);
+  gap: 22px;
+  text-align: left;
+}
+
+.ai-reason .renewal-number {
+  margin: 0;
+}
+
+.ai-reason h3,
+.ai-reason p {
+  text-align: left;
+}
+
+.ai-reason h3 {
+  text-wrap: balance;
+}
+
+.ai-process {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ai-process__item {
+  position: relative;
+  min-height: 170px;
+  padding: 30px 22px;
+  border: 1px solid #ece8fb;
+  color: var(--navy);
+  background: rgb(255 255 255 / 95%);
+  text-align: center;
+}
+
+.ai-process__item:first-child {
+  border-radius: 14px 0 0 14px;
+}
+
+.ai-process__item:last-child {
+  border-radius: 0 14px 14px 0;
+}
+
+.ai-process__item + .ai-process__item {
+  border-left: 0;
+}
+
+.ai-process__item:not(:last-child)::after {
+  content: "→";
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  right: -13px;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  color: #fff;
+  background: var(--purple);
+  font-size: 12px;
+  transform: translateY(-50%);
+}
+
+.ai-process__item > span {
+  color: #a17bfa;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: .12em;
+}
+
+.ai-process__item h3 {
+  margin: 20px 0 0;
+  font-size: clamp(17px, 1.5vw, 21px);
+  line-height: 1.6;
+}
+
+.ai-process__item small {
+  display: block;
+  margin-top: 4px;
+  color: var(--renewal-muted);
+  font-size: 11px;
+}
+
+.ai-process__goal {
+  margin: 28px 0 0;
+  color: var(--purple);
+  font-size: clamp(16px, 1.6vw, 21px);
+  font-weight: 800;
+  text-align: center;
+}
+
+.ai-pricing {
+  display: grid;
+  grid-template-columns: minmax(250px, .7fr) 1.3fr;
+  align-items: center;
+  gap: clamp(28px, 5vw, 68px);
+  padding: clamp(32px, 4vw, 52px);
+  border: 1px solid #ded3fb;
+  border-radius: 18px;
+  background: linear-gradient(120deg, rgb(248 245 255 / 98%), rgb(240 250 255 / 96%));
+}
+
+.ai-pricing > div {
+  padding-right: 30px;
+  border-right: 1px solid #d8cdf4;
+  text-align: center;
+}
+
+.ai-pricing__term {
+  margin: 0 0 8px;
+  color: var(--purple);
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.ai-pricing h3 {
+  margin: 0;
+  font-size: clamp(30px, 3.5vw, 46px);
+}
+
+.ai-pricing > p {
+  margin: 0;
+  color: var(--renewal-muted);
+  font-size: 14px;
+  line-height: 2;
+}
+
+.ai-contact {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  padding: clamp(34px, 4vw, 50px) clamp(28px, 6vw, 72px);
+  border-radius: 18px;
+  color: #fff;
+  background: linear-gradient(110deg, #6425f7, #332083);
+}
+
+.ai-contact .renewal-eyebrow {
+  color: #d8c9ff;
+}
+
+.ai-contact h2 {
+  margin: 0;
+  font-size: clamp(24px, 2.7vw, 36px);
+  line-height: 1.5;
+}
+
+.ai-contact p:last-child {
+  margin: 14px 0 0;
+  font-weight: 600;
+}
+
+.ai-contact .renewal-button {
+  flex: 0 0 auto;
+}
+
+@media (max-width: 900px) and (min-width: 768px) {
+  .ai-hero__points li {
+    padding-inline: 16px;
+  }
+
+  .ai-reason {
+    grid-template-columns: 52px minmax(0, 1fr);
+    gap: 15px;
+  }
+
+  .ai-reason .renewal-number {
+    width: 52px;
+    height: 52px;
+    font-size: 24px;
+  }
+
+  .ai-contact {
+    gap: 24px;
+  }
+}
+
+@media (max-width: 767px) {
+  .ai-hero .renewal-hero__inner {
+    padding-block: 52px;
+  }
+
+  .ai-hero h1 {
+    font-size: clamp(27px, 7.5vw, 34px);
+  }
+
+  .ai-hero h1 br {
+    display: none;
+  }
+
+  .ai-hero h1 span {
+    display: inline;
+  }
+
+  .ai-hero__points {
+    flex-direction: column;
+    align-items: flex-start;
+    width: fit-content;
+    gap: 10px;
+    margin-top: 24px;
+    text-align: left;
+  }
+
+  .ai-hero__points li {
+    padding: 0;
+    border: 0 !important;
+    font-size: 13px;
+  }
+
+  .ai-hero__actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    margin-top: 26px;
+  }
+
+  .ai-hero__actions .renewal-button {
+    width: 100%;
+  }
+
+  .ai-challenges,
+  .ai-reasons,
+  .ai-process,
+  .ai-pricing {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ai-quote {
+    min-height: 0;
+    padding: 24px 22px 24px 52px;
+    font-size: 15px;
+  }
+
+  .ai-quote::before {
+    top: 17px;
+    left: 19px;
+    font-size: 40px;
+  }
+
+  .ai-use-case,
+  .ai-industry {
+    min-height: 0;
+  }
+
+  .ai-subheading {
+    margin-top: 48px;
+  }
+
+  .ai-reason {
+    grid-template-columns: 54px minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .ai-reason .renewal-number {
+    width: 54px;
+    height: 54px;
+    font-size: 25px;
+  }
+
+  .ai-process {
+    gap: 12px;
+  }
+
+  .ai-process__item,
+  .ai-process__item:first-child,
+  .ai-process__item:last-child {
+    min-height: 0;
+    padding: 24px 22px;
+    border: 1px solid #ece8fb;
+    border-radius: 12px;
+  }
+
+  .ai-process__item + .ai-process__item {
+    border-left: 1px solid #ece8fb;
+  }
+
+  .ai-process__item:not(:last-child)::after {
+    content: "↓";
+    top: auto;
+    right: 50%;
+    bottom: -19px;
+    transform: translateX(50%);
+  }
+
+  .ai-pricing {
+    gap: 24px;
+    padding: 30px 24px;
+  }
+
+  .ai-pricing > div {
+    padding: 0 0 24px;
+    border-right: 0;
+    border-bottom: 1px solid #d8cdf4;
+  }
+
+  .ai-contact {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 26px;
+    padding: 30px 24px;
+  }
+
+  .ai-contact .renewal-button {
+    width: 100%;
+  }
+}

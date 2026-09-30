@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+/* Company page. */
+
+.renewal-original .company-info { margin: 0; padding: 16px 44px; background: #fff; border: 1px solid var(--line); border-radius: 14px; }
+
+.renewal-original .company-info-item { display: grid; grid-template-columns: 210px 1fr; gap: 28px; padding: 26px 0; border-bottom: 1px solid var(--line); }
+
+.renewal-original .company-info-item:last-child { border-bottom: 0; }
+
+.renewal-original .company-info-item__ttl { font-weight: 700; }
+
+.renewal-original .company-info-item__txt { margin: 0; font-size: 14px; }
+
+.renewal-original .company-info-item-list { padding: 0; margin: 0; list-style: none; }
+
+@media (max-width: 767px) {
+  .renewal-original .company-info { padding: 6px 24px; }
+  .renewal-original .company-info-item { grid-template-columns: 1fr; gap: 12px; padding: 24px 0; }
+}

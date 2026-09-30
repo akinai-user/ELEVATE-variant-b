@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+/* FAQ page. */
+
+.renewal-faq { margin: 0 0 16px; border: 1px solid #e7e1f7; border-radius: 12px; background: #fff; overflow: hidden; }
+
+.renewal-faq summary { display: flex; align-items: center; gap: 22px; padding: 24px 30px; list-style: none; font-weight: 700; cursor: pointer; }
+
+.renewal-faq summary::-webkit-details-marker { display: none; }
+
+.renewal-faq summary > span, .renewal-faq__answer > span { color: var(--violet); font-size: 25px; font-weight: 800; flex: 0 0 26px; }
+
+.renewal-faq summary::after { content: "+"; margin-left: auto; color: var(--purple); font-size: 24px; font-weight: 400; }
+
+.renewal-faq[open] summary::after { content: "−"; }
+
+.renewal-faq__answer { display: flex; gap: 22px; padding: 22px 30px; border-top: 1px solid var(--line); background: #faf8ff; }
+
+.renewal-faq__answer p { margin: 0; }
+
+@media (max-width: 767px) {
+  .renewal-faq summary { padding: 20px 18px; gap: 12px; font-size: 14px; }
+  .renewal-faq__answer { padding: 20px 18px; gap: 12px; }
+}

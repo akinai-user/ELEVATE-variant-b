@@ -1,0 +1,359 @@
+@charset "UTF-8";
+
+/* マウスの追従リングとクリック波紋。標準カーソルと操作を維持する。 */
+.pointer-effects {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  pointer-events: none;
+  overflow: hidden;
+}
+.pointer-effects * { pointer-events: none; }
+.pointer-follower {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+.pointer-follower.is-visible { opacity: 1; }
+.pointer-follower::before {
+  content: "";
+  position: absolute;
+  left: -17px;
+  top: -17px;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgb(143 98 255 / 65%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 25%, rgb(198 232 255 / 12%), rgb(143 98 255 / 7%));
+  box-shadow: 0 0 14px rgb(143 98 255 / 12%);
+  transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+}
+.pointer-follower.is-interactive::before {
+  transform: scale(1.65);
+  border-color: rgb(143 98 255 / 90%);
+  background-color: rgb(143 98 255 / 9%);
+}
+.pointer-ripple {
+  position: absolute;
+  width: 54px;
+  height: 54px;
+  border: 1px solid rgb(143 98 255 / 90%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(198 232 255 / 12%), rgb(143 98 255 / 15%) 65%, transparent 70%);
+  box-shadow: 0 0 18px rgb(143 98 255 / 20%);
+}
+
+/* 共通モーション：タイトル、CTA、カード、ページ遷移 */
+.motion-hero-title {
+  transform-origin: left center;
+  backface-visibility: hidden;
+}
+html.motion-booting body {
+  visibility: hidden;
+}
+main .motion-reveal-pending,
+main .motion-hero-pending {
+  opacity: 0;
+}
+.motion-magnetic {
+  --magnetic-x: 0px;
+  --magnetic-y: 0px;
+  --magnetic-scale: 1;
+  translate: var(--magnetic-x) var(--magnetic-y);
+  scale: var(--magnetic-scale);
+  will-change: translate, scale;
+}
+.motion-tilt-card.motion-tilt-card.motion-tilt-card {
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  --tilt-lift: 0px;
+  --tilt-scale: 1;
+  position: relative;
+  isolation: isolate;
+  transform: perspective(950px) translateY(var(--tilt-lift)) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) scale(var(--tilt-scale));
+  transform-style: preserve-3d;
+  transition: transform 0.48s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.48s ease;
+}
+.motion-tilt-card.is-tilting {
+  box-shadow: 0 22px 48px rgb(44 27 126 / 14%);
+  will-change: transform;
+}
+.motion-card-glare {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(circle at var(--glare-x, 50%) var(--glare-y, 50%), rgb(255 255 255 / 32%), transparent 42%);
+  mix-blend-mode: screen;
+  transition: opacity 0.35s ease;
+}
+.motion-tilt-card.is-tilting > .motion-card-glare { opacity: 0.72; }
+
+.page-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: grid;
+  place-items: center;
+  visibility: hidden;
+  pointer-events: none;
+  clip-path: inset(0 100% 0 0);
+  overflow: hidden;
+  color: #fff;
+  background:
+    radial-gradient(circle at 76% 22%, rgb(187 139 255 / 72%), transparent 30%),
+    linear-gradient(118deg, #14065f 0%, #4f18df 50%, #8f3cff 100%);
+}
+.page-transition::before,
+.page-transition::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+.page-transition::before {
+  width: min(76vw, 920px);
+  aspect-ratio: 1;
+  border: 1px solid rgb(255 255 255 / 18%);
+  border-radius: 50%;
+  box-shadow: 0 0 90px rgb(198 232 255 / 14%), inset 0 0 90px rgb(255 255 255 / 8%);
+  animation: transition-orbit 7s linear infinite;
+  animation-play-state: paused;
+}
+.page-transition::after {
+  inset: -20% -12%;
+  background: linear-gradient(105deg, transparent 43%, rgb(255 255 255 / 18%) 49%, transparent 55%);
+  transform: translateX(-25%);
+}
+.page-transition.is-active {
+  visibility: visible;
+  pointer-events: auto;
+  will-change: clip-path;
+}
+.page-transition.is-active::before { animation-play-state: running; }
+.page-transition__mark {
+  position: relative;
+  z-index: 1;
+  padding-left: 0.32em;
+  font-size: clamp(22px, 3vw, 38px);
+  font-weight: 800;
+  font-style: italic;
+  line-height: 1;
+  letter-spacing: 0.32em;
+  text-shadow: 0 0 28px rgb(255 255 255 / 32%);
+}
+body.is-page-entering,
+body.is-page-leaving { overflow: hidden; }
+body.is-page-entering > :not(.page-transition),
+body.is-page-leaving > :not(.page-transition) { pointer-events: none; }
+@keyframes transition-orbit { to { transform: rotate(360deg); } }
+
+@media (max-width: 767px), (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .pointer-effects { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .motion-magnetic { translate: 0 0; scale: 1; transition: none; will-change: auto; }
+  .motion-tilt-card.motion-tilt-card.motion-tilt-card { transform: none; transition: none; will-change: auto; }
+  .motion-card-glare, .page-transition { display: none; }
+}
+
+/* 共通テンプレート：色・幅・余白 */
+:root {
+  --color-text: #1c2733;
+  --color-background: #fff;
+  --color-primary: #175393;
+  --content-width: 1120px;
+  --navy: #080635;
+  --purple: #5a20f0;
+  --violet: #8f62ff;
+  --line: #deddf4;
+  --page-gutter: clamp(24px, 3.5vw, 48px);
+  --page-width: min(1180px, calc(100% - var(--page-gutter) * 2));
+  --header-width: min(1230px, calc(100% - var(--page-gutter) * 2));
+  --hover-duration: 0.3s;
+  --hover-image-opacity: 0.75;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; color: var(--color-text); background: var(--color-background); font-family: var(--site-font); font-size: 1rem; line-height: 1.8; overflow-wrap: anywhere; }
+img { max-width: 100%; height: auto; vertical-align: middle; }
+button, input, select, textarea { font: inherit; }
+a { color: var(--color-primary); text-underline-offset: .2em; }
+:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 4px; }
+.container { width: min(var(--content-width), calc(100% - 40px)); margin-inline: auto; }
+.page-main { min-height: 60vh; padding-block: 48px 80px; }
+h1 { margin: 0 0 32px; font-size: clamp(1.75rem, 4vw, 2.5rem); line-height: 1.4; }
+h2 { line-height: 1.5; }
+.skip-link { position: absolute; top: 8px; left: 8px; transform: translateY(-200%); padding: 8px 16px; background: #fff; z-index: 10; }
+.skip-link:focus { transform: translateY(0); }
+@media (max-width: 767px) {
+  .page-main { padding-block: 32px 56px; }
+}
+
+/* 共通ホバー：画像リンクの親要素、またはimg自体に付与 */
+.hover-image img,
+img.hover-image {
+  transition: opacity var(--hover-duration) ease;
+}
+
+/* 左から伸びる共通下線。矢印はhover-triggerの対象spanの外に置きます。 */
+a.hover-underline[href],
+.hover-trigger .hover-underline {
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 0% 1px;
+  transition: background-size var(--hover-duration) cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+  .hover-image:hover img,
+  img.hover-image:hover {
+    opacity: var(--hover-image-opacity);
+  }
+  a.hover-underline[href]:hover,
+  .hover-trigger:hover .hover-underline {
+    background-size: 100% 1px;
+  }
+}
+.hover-image:focus-visible img,
+img.hover-image:focus-visible {
+  opacity: var(--hover-image-opacity);
+}
+a.hover-underline[href]:focus-visible,
+.hover-trigger:focus-visible .hover-underline {
+  background-size: 100% 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hover-image img,
+  img.hover-image,
+  a.hover-underline[href],
+  .hover-trigger .hover-underline {
+    transition: none;
+  }
+}
+
+/* ボタン・文字ロゴ用の共通フェード */
+.hover-fade {
+  transition: opacity var(--hover-duration) ease;
+}
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+  .hover-fade:hover { opacity: var(--hover-image-opacity); }
+}
+.hover-fade:focus-visible { opacity: var(--hover-image-opacity); }
+.motion-magnetic.motion-magnetic {
+  transition-property: translate, scale, transform, opacity, color, background-color, border-color, box-shadow;
+  transition-duration: 0.42s;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hover-fade { transition: none; }
+}
+
+/* レイアウトの高さを保ちながら画面上部に固定 */
+.top-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: #fff;
+  transition: box-shadow 0.3s ease;
+}
+.top-header.is-scrolled {
+  box-shadow: 0 4px 24px rgb(8 6 53 / 10%);
+}
+html { scroll-padding-top: calc(var(--sticky-header-height, 80px) + 20px); }
+.skip-link { z-index: 100; }
+
+.hover-lift { transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1); }
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+  .hover-lift:hover { transform: translateY(-4px); }
+}
+.hover-lift:focus-visible { transform: translateY(-4px); }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  .hover-lift, .top-header { transition: none; }
+  .hover-lift:hover, .hover-lift:focus-visible { transform: none; }
+}
+
+/* ページ全体で一枚の背景を共有。スクロール中も模様が途切れません。 */
+.page-art {
+  position: relative;
+  isolation: isolate;
+  --page-art-opacity: 0.65;
+}
+.page-art::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  translate: 0 var(--scroll-parallax, 0px);
+  z-index: -1;
+  pointer-events: none;
+  background: url("../../images/common/section-background.webp") center / cover no-repeat;
+  opacity: var(--page-art-opacity);
+}
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .page-art::before { inset: -40px 0; }
+  .floating-background__orb {
+    translate: var(--orb-pointer-x, 0px) calc(var(--scroll-parallax, 0px) + var(--orb-pointer-y, 0px));
+  }
+  .floating-background__orb:nth-child(even) {
+    translate: var(--orb-pointer-x, 0px) calc(var(--scroll-parallax-reverse, 0px) + var(--orb-pointer-y, 0px));
+  }
+  .dx-orb {
+    translate: var(--orb-pointer-x, 0px) calc(var(--orb-scroll-y, 0px) + var(--orb-pointer-y, 0px));
+    will-change: translate;
+  }
+}
+@media (max-width: 767px) {
+  .page-art { --page-art-opacity: 0.45; }
+  .page-art::before {
+    background-image: url("../../images/common/section-background-sp.webp");
+  }
+}
+
+/* 6つの装飾画像を独立した周期・軌道で浮遊させる共通背景 */
+.floating-background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+.floating-background__orb {
+  position: absolute;
+  width: var(--orb-size);
+  height: auto;
+  opacity: var(--orb-opacity, 0.36);
+  animation: orb-drift var(--orb-duration, 19s) ease-in-out infinite;
+  animation-delay: var(--orb-delay, 0s);
+  will-change: transform;
+}
+.floating-background__orb:nth-child(1) { left: -3%; top: 13%; --orb-size: clamp(130px, 17vw, 250px); --orb-duration: 19s; --orb-delay: -4s; --orb-x: 24px; --orb-y: -32px; --orb-turn: 8deg; }
+.floating-background__orb:nth-child(2) { right: -4%; top: 45%; --orb-size: clamp(120px, 15vw, 220px); --orb-duration: 24s; --orb-delay: -13s; --orb-x: -30px; --orb-y: 24px; --orb-turn: -10deg; }
+.floating-background__orb:nth-child(3) { right: 15%; top: 15%; --orb-size: clamp(65px, 8vw, 120px); --orb-duration: 17s; --orb-delay: -7s; --orb-x: -18px; --orb-y: -28px; --orb-turn: 12deg; --orb-opacity: 0.42; }
+.floating-background__orb:nth-child(4) { left: 12%; top: 68%; --orb-size: clamp(70px, 9vw, 135px); --orb-duration: 22s; --orb-delay: -16s; --orb-x: 22px; --orb-y: 30px; --orb-turn: -7deg; }
+.floating-background__orb:nth-child(5) { left: -4%; top: 42%; --orb-size: clamp(95px, 12vw, 180px); --orb-duration: 26s; --orb-delay: -9s; --orb-x: 28px; --orb-y: -22px; --orb-turn: -12deg; }
+.floating-background__orb:nth-child(6) { right: 2%; top: 79%; --orb-size: clamp(110px, 14vw, 210px); --orb-duration: 21s; --orb-delay: -3s; --orb-x: -20px; --orb-y: -35px; --orb-turn: 9deg; --orb-opacity: 0.30; }
+@keyframes orb-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  35% { transform: translate3d(var(--orb-x), var(--orb-y), 0) rotate(var(--orb-turn)); }
+  70% { transform: translate3d(calc(var(--orb-x) * -0.5), calc(var(--orb-y) * 0.4), 0) rotate(calc(var(--orb-turn) * -0.5)); }
+}
+.is-loading .floating-background__orb,
+.menu-open .floating-background__orb,
+.modal-open .floating-background__orb { animation-play-state: paused; }
+@media (max-width: 767px) {
+  .floating-background__orb { width: calc(var(--orb-size) * 0.65); opacity: 0.25; }
+  .floating-background__orb:nth-child(3) { right: 4%; }
+  .floating-background__orb:nth-child(4) { left: 3%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .floating-background__orb { animation: none; will-change: auto; }
+}
+
+:root { --site-font: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", "Yu Gothic", system-ui, sans-serif; }

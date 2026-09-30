@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&amp;display=swap" rel="stylesheet" />
+  <script>
+    if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches &&
+        'IntersectionObserver' in window && Element.prototype.animate) {
+      document.documentElement.classList.add('motion-booting');
+      window.addEventListener('load', () => document.documentElement.classList.remove('motion-booting'), { once: true });
+    }
+  </script>
+  <title>かんたんWeb登録 | ELEVATE</title>
+  <meta name="description" content="ELEVATEのかんたんWeb登録ページです。">
+  <link rel="icon" href="../favicon.ico" sizes="any" />
+  <meta property="og:title" content="かんたんWeb登録 | ELEVATE" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://elevate-works.jp/web-registered/" />
+  <meta property="og:site_name" content="株式会社ELEVATE" />
+  <meta property="og:description" content="ELEVATEのかんたんWeb登録ページです。" />
+  <meta property="og:image" content="https://elevate-works.jp/images/common/ogp.png" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="stylesheet" href="../commn/css/common.css">
+  <link rel="stylesheet" href="../commn/css/site-shell.css">
+  <link rel="stylesheet" href="../service/css/style.css">
+  <link rel="stylesheet" href="../advance-payment/css/style.css">
+  <link rel="stylesheet" href="../transportation-expenses/css/style.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="../commn/js/common.js" defer></script>
+  <script src="js/form.js" defer></script>
+  <link rel="stylesheet" href="../commn/css/experience.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へスキップ</a>
+  <header class="top-header">
+    <div class="top-header__inner">
+      <a class="brand hover-image" href="../index.html" aria-label="ELEVATE トップページ">
+        <img src="../images/common/logo.png" alt="ELEVATE">
+      </a>
+      <nav class="global-nav" id="global-nav" aria-label="メインナビゲーション">
+        <a href="../service/index.html" class="hover-underline" data-menu-number="01">サービス内容</a>
+        <a href="https://note.com/elevate" class="hover-underline" data-menu-number="02" target="_blank" rel="noopener noreferrer">事例紹介</a>
+        <a href="../introduction/index.html" class="hover-underline" data-menu-number="03">お仕事紹介をご希望の方</a>
+        <a href="../company/index.html" class="hover-underline" data-menu-number="04">会社情報</a>
+        <a href="../registered/index.html" class="hover-underline" data-menu-number="05">登録スタッフの方</a>
+        <div class="mobile-menu-actions">
+          <a class="mobile-menu-cta" href="../web-registered/index.html" aria-current="page">かんたんWeb登録 <span aria-hidden="true">↗</span></a>
+          <a class="mobile-menu-contact" href="../contact/index.html">お問い合わせ <span aria-hidden="true">→</span></a>
+          <div class="mobile-menu-bottom">
+            <a href="../privacy/index.html">プライバシーポリシー</a>
+          </div>
+        </div>
+      </nav>
+      <div class="header-actions">
+        <a class="header-button hover-fade" href="../contact/index.html">お問い合わせ <span>→</span></a>
+        <a class="header-button header-button--solid hover-fade" href="../web-registered/index.html" aria-current="page">かんたんWeb登録 <span>→</span></a>
+        <button class="menu-button hover-fade" type="button" aria-controls="global-nav" aria-expanded="false" aria-label="メニューを開く" data-menu-button>
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+  <nav class="breadcrumb" aria-label="パンくずリスト">
+    <ol class="breadcrumb__list">
+      <li class="breadcrumb__item"><a class="hover-underline" href="../index.html">HOME</a></li>
+      <li class="breadcrumb__item"><a class="hover-underline" href="../introduction/index.html">お仕事紹介をご希望の方</a></li>
+      <li class="breadcrumb__item"><span aria-current="page">Web登録フォーム</span></li>
+    </ol>
+  </nav>
+  <main id="main" class="service-page advance-page registration-page">
+    <div class="hero-shell">
+      <section class="dx-hero registration-hero" aria-labelledby="registration-title">
+      <span class="dx-orb dx-orb--01" aria-hidden="true"></span>
+      <span class="dx-orb dx-orb--02" aria-hidden="true"></span>
+      <span class="dx-orb dx-orb--03" aria-hidden="true"></span>
+      <span class="dx-orb dx-orb--04" aria-hidden="true"></span>
+      <div class="registration-hero__inner">
+        <div class="registration-hero__copy" data-reveal>
+          <p class="registration-category">お仕事紹介をご希望の方</p>
+          <h1 id="registration-title">Web登録フォーム</h1>
+          <p class="advance-hero__description">スタッフ登録をご希望の方は、専用フォームより必要事項を<br>ご入力のうえ、登録手続きを行ってください。<br>登録内容を確認後、順次対応させていただきます。</p>
+        </div>
+        <div class="registration-hero__visual" aria-hidden="true">
+          <p class="registration-signature">働くその先へ</p>
+          <p>人と技術で、<br>企業の未来をアップデート。</p>
+          <small>FOR A BRIGHTER<br>TOMORROW</small>
+        </div>
+      </div>
+
+    </section>
+      <div class="page-guide">
+        <div class="elevate-mascot page-guide__mascot" aria-hidden="true" data-mascot-guide="スタッフのWeb登録フォームです。入力内容と個人情報の取り扱いを確認して、登録手続きを進めてね。"><img src="../images/common/mascots/sapo.png" alt="" width="1254" height="1254" decoding="async"></div>
+      </div>
+    </div>
+    <div class="advance-content">
+      <section class="advance-form-section" aria-labelledby="form-title">
+        <h2 class="visually-hidden" id="form-title">Web登録内容の入力</h2>
+        <div class="advance-form-card registration-card">
+          <form class="advance-form" id="registration-form" method="dialog">
+            <div class="advance-form__row">
+              <label class="advance-form__label" for="registration-job_number"><span>お仕事No.</span> </label>
+              <div class="advance-form__control"><input id="registration-job_number" name="job_number" placeholder="お仕事情報に掲載のお仕事No.をご入力ください" type="text"></div>
+            </div>
+            <div class="advance-form__row" role="group" aria-label="氏名（漢字）">
+              <div class="advance-form__label"><span>氏名（漢字）</span> <span class="required-label">必須</span></div>
+              <div class="advance-form__control"><div class="registration-pair"><input id="registration-family_name" name="family_name" placeholder="姓" type="text" aria-label="姓"  required><input id="registration-given_name" name="given_name" placeholder="名" type="text" aria-label="名"  required></div></div>
+            </div>
+            <div class="advance-form__row" role="group" aria-label="氏名（フリガナ）">
+              <div class="advance-form__label"><span>氏名（フリガナ）</span> <span class="required-label">必須</span></div>
+              <div class="advance-form__control"><div class="registration-pair"><input id="registration-family_kana" name="family_kana" placeholder="セイ" type="text" aria-label="セイ"  required><input id="registration-given_kana" name="given_kana" placeholder="メイ" type="text" aria-label="メイ"  required></div></div>
+            </div>
+            <div class="advance-form__row" role="group" aria-label="性別">
+              <div class="advance-form__label"><span>性別</span> <span class="required-label">必須</span></div>
+              <div class="advance-form__control"><div class="registration-options"><label class="check-control"><input type="radio" name="gender" value="男" required> 男</label><label class="check-control"><input type="radio" name="gender" value="女" required> 女</label></div></div>
+            </div>
+            <div class="advance-form__row" role="group" aria-label="生年月日">
+              <div class="advance-form__label"><span>生年月日</span> <span class="required-label">必須</span></div>
+              <div class="advance-form__control"><div class="registration-options registration-birthday"><label><select name="birth_year" id="birth-year" aria-label="生まれた年" required><option value="">----</option></select> 年</label><label><select name="birth_month" id="birth-month" aria-label="生まれた月" required><option value="">--</option></select> 月</label><label><select name="birth_day" id="birth-day" aria-label="生まれた日" required><option value="">--</option></select> 日</label></div></div>
+            </div>
+            <div class="advance-form__row">
+              <label class="advance-form__label" for="registration-postal_code"><span>郵便番号</span> <span class="required-label">必須</span></label>
+              <div class="advance-form__control"><input id="registration-postal_code" name="postal_code" placeholder="例）5300001" type="text" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{7}" maxlength="7" aria-describedby="postal-help" required><p class="advance-form__help" id="postal-help">※ハイフンなし</p></div>
+            </div>
+            <div class="advance-form__row" role="group" aria-label="ご住所">
+              <div class="advance-form__label"><span>ご住所</span> <span class="required-label">必須</span></div>
+              <div class="advance-form__control"><div class="registration-pair"><input id="registration-address" name="address" placeholder="都道府県・市区町村" type="text" aria-label="都道府県・市区町村"  required><input id="registration-building" name="building" placeholder="番地・建物名" type="text" aria-label="番地・建物名"  required></div></div>
+            </div>
+            <div class="advance-form__row">
+              <label class="advance-form__label" for="registration-phone"><span>電話番号</span> <span class="required-label">必須</span></label>
+              <div class="advance-form__control"><input id="registration-phone" name="phone" placeholder="例）09012345678" type="tel" autocomplete="tel" required></div>
+            </div>
+            <div class="advance-form__row">
+              <label class="advance-form__label" for="registration-email"><span>メールアドレス</span> <span class="required-label">必須</span></label>
+              <div class="advance-form__control"><input id="registration-email" name="email" placeholder="例）example@example.com" type="email" autocomplete="email" required></div>
+            </div>
+            <div class="advance-form__row">
+              <label class="advance-form__label" for="registration-photo"><span>顔写真の添付</span> </label>
+              <div class="advance-form__control"><div class="file-control"><input id="registration-photo" name="photo" type="file" accept=".jpg,.jpeg,.png,.gif,.heic,image/jpeg,image/png,image/gif,image/heic" aria-describedby="photo-help"></div><p class="advance-form__help" id="photo-help">※ファイル容量は、5MBまででお願いします。<br>※ファイル形式は、JPEG、PNG、GIF、HEICのいずれかでお願いします。</p></div>
+            </div>
+            <div class="advance-form__row" role="group" aria-label="通勤手段">
+              <div class="advance-form__label"><span>通勤手段</span> <span class="required-label">必須</span></div>
+              <div class="advance-form__control"><div class="registration-options"><label class="check-control"><input type="checkbox" name="commute" value="徒歩" aria-describedby="commute-help"> 徒歩</label><label class="check-control"><input type="checkbox" name="commute" value="自転車" aria-describedby="commute-help"> 自転車</label><label class="check-control"><input type="checkbox" name="commute" value="公共交通機関" aria-describedby="commute-help"> 公共交通機関</label><label class="check-control"><input type="checkbox" name="commute" value="バイク" aria-describedby="commute-help"> バイク</label><label class="check-control"><input type="checkbox" name="commute" value="車" aria-describedby="commute-help"> 車</label></div><p class="advance-form__help" id="commute-help">※可能なものを全て選択してください</p></div>
+            </div>
+            <div class="advance-form__row">
+              <label class="advance-form__label" for="registration-notes"><span>備考</span> </label>
+              <div class="advance-form__control"><textarea id="registration-notes" name="notes" rows="5" placeholder="※希望条件などをご入力ください"></textarea></div>
+            </div>
+            <div class="advance-form__consent">
+              <p id="privacy-help">個人情報の取り扱いについて <a href="../privacy/index.html" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a>をご確認頂き、同意の上送信してください。</p>
+              <label class="check-control"><input type="checkbox" name="privacy" required aria-describedby="privacy-help"> 同意する</label>
+            </div>
+            <button class="advance-form__submit hover-fade" id="registration-confirm" type="button" disabled>確認画面へ進む <span aria-hidden="true">→</span></button>
+            <noscript><p>入力内容を確認するにはJavaScriptを有効にしてください。</p></noscript>
+          </form>
+        </div>
+      </section>
+    </div>
+  </main>
+  <dialog class="transportation-confirmation" id="registration-confirmation" aria-labelledby="confirmation-title">
+    <h2 id="confirmation-title">Web登録内容の確認</h2>
+    <dl id="registration-summary"></dl>
+    <p class="advance-form__help">現在は入力内容の確認のみご利用いただけます。登録はまだ送信されていません。</p>
+    <form method="dialog"><button class="advance-form__submit hover-fade" autofocus>入力内容を修正する <span aria-hidden="true">←</span></button></form>
+  </dialog>
+  <footer class="top-footer">
+    <div class="top-footer__inner">
+      <div class="footer-brand">
+        <a class="brand brand--light hover-image" href="../index.html">
+          <img src="../images/common/logo.png" alt="ELEVATE">
+        </a>
+        <p>〒595-0072 大阪府泉大津市松之浜町1丁目1-10-3F<br>TEL:0120-334-335 / 0725-20-0140</p>
+      </div>
+      <div class="footer-column">
+        <h2>サービス内容</h2>
+        <a href="../service/staffing/index.html" class="hover-underline">・総合人材派遣サービス</a>
+        <a href="../service/dx/index.html" class="hover-underline">・IT・DX事業</a>
+      </div>
+      <div class="footer-column">
+        <h2>お仕事紹介をご希望の方</h2>
+        <a href="../introduction/staffing/index.html" class="hover-underline">・総合人材派遣サービス</a>
+        <a href="https://elevate-works.jp/lp/" class="hover-underline footer-external-link" target="_blank" rel="noopener noreferrer" aria-label="ELEVATE（別タブで開く）">・ELEVATE
+          <svg class="footer-external-icon" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M6 3H3v10h10v-3M8 3h5v5M13 3 7 9" />
+          </svg>
+        </a>
+        <a href="../introduction/faq/index.html" class="hover-underline">・よくあるご質問</a>
+      </div>
+      <div class="footer-column">
+        <h2>登録スタッフの方</h2>
+        <a href="../advance-payment/index.html" class="hover-underline">・前払い申請フォーム</a>
+        <a href="../transportation-expenses/index.html" class="hover-underline">・交通費申請フォーム</a>
+      </div>
+      <div class="footer-column">
+        <h2>お問い合わせ</h2>
+        <a href="../web-registered/index.html" class="hover-underline">・かんたんWeb登録</a>
+      </div>
+      <div class="footer-bottom">
+        <small>© <span data-current-year>2026</span> ELEVATE. All Rights Reserved.</small>
+        <div>
+          <a href="../company/index.html" class="hover-underline">会社概要</a>
+          <span>|</span>
+          <a href="../privacy/index.html" class="hover-underline">プライバシーポリシー</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,70 @@
+@charset "UTF-8";
+
+/* Service overview page. */
+
+.overview-content { padding-top: 48px; }
+
+.overview-section + .overview-section { margin-top: 58px; }
+
+.overview-heading { display: grid; grid-template-columns: 1.5fr 1fr; align-items: end; gap: 40px; margin-bottom: 26px; padding-inline: 16px; }
+
+.overview-heading .renewal-eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+
+.overview-heading .renewal-eyebrow::before { content: ""; width: 11px; height: 11px; border-radius: 50%; background: var(--violet); }
+
+.overview-heading h2 { margin: 0; font-size: clamp(30px,3.7vw,49px); line-height: 1.35; }
+
+.overview-heading__lead { margin: 6px 0 0; font-size: clamp(15px,1.5vw,20px); font-weight: 700; }
+
+.overview-heading__description { margin: 0 0 12px; font-size: 13px; color: var(--renewal-muted); line-height: 1.85; }
+
+.overview-heading__link { display: flex; justify-content: flex-end; align-items: center; gap: 20px; width: fit-content; margin-left: auto; font-size: 14px; font-weight: 800; color: var(--purple); text-decoration: none; }
+
+.overview-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; }
+
+.overview-card { display: flex; flex-direction: column; padding: 28px 28px 24px; border: 1px solid #e9e3fa; border-radius: 14px; background: rgb(255 255 255 / 92%); box-shadow: 0 7px 26px rgb(38 27 110 / 4%); }
+
+.overview-card__visual { position: relative; margin: 0 0 14px; aspect-ratio: 1.85; }
+
+.overview-card__visual img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 55% 45% 48% 52% / 56% 40% 60% 44%; }
+
+#human-resources .overview-card__visual img { object-position: 68% center; }
+
+.overview-card__visual::before, .overview-card__visual::after { content: ""; position: absolute; z-index: 1; border-radius: 50%; pointer-events: none; }
+
+.overview-card__visual::before { width: 42px; height: 42px; top: 0; right: 4%; background: radial-gradient(circle at 30% 25%,#fff,#ecff8f 42%,#d2ee54 80%); }
+
+.overview-card__visual::after { width: 52px; height: 52px; right: 0; bottom: -6px; background: radial-gradient(circle at 30% 25%,#fff,#c3a4fa 40%,#9860ed 80%); }
+
+.overview-card__meta { display: flex; align-items: center; gap: 10px; margin: 0 0 7px; color: #ab89fa; }
+
+.overview-card__meta b { font-size: 28px; line-height: 1.2; }
+
+.overview-card__meta > span { width: 22px; height: 1px; background: #d7c9fa; }
+
+.overview-card__meta small { font-size: 7px; font-weight: 800; letter-spacing: .17em; }
+
+.overview-card h3 { margin: 0 0 8px; font-size: clamp(20px,1.9vw,26px); line-height: 1.45; }
+
+.overview-card__lead { margin: 0 0 12px; color: var(--purple); font-size: 15px; font-weight: 800; line-height: 1.65; }
+
+.overview-card__description { margin: 0 0 22px; color: var(--renewal-muted); font-size: 13px; line-height: 1.85; }
+
+.overview-card__link { display: inline-flex; align-self: flex-start; gap: 18px; margin-top: auto; color: var(--purple); font-size: 14px; font-weight: 800; text-decoration: none; }
+
+@media (max-width: 1000px) and (min-width: 768px) {
+  .overview-card { padding: 20px 18px; }
+  .overview-heading { grid-template-columns: 1.25fr 1fr; padding-inline: 0; gap: 26px; }
+}
+
+@media (max-width: 767px) {
+  .renewal-grid, .renewal-grid:has(> :last-child:nth-child(2)), .overview-grid { grid-template-columns: 1fr; gap: 16px; }
+  .overview-heading { grid-template-columns: 1fr; gap: 16px; padding: 0; }
+  .overview-heading h2 { font-size: 32px; }
+  .overview-heading__link { margin-top: 14px; }
+  .overview-card { padding: 26px; }
+  .overview-card__visual { max-height: 230px; }
+  .overview-card h3 { font-size: 24px; }
+  .overview-card__meta small { font-size: 8px; }
+  .overview-card__description { font-size: 14px; }
+}

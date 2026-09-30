@@ -1,0 +1,523 @@
+@charset "UTF-8";
+
+/* Shared spacing and motion, informed by the YAOYA reference. */
+:root {
+  --page-gutter: clamp(24px, 7.5vw, 120px);
+  --page-width: min(1200px, calc(100% - var(--page-gutter) * 2));
+  --section-space: clamp(72px, 9vw, 144px);
+  --layout-gap: clamp(24px, 3vw, 44px);
+  --panel-radius: clamp(28px, 5vw, 72px);
+  --card-radius: 28px;
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* A consistent reading width and clear section boundaries on every page. */
+body { background-color: #faf9fd; }
+.service-page { overflow: clip; background: #faf9fd; }
+.page-art { --page-art-opacity: 0.12; }
+.floating-background { opacity: 0.35; }
+.top-header__inner { width: min(1320px, calc(100% - 48px)); }
+.top-header { border-bottom: 1px solid rgb(222 221 244 / 65%); }
+.breadcrumb { padding-block: 24px; }
+.breadcrumb__list { width: var(--page-width); }
+
+/* Spacious, balanced opening compositions. */
+.hero { background: transparent; padding: 40px 0 72px; overflow: clip; }
+.hero__inner {
+  display: grid;
+  width: var(--page-width);
+  min-height: 620px;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  grid-template-rows: 1fr auto;
+  column-gap: 32px;
+  align-items: center;
+}
+.hero__copy { grid-column: 1; grid-row: 1; padding: 64px 0 24px; }
+.hero__copy h1 { font-size: clamp(34px, 3.2vw, 52px); line-height: 1.55; letter-spacing: 0.035em; }
+.hero__lead { max-width: 36em; font-size: 14px; line-height: 2.1; }
+.hero__visual {
+  position: relative;
+  grid-column: 2;
+  grid-row: 1 / 3;
+  inset: auto;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  aspect-ratio: 1.15;
+  align-self: center;
+  margin-top: 0;
+  border-radius: 46% 46% 32px 32px;
+  overflow: hidden;
+  transform: none;
+  background: #f0eaff;
+}
+.hero__buttons { position: static; grid-column: 1; grid-row: 2; flex-wrap: wrap; margin: 0; padding-bottom: 60px; }
+.hero-pagination { bottom: 24px; right: 24px; }
+.scroll-cue { right: auto; left: 50%; bottom: 8px; transform: translateX(-50%); }
+.scroll-cue b { width: 40px; height: 40px; }
+
+.dx-hero.renewal-hero,
+.dx-hero.advance-hero,
+.dx-hero.registration-hero {
+  width: var(--page-width);
+  min-height: 0;
+  margin: 8px auto 0;
+  border-radius: var(--panel-radius);
+  background: #f0eaff;
+  overflow: clip;
+}
+.renewal-hero__inner {
+  width: 100%;
+  padding: clamp(48px, 6vw, 88px);
+  grid-template-columns: minmax(0, 1.5fr) minmax(180px, 0.7fr);
+  gap: 48px;
+}
+.renewal-hero h1 { font-size: clamp(28px, 3.4vw, 48px); line-height: 1.65; letter-spacing: 0.04em; }
+.renewal-hero__description { max-width: 44em; margin-top: 28px; font-size: 15px; line-height: 2.1; }
+.renewal-hero__visual { min-height: 240px; padding: 16px; }
+.renewal-hero__visual::before { inset: 0; border-radius: 50%; opacity: 0.55; }
+.renewal-hero__visual .renewal-signature { font-size: clamp(24px, 2.7vw, 38px); }
+.renewal-hero--center .renewal-hero__inner { padding: clamp(48px, 6vw, 88px); text-align: left; }
+.renewal-hero--center .renewal-hero__description { margin-inline: 0; }
+.renewal-hero__catch { margin-top: 24px; }
+.dx-orb { opacity: 0.25; }
+.renewal-eyebrow, .dx-eyebrow, .eyebrow { text-transform: uppercase; letter-spacing: 0.16em; }
+.renewal-hero .renewal-eyebrow { margin-bottom: 24px; font-size: 15px; }
+
+/* Oversized labels, generous section rhythm, and grouped cards. */
+.section { padding-block: var(--section-space); }
+.section__inner { width: var(--page-width); }
+.section-heading { margin-bottom: 44px; }
+.section-heading h2 { font-size: clamp(28px, 3vw, 42px); line-height: 1.6; }
+.section-heading .eyebrow { margin-bottom: 18px; font-size: clamp(28px, 4vw, 56px); line-height: 1.15; letter-spacing: 0.02em; }
+.section-heading--split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(160px, 0.65fr) auto; gap: 28px; }
+.section-heading__copy { line-height: 2; font-size: 14px; }
+.service-grid { gap: 32px; }
+.service-card, .seeker-card, .interview-card { border-radius: var(--card-radius); }
+.service-card { padding: 24px; background: white; border: 1px solid var(--line); }
+.service-card img { border-radius: 16px; }
+.seekers-grid { gap: 24px; }
+.seeker-card { padding: 12px; background: white; border: 1px solid var(--line); }
+.news { background: #f1edfa; border-radius: var(--panel-radius); }
+.news__layout { grid-template-columns: minmax(0, 1fr) minmax(180px, 0.28fr); gap: 64px; }
+.news-item { min-height: 88px; padding: 20px 8px; }
+.news-item strong { font-size: 14px; line-height: 1.9; }
+.news-message { border-radius: 50%; }
+.interview-card > div { aspect-ratio: 1.65; }
+.interview-card h3 { padding: 24px 24px 16px; min-height: 100px; font-size: 17px; line-height: 1.8; }
+.interview-card > p { padding: 0 24px 28px; }
+.carousel-arrow--prev { left: -22px; }
+.carousel-arrow--next { right: -22px; }
+
+.renewal-content { padding-block: var(--section-space); }
+.renewal-content::before, .advance-content::before, .advance-content::after { display: none; }
+.renewal-section + .renewal-section,
+.renewal-original .inner + .inner,
+.overview-section + .overview-section { margin-top: var(--section-space); }
+.renewal-heading { margin: 0 0 44px; text-align: left; }
+.renewal-heading .renewal-eyebrow { font-size: clamp(22px, 3vw, 38px); margin-bottom: 18px; letter-spacing: 0.04em; }
+.renewal-heading h2, .renewal-original h2 { font-size: clamp(24px, 2.7vw, 38px); line-height: 1.65; }
+.renewal-grid, .renewal-original :is(.boxlist, .boxlist02, .staffing-link) { gap: 28px; }
+.renewal-feature, .renewal-link-card,
+.renewal-original :is(.boxlist__item, .boxlist02__item, .staffing-link__link) {
+  padding: clamp(24px, 3vw, 40px);
+  border-radius: var(--card-radius);
+  background: white;
+  box-shadow: none;
+}
+.renewal-feature p, .renewal-link-card p, .renewal-original p { line-height: 2; }
+.renewal-number, .renewal-original .boxlist__num { margin-bottom: 28px; }
+.renewal-link-card { min-height: 270px; }
+.renewal-contact { margin-top: 48px; padding: 48px; border-radius: 32px; }
+.renewal-split { padding: 48px; border-radius: 40px; gap: 48px; }
+.renewal-split > img { border-radius: 28px; }
+.renewal-original .ttl02 { margin-bottom: 40px; text-align: left; }
+.renewal-original .steplist { padding: 16px 40px; border-radius: 32px; }
+.renewal-original .steplist__item { padding-block: 36px; }
+.renewal-original .engineering-bnr { margin-top: 72px; }
+.renewal-original .engineering-bnr img { border-radius: 28px; }
+
+.overview-section { padding: clamp(28px, 4vw, 56px); border-radius: var(--panel-radius); background: #eee7fb; }
+.overview-section:nth-child(even) { background: #edf0fb; }
+.overview-heading { grid-template-columns: minmax(0, 1fr); gap: 24px; padding: 0; margin-bottom: 40px; }
+.overview-heading h2 { font-size: clamp(28px, 3vw, 42px); }
+.overview-heading__description { max-width: 48em; font-size: 14px; }
+.overview-heading__link { margin-left: 0; }
+.overview-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+.overview-card { padding: 32px; border-radius: 28px; box-shadow: none; }
+.overview-card__visual { aspect-ratio: 1.8; margin-bottom: 24px; }
+.overview-card__visual img { border-radius: 20px; }
+.overview-card__visual::before, .overview-card__visual::after { display: none; }
+.overview-card__description { font-size: 14px; line-height: 2; }
+.overview-card__link { padding-top: 16px; }
+
+/* Long-form pages and forms use narrower, uninterrupted reading columns. */
+.renewal-original:has(.company), .renewal-original:has(.privacy), .renewal-original:has(.faq) { max-width: 960px; }
+.renewal-original .company-info { padding: 16px 48px; border-radius: 32px; }
+.renewal-original .company-info-item { grid-template-columns: 180px minmax(0, 1fr); padding-block: 36px; }
+.renewal-original .company-info-item__txt { line-height: 2; }
+.renewal-original .innner-privacy { padding: clamp(28px, 5vw, 64px); border-radius: 32px; }
+.renewal-original .privacy__item + .privacy__item { margin-top: 56px; padding-top: 32px; border-top: 1px solid var(--line); }
+.renewal-original .privacy h2 { font-size: clamp(20px, 2vw, 26px); }
+.renewal-faq { margin-bottom: 24px; border-radius: 24px; }
+.renewal-faq summary, .renewal-faq__answer { padding: 28px 32px; }
+.renewal-form { max-width: 800px; padding: 48px 64px; border-radius: 36px; box-shadow: none; }
+.renewal-form__row { grid-template-columns: minmax(0, 1fr); gap: 14px; padding-block: 24px; }
+.renewal-form__row > label { justify-content: flex-start; padding-top: 0; }
+.advance-hero .dx-hero__inner, .registration-hero .dx-hero__inner { width: 100%; padding: 64px; text-align: left; }
+.advance-hero h1, .registration-hero h1 { font-size: clamp(28px, 3.5vw, 48px); line-height: 1.6; }
+.advance-hero__category { margin: 0 0 24px; }
+.advance-hero__description { font-size: 15px; line-height: 2; }
+.advance-form-section { max-width: 880px; margin-top: 64px; padding-bottom: var(--section-space); }
+.advance-form-card { grid-template-columns: minmax(0, 1fr); gap: 32px; padding: 56px 64px; border-radius: 36px; box-shadow: none; }
+.advance-form__intro { max-width: 48em; font-size: 14px; }
+.advance-form__row { grid-template-columns: minmax(0, 1fr); gap: 16px; padding-block: 26px; }
+.advance-form__label { justify-content: flex-start; }
+.registration-hero__inner { width: 100%; padding: 64px; grid-template-columns: minmax(0, 1.5fr) minmax(160px, 0.7fr); }
+.registration-card .advance-form__row { grid-template-columns: minmax(0, 1fr); }
+.renewal-form :is(input:not([type=checkbox]), textarea),
+.advance-form :is(input:not([type=checkbox]):not([type=radio]), select, textarea) { border-radius: 10px; }
+.ai-hero__points, .ai-hero__actions { justify-content: flex-start; }
+.ai-hero .renewal-hero__copy { max-width: none; }
+.ai-contact { padding: 48px; border-radius: 36px; }
+
+/* Subtle interaction feedback; movement never changes the layout. */
+.pill, .renewal-button, .header-button, .advance-form__submit { border-radius: 16px; }
+.service-card, .seeker-card, .interview-card, .renewal-link-card,
+.overview-card, .renewal-original .staffing-link__link { transition: translate 0.35s var(--motion-ease), box-shadow 0.35s var(--motion-ease); }
+@media (hover: hover) and (pointer: fine) {
+  .service-card.hover-lift:hover { transform: none; }
+  .service-card:hover, .seeker-card:hover, .interview-card:hover,
+  .renewal-link-card:hover, .overview-card:hover,
+  .renewal-original .staffing-link__link:hover { translate: 0 -5px; box-shadow: 0 18px 40px rgb(38 27 110 / 9%); }
+}
+.top-footer__inner { padding-block: 80px 100px; gap: 32px; }
+.footer-column { gap: 12px; }
+.footer-column a { font-size: 12px; }
+.footer-brand p { font-size: 12px; line-height: 2; }
+
+/* Page navigation fades through the same surface as the content. */
+.page-transition { clip-path: none; opacity: 0; background: #faf9fd; color: var(--purple); }
+.page-transition::before, .page-transition::after { display: none; }
+.page-transition.is-active { will-change: opacity; }
+.page-transition__mark { font-size: 18px; letter-spacing: 0.22em; font-style: normal; text-shadow: none; }
+
+@media (min-width: 768px) and (max-width: 1100px) {
+  :root { --page-gutter: 40px; }
+  .hero__inner { min-height: 560px; gap: 24px; }
+  .hero__copy h1 { font-size: 32px; }
+  .hero__visual { min-height: 0; }
+  .hero__buttons { flex-direction: column; align-items: flex-start; padding-bottom: 32px; }
+  .renewal-hero__inner { padding: 48px; gap: 24px; grid-template-columns: minmax(0, 1.5fr) minmax(150px, 0.7fr); }
+  .renewal-grid, .renewal-original .boxlist { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .top-footer__inner { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 767px) {
+  :root { --page-gutter: 24px; --card-radius: 24px; --section-space: 72px; }
+  .top-header__inner { width: calc(100% - 32px); }
+  .breadcrumb { padding-block: 18px; }
+  .hero { padding: 16px 0 72px; }
+  .hero__inner { min-height: 0; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto auto; gap: 28px; }
+  .hero__copy { grid-column: 1; grid-row: 1; padding: 24px 0 0; }
+  .hero__copy h1 { font-size: clamp(27px, 6.9vw, 40px); line-height: 1.55; }
+  .hero__lead { font-size: 12px; }
+  .hero__visual { grid-column: 1; grid-row: 2; min-height: 0; height: auto; aspect-ratio: 1.35; border-radius: 32px; }
+  .hero__buttons { grid-column: 1; grid-row: 3; display: grid; grid-template-columns: minmax(0, 1fr); padding: 0; gap: 12px; }
+  .pill { width: 100%; min-width: 0; min-height: 56px; font-size: 13px; }
+  .hero-pagination { bottom: 14px; right: 14px; }
+  .scroll-cue { bottom: 0; }
+  .dx-hero.renewal-hero, .dx-hero.advance-hero, .dx-hero.registration-hero { margin-top: 0; }
+  .renewal-hero__inner, .renewal-hero--center .renewal-hero__inner { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; padding: 36px 24px; }
+  .renewal-hero h1 { font-size: clamp(25px, 6.3vw, 34px); line-height: 1.65; letter-spacing: 0.01em; }
+  .renewal-hero__description { margin-top: 22px; font-size: 14px; }
+  .renewal-hero__visual { display: none; }
+  .renewal-hero .renewal-eyebrow { font-size: 12px; margin-bottom: 18px; }
+  .renewal-hero__catch { font-size: 22px; }
+  .section-heading--split { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .section-heading { margin-bottom: 32px; }
+  .section-heading .eyebrow { font-size: 32px; }
+  .section-heading h2 { font-size: 26px; }
+  .service-grid, .seekers-grid, .news__layout, .renewal-grid,
+  .renewal-grid:has(> :last-child:nth-child(2)), .overview-grid,
+  .renewal-original :is(.boxlist, .boxlist02, .staffing-link) { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .service-card { padding: 16px; }
+  .news__layout { gap: 32px; }
+  .news-message { width: 160px; justify-self: end; }
+  .news-item { grid-template-columns: minmax(0, 1fr); gap: 6px; padding-block: 20px; }
+  .renewal-heading { margin-bottom: 32px; }
+  .renewal-heading .renewal-eyebrow { font-size: 24px; }
+  .renewal-heading h2, .renewal-original h2 { font-size: 25px; }
+  .renewal-split { grid-template-columns: minmax(0, 1fr); padding: 24px; gap: 24px; border-radius: 28px; }
+  .renewal-contact { flex-direction: column; align-items: stretch; padding: 28px 24px; }
+  .renewal-contact p { font-size: 15px; }
+  .renewal-original .steplist { padding: 8px 24px; }
+  .renewal-original .steplist__item { grid-template-columns: minmax(0, 1fr); gap: 18px; padding-block: 28px; }
+  .overview-section { padding: 28px 20px; }
+  .overview-heading h2 { font-size: 27px; }
+  .overview-card { padding: 24px; }
+  .renewal-original .company-info { padding: 8px 24px; }
+  .renewal-original .company-info-item { grid-template-columns: minmax(0, 1fr); gap: 12px; padding-block: 28px; }
+  .renewal-original .innner-privacy { padding: 24px; }
+  .renewal-original .privacy h2 { font-size: 20px; }
+  .renewal-faq summary, .renewal-faq__answer { padding: 24px 20px; gap: 12px; }
+  .renewal-form { padding: 24px; border-radius: 28px; }
+  .advance-hero .dx-hero__inner, .registration-hero .dx-hero__inner { padding: 36px 24px; }
+  .registration-hero__inner { grid-template-columns: minmax(0, 1fr); padding: 36px 24px; }
+  .registration-hero__visual { display: none; }
+  .advance-hero h1, .registration-hero h1 { font-size: 28px; }
+  .advance-hero__description { font-size: 14px; }
+  .advance-form-section { margin-top: 40px; }
+  .advance-form-card { padding: 28px 24px; gap: 28px; border-radius: 28px; }
+  .ai-contact { padding: 32px 24px; }
+  .ai-hero__actions { align-items: stretch; }
+  .top-footer__inner { grid-template-columns: repeat(2, minmax(0, 1fr)); padding-block: 56px 120px; gap: 32px 24px; }
+  .footer-brand { grid-column: 1 / -1; }
+  .footer-bottom { right: 0; flex-wrap: wrap; gap: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-card, .seeker-card, .interview-card, .renewal-link-card,
+  .overview-card, .renewal-original .staffing-link__link { transition: none; translate: none; }
+  main .motion-reveal-pending, main .motion-hero-pending { opacity: 1; }
+}
+
+@media print {
+  html.motion-booting body { visibility: visible; }
+  main .motion-reveal-pending, main .motion-hero-pending { opacity: 1; }
+  .page-transition { display: none; }
+}
+
+/* A direct pointer and a soft, delayed halo, using ELEVATE's existing colors. */
+.pointer-follower::before {
+  inset: -20px auto auto -20px;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  background: var(--purple);
+  opacity: 0.16;
+  box-shadow: none;
+  transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+}
+.pointer-follower.is-interactive::before { transform: scale(1.5); background: var(--purple); opacity: 0.1; }
+.pointer-dot { position: absolute; inset: 0 auto auto 0; opacity: 0; transition: opacity 0.15s; }
+.pointer-dot.is-visible { opacity: 1; }
+.pointer-dot::before {
+  content: "";
+  position: absolute;
+  inset: -4px auto auto -4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #9fbd20;
+  box-shadow: 0 0 5px rgb(159 189 32 / 25%);
+  transition: transform 0.15s ease-out;
+}
+.pointer-dot.is-interactive::before { transform: scale(0.55); }
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  html.has-custom-pointer, .has-custom-pointer body, .has-custom-pointer a,
+  .has-custom-pointer button, .has-custom-pointer summary, .has-custom-pointer [role="button"] { cursor: none; }
+}
+
+/* The header contracts on scroll; panels open below it without moving content. */
+.header-menu-backdrop { display: none; }
+@media (min-width: 768px) {
+  .top-header { height: 96px; transition: height 0.28s var(--motion-ease), box-shadow 0.28s; }
+  .top-header.is-scrolled { height: 72px; }
+  .top-header__inner { position: relative; z-index: 1; }
+  .top-header .brand { transition: scale 0.28s var(--motion-ease); transform-origin: left center; }
+  .top-header.is-scrolled .brand { scale: 0.9; }
+  .global-nav { height: 100%; }
+  .global-nav > a, .service-navigation > a {
+    padding-block: 16px;
+    background-image: none;
+    transition: opacity 0.18s, translate 0.25s var(--motion-ease);
+  }
+  .global-nav > a::before, .service-navigation > a::before {
+    content: "";
+    position: absolute;
+    bottom: 5px;
+    left: calc(50% - 3px);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--purple);
+    opacity: 0;
+    transform: translateY(5px) scale(0.5);
+    transition: opacity 0.2s, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .global-nav > a:hover, .service-navigation > a:hover { opacity: 0.7; translate: 0 -2px; }
+  .global-nav > a:focus-visible::before, .global-nav > a:hover::before,
+  .service-navigation:focus-within > a::before, .service-navigation.is-open > a::before {
+    opacity: 1;
+    transform: none;
+  }
+  .service-navigation { position: static; height: 100%; }
+  .service-navigation::after { display: none; }
+  .header-menu-backdrop {
+    display: block;
+    position: fixed;
+    inset: var(--sticky-header-height, 96px) 0 0;
+    z-index: 0;
+    background: rgb(8 6 53 / 18%);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.28s, visibility 0.28s;
+  }
+  .top-header.has-open-menu .header-menu-backdrop { opacity: 1; visibility: visible; pointer-events: auto; }
+  .service-menu {
+    position: fixed;
+    top: calc(var(--sticky-header-height, 96px) + 12px);
+    left: max(24px, calc((100vw - 1280px) / 2));
+    width: min(920px, calc(100vw - 48px));
+    max-height: calc(100dvh - var(--sticky-header-height, 96px) - 36px);
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: 180px minmax(0, 1fr);
+    align-items: center;
+    gap: 32px;
+    padding: 40px;
+    border-radius: 32px;
+    background: #fff;
+    box-shadow: 0 24px 56px rgb(8 6 53 / 12%);
+    transform: translateY(-10px) scale(0.985);
+    transform-origin: top left;
+    transition: opacity 0.28s, visibility 0.28s, transform 0.4s var(--motion-ease);
+  }
+  .service-menu__heading { color: var(--purple); font-size: 15px; font-weight: 800; line-height: 1.9; letter-spacing: 0.06em; }
+  .service-menu__items { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+  .global-nav .service-menu__link {
+    min-height: 168px;
+    padding: 24px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 24px;
+    gap: 16px 12px;
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    font-size: 14px;
+    line-height: 1.8;
+    opacity: 0;
+    translate: 0 10px;
+    transition: opacity 0.26s, translate 0.38s var(--motion-ease), background-color 0.2s;
+  }
+  .global-nav .service-menu__link + .service-menu__link { border-top: 1px solid var(--line); }
+  .service-navigation.is-open .service-menu__link { opacity: 1; translate: 0 0; transition-delay: calc(70ms + var(--menu-order) * 65ms); }
+  .global-nav .service-menu__link:hover, .global-nav .service-menu__link:focus-visible { background-color: #f0eaff; }
+  .service-menu__icon { grid-column: 1 / -1; width: 48px; height: 48px; display: grid; place-items: center; border-radius: 15px; background: #ece4ff; color: var(--purple); }
+  .service-menu__icon::before { content: ""; width: 26px; height: 26px; background: currentColor; -webkit-mask: var(--menu-icon) center / contain no-repeat; mask: var(--menu-icon) center / contain no-repeat; }
+  .service-menu__arrow { font-size: 22px; }
+}
+@media (min-width: 768px) and (max-width: 1100px) {
+  .top-header { height: 80px; }
+  .top-header.is-scrolled { height: 64px; }
+  .service-menu { grid-template-columns: 140px minmax(0, 1fr); padding: 28px; gap: 24px; }
+  .global-nav .service-menu__link { padding: 20px; }
+}
+@media (max-width: 767px) {
+  .global-nav { transform: translateX(100%); transition: transform 0.5s var(--motion-ease), opacity 0.35s, visibility 0.5s; }
+  .global-nav.is-open { transform: translateX(0); }
+}
+
+/* Supplied ELEVATE companions, placed in scenes and section whitespace. */
+.elevate-mascot { position: relative; pointer-events: none; }
+.elevate-mascot img { display: block; width: 100%; height: auto; object-fit: contain; animation: elevate-float 4.8s ease-in-out infinite; }
+@keyframes elevate-float { 0%,100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-12px) rotate(3deg); } }
+.renewal-hero__visual::before, .registration-hero__visual::before { display: none; }
+.renewal-hero__visual, .registration-hero__visual { overflow: visible; }
+.renewal-hero__visual .renewal-signature, .registration-hero__visual .registration-signature { font-size: clamp(23px, 2.2vw, 32px); margin: 0 0 14px; }
+.interview-card > div { aspect-ratio: auto; }
+.interview-card img { height: auto; object-fit: contain; }
+.overview-card__visual { aspect-ratio: auto; }
+.overview-card__visual img { height: auto; aspect-ratio: 1.8; object-fit: contain; }
+.pill, .renewal-button, .header-button, .advance-form__submit { transition: scale 0.25s var(--motion-ease), box-shadow 0.25s, opacity 0.25s; }
+.pill > span, .renewal-button > span, .header-button > span { display: inline-block; transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+@media (hover: hover) and (pointer: fine) {
+  .pill:hover, .renewal-button:hover, .header-button:hover, .advance-form__submit:hover { opacity: 1; scale: 1.025; }
+  .pill:hover > span, .renewal-button:hover > span, .header-button:hover > span { transform: translateX(4px) rotate(-10deg); }
+  .top-header .brand:hover { scale: 1.025; }
+  .top-header.is-scrolled .brand:hover { scale: 0.94; }
+}
+.pill:active, .renewal-button:active, .header-button:active, .advance-form__submit:active { scale: 0.98; }
+@media (prefers-reduced-motion: reduce) {
+  .elevate-mascot img { animation: none; }
+  .top-header, .top-header .brand, .service-menu, .header-menu-backdrop,
+  .global-nav .service-menu__link, .global-nav, .global-nav > a, .service-navigation > a,
+  .global-nav > a::before, .service-navigation > a::before,
+  .pill, .renewal-button, .header-button, .advance-form__submit,
+  .pill > span, .renewal-button > span, .header-button > span { transition: none; }
+}
+
+/* Decorative symbols for the existing navigation destinations. */
+.service-menu__icon--people { --menu-icon: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.7%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%229%22%20cy%3D%227%22%20r%3D%223%22%2F%3E%3Cpath%20d%3D%22M3%2021v-3a6%206%200%200%201%2012%200v3M16%204a3%203%200%200%201%200%206M18%2014a5%205%200%200%201%203%205v2%22%2F%3E%3C%2Fsvg%3E"); }
+.service-menu__icon--technology { --menu-icon: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.7%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Crect%20x%3D%222%22%20y%3D%223%22%20width%3D%2220%22%20height%3D%2215%22%20rx%3D%223%22%2F%3E%3Cpath%20d%3D%22M8%2022h8M12%2018v4M9%207l-3%203%203%203M15%207l3%203-3%203%22%2F%3E%3C%2Fsvg%3E"); }
+.service-menu__icon--question { --menu-icon: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.7%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2210%22%2F%3E%3Cpath%20d%3D%22M9%209a3%203%200%201%201%205%202c-2%201-2%202-2%203M12%2018h.01%22%2F%3E%3C%2Fsvg%3E"); }
+.service-menu__icon--document { --menu-icon: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.7%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M14%202H6a2%202%200%200%200-2%202v16a2%202%200%200%200%202%202h12a2%202%200%200%200%202-2V8ZM14%202v6h6M8%2013h8M8%2017h5%22%2F%3E%3C%2Fsvg%3E"); }
+.service-menu__icon--route { --menu-icon: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.7%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%225%22%20cy%3D%225%22%20r%3D%223%22%2F%3E%3Ccircle%20cx%3D%2219%22%20cy%3D%2219%22%20r%3D%223%22%2F%3E%3Cpath%20d%3D%22M8%205h9a5%205%200%200%201%200%2010H7a3%203%200%200%200%200%206h5%22%2F%3E%3C%2Fsvg%3E"); }
+
+/* Rounded typography across all pages, including form controls. */
+:root { --site-font: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", "Yu Gothic", system-ui, sans-serif; }
+body { font-family: var(--site-font); }
+.renewal-hero__visual .renewal-signature,
+.registration-hero__visual .registration-signature,
+.dx-hero__signature { font-family: var(--site-font); }
+
+/* The wordmark lands behind the opening copy and remains as a quiet backdrop. */
+.hero { isolation: isolate; min-height: 0; padding: 0; }
+.hero__inner { min-height: max(560px, calc(100svh - var(--sticky-header-height, 96px))); grid-template-columns: minmax(0, 1fr) 260px; grid-template-rows: auto; gap: clamp(32px, 5vw, 80px); padding-block: 100px; z-index: 1; }
+.hero__copy { grid-column: 1; grid-row: 1; padding: 0; }
+.hero__buttons { grid-column: 2; grid-row: 1; flex-direction: column; align-items: stretch; width: 100%; padding: 0; }
+.hero-wordmark { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; white-space: nowrap; pointer-events: none; user-select: none; color: var(--purple); opacity: 0; font-size: clamp(70px, 20vw, 340px); font-weight: 900; line-height: 1; letter-spacing: -0.055em; z-index: 0; }
+.hero-wordmark.is-ready { opacity: 1; }
+.hero-wordmark span { display: inline-block; opacity: 0.07; }
+@media (max-width: 767px) {
+  .hero__inner { min-height: max(580px, calc(100svh - var(--sticky-header-height, 72px))); grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto; align-content: center; gap: 36px; padding-block: 80px; }
+  .hero__copy { padding: 0; }
+  .hero__buttons { grid-column: 1; grid-row: 2; width: 100%; padding: 0; }
+  .hero-wordmark { align-items: flex-start; padding-top: 64px; }
+}
+
+/* Mascot page guides: native buttons support mouse, touch and keyboard. */
+.elevate-mascot.has-guide { pointer-events: auto; }
+.mascot-trigger { position: relative; display: block; width: 100%; padding: 0; border: 0; border-radius: 24px; background: transparent; color: var(--purple); cursor: pointer; font: inherit; -webkit-tap-highlight-color: transparent; }
+.mascot-trigger:focus-visible { outline: 3px solid var(--purple); outline-offset: 5px; }
+.mascot-trigger__hint { display: block; width: max-content; max-width: 180px; margin: -4px auto 0; padding: 6px 10px; border: 1px solid var(--line); border-radius: 999px; background: #fff; color: var(--purple); font-size: 11px; font-weight: 700; line-height: 1.6; box-shadow: 0 4px 14px rgb(8 6 53 / 8%); }
+.mascot-trigger:hover img, .mascot-trigger:focus-visible img, .is-speaking img { animation-play-state: paused; }
+.mascot-guide { position: fixed; z-index: 1100; width: min(340px, calc(100vw - 32px)); padding: 24px; border: 1px solid var(--line); border-radius: 24px; background: #fff; color: var(--navy); font-family: var(--site-font); box-shadow: 0 12px 40px rgb(8 6 53 / 15%); }
+.mascot-guide[hidden] { display: none; }
+.mascot-guide::after { content: ""; position: absolute; left: var(--tail-left, 50%); width: 12px; height: 12px; background: #fff; transform: translateX(-50%) rotate(45deg); pointer-events: none; }
+.mascot-guide[data-side="above"]::after { bottom: -7px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.mascot-guide[data-side="below"]::after { top: -7px; border-left: 1px solid var(--line); border-top: 1px solid var(--line); }
+.mascot-guide strong { display: block; padding-right: 32px; color: var(--purple); font-size: 15px; line-height: 1.8; }
+.mascot-guide p { max-height: calc(100dvh - 140px); overflow-y: auto; margin: 12px 0 0; font-size: 14px; font-weight: 500; line-height: 1.9; }
+.mascot-guide__close { position: absolute; top: 8px; right: 8px; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%; background: transparent; color: var(--purple); font: inherit; font-size: 25px; cursor: pointer; }
+.mascot-guide__close:hover { background: #f0eaff; }
+.mascot-guide__close:focus-visible { outline: 2px solid var(--purple); outline-offset: -4px; }
+@media print { .mascot-guide, .mascot-trigger__hint { display: none; } }
+
+/* Hero companions: lower left on TOP, lower right on internal pages. */
+.page-guide { width: 100%; margin: 0; padding: 0 40px 28px; display: flex; justify-content: flex-end; align-items: center; position: relative; z-index: 2; }
+.hero > .page-guide { position: absolute; left: max(var(--page-gutter), calc((100% - 1200px) / 2)); bottom: 56px; width: auto; padding: 0; justify-content: flex-start; }
+.page-guide__mascot { width: 96px; flex: none; }
+.page-guide__mascot .mascot-trigger__hint { font-size: 10px; margin-left: 50%; transform: translateX(-50%); }
+.hero__inner { min-height: max(500px, calc(100svh - var(--sticky-header-height, 96px))); grid-template-columns: minmax(0, 1fr) 280px; grid-template-rows: auto auto; align-content: center; row-gap: 36px; padding-block: 48px 88px; }
+.hero__copy { grid-column: 1 / -1; grid-row: 1; max-width: 840px; justify-self: start; }
+.hero__buttons { grid-column: 2; grid-row: 2; justify-self: end; }
+@media (max-width: 767px) {
+  .page-guide { padding: 0 32px 24px; }
+  .hero > .page-guide { bottom: 56px; }
+  .page-guide__mascot { width: 80px; }
+  .hero__inner { min-height: max(480px, calc(100svh - var(--sticky-header-height, 72px))); grid-template-columns: minmax(0, 1fr); gap: 32px; padding-block: 36px 204px; }
+  .hero__copy { grid-column: 1; }
+  .hero__buttons { grid-column: 1; grid-row: 2; width: min(100%, 300px); }
+}
+@media print { .page-guide { display: none; } }
+
+/* Keep the panel clipped; its companion overlaps the outside edge independently. */
+.hero-shell { position: relative; width: var(--page-width); margin: 8px auto 48px; }
+.hero-shell > .dx-hero { width: 100%; margin: 0; }
+.hero-shell > .page-guide { position: absolute; right: 32px; bottom: -80px; width: auto; padding: 0; background: transparent; }
+@media (max-width: 767px) {
+  .hero-shell { margin-top: 0; }
+  .hero-shell > .page-guide { right: 24px; bottom: -76px; }
+}
