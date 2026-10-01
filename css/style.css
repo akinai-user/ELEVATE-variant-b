@@ -254,96 +254,6 @@ a {
   border-color: transparent;
   background: linear-gradient(90deg, #3717d8, #6e19f2);
 }
-.hero__visual {
-  position: absolute;
-  z-index: 0;
-  top: 0;
-  left: 50%;
-  width: 100vw;
-  height: 100%;
-  transform: translateX(-50%);
-}
-.hero-slider__images,
-.hero-slider__image {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-.hero-slider__image {
-  object-fit: cover;
-  object-position: center;
-  opacity: 0;
-  transition: opacity 1.6s ease-in-out;
-}
-.hero-slider__image.is-active {
-  opacity: 1;
-}
-.hero-pagination {
-  position: absolute;
-  z-index: 5;
-  right: clamp(130px, 14vw, 190px);
-  bottom: clamp(35px, 3.6vw, 49px);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 9px;
-  border-radius: 24px;
-  background: rgb(255 255 255 / 72%);
-  box-shadow: 0 5px 20px rgb(36 20 112 / 8%);
-  backdrop-filter: blur(8px);
-}
-.hero-pagination__button {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: 24px;
-  height: 24px;
-  padding: 0;
-  border: 0;
-  border-radius: 50%;
-  color: var(--purple);
-  background: transparent;
-  cursor: pointer;
-}
-.hero-pagination__button svg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  transform: rotate(-90deg);
-  overflow: visible;
-}
-.hero-pagination__button circle {
-  fill: none;
-  stroke-width: 1.5;
-}
-.hero-pagination__track {
-  stroke: rgb(91 46 236 / 20%);
-}
-.hero-pagination__progress {
-  stroke: currentcolor;
-  stroke-linecap: round;
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-}
-.hero-pagination__button > span {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: currentcolor;
-  opacity: 0.35;
-}
-.hero-pagination__button.is-active > span {
-  opacity: 1;
-}
-.hero-pagination__button.is-active .hero-pagination__progress {
-  animation: hero-slide-progress 5s linear forwards;
-}
-@keyframes hero-slide-progress {
-  to { stroke-dashoffset: 0; }
-}
-
 .scroll-cue {
   position: absolute;
   z-index: 4;
@@ -641,23 +551,6 @@ a {
     padding: 0 22px;
     font-size: 12px;
   }
-  .hero__visual {
-    position: relative;
-    width: 100%;
-    height: auto;
-    aspect-ratio: 900 / 825;
-    margin-top: clamp(16px, 5.87vw, 22px);
-    left: auto;
-    transform: none;
-  }
-  .hero-slider__image {
-    object-position: 72% center;
-  }
-  .hero-pagination {
-    right: 5.33%;
-    bottom: 12px;
-  }
-
   .scroll-cue {
     display: none;
   }
@@ -747,13 +640,6 @@ a {
   }
   .pill:hover {
     transform: none;
-  }
-  .hero-slider__image {
-    transition: none;
-  }
-  .hero-pagination__button.is-active .hero-pagination__progress {
-    animation: none;
-    stroke-dashoffset: 0;
   }
 }
 
