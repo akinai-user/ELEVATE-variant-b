@@ -84,7 +84,7 @@
       </div>
     </div>
     <div class="renewal-content">
-      <form id="contact-form" class="renewal-form" method="dialog">
+      <form id="contact-form" class="renewal-form" action="https://elevate-works.jp/contact/" method="post">
         <div class="renewal-form__row"><label for="contact-name"><span>ご担当者名</span><span class="renewal-required">必須</span></label>
           <div><input class="form__input form__input--min" type="text" name="name" placeholder="例）山田太郎" value="" id="contact-name" required data-label="ご担当者名" autocomplete="name">
           </div>
@@ -110,19 +110,10 @@
           </div>
         </div>
         <div class="renewal-consent">
-          <p>個人情報の取り扱いについて<a href="../privacy/index.html" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a>をご確認頂き、同意の上送信してください。</p><label><input type="checkbox" name="policy_chk" required>同意する</label>
-        </div><button class="renewal-button" type="submit">確認画面へ進む <span aria-hidden="true">→</span></button><noscript>
-          <p>入力内容を確認するにはJavaScriptを有効にしてください。</p></noscript>
+          <p>個人情報の取り扱いについて<a href="../privacy/index.html" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a>をご確認頂き、同意の上送信してください。</p><label><input type="checkbox" name="policy_chk" value="1" required>同意する</label>
+        </div><input type="hidden" name="send_flg" value="1"><button class="renewal-button" type="submit" name="enter" value="確認画面へ進む">確認画面へ進む <span aria-hidden="true">→</span></button>
       </form>
     </div>
-    <dialog class="renewal-dialog" id="contact-confirmation" aria-labelledby="confirmation-title">
-      <h2 id="confirmation-title">お問い合わせ内容の確認</h2>
-      <dl id="contact-summary">
-      </dl>
-      <p class="renewal-dialog__note">現在は入力内容の確認のみご利用いただけます。お問い合わせはまだ送信されていません。</p>
-      <form method="dialog"><button class="renewal-button" autofocus>入力内容を修正する <span aria-hidden="true">←</span></button>
-      </form>
-    </dialog>
   </main>
   <footer class="top-footer">
     <div class="top-footer__inner">

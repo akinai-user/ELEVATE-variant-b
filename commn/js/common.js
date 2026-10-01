@@ -770,6 +770,9 @@
   };
 
   updateCurrentYear();
+  if (document.documentElement.classList.contains("has-home-loader")) {
+    document.body.classList.add("is-page-entering");
+  }
   initMascotGuides();
   initStickyHeader();
   initMenu();

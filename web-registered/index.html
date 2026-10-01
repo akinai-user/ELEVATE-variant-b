@@ -27,7 +27,6 @@
   <link rel="stylesheet" href="../commn/css/site-shell.css">
   <link rel="stylesheet" href="../service/css/style.css">
   <link rel="stylesheet" href="../advance-payment/css/style.css">
-  <link rel="stylesheet" href="../transportation-expenses/css/style.css">
   <link rel="stylesheet" href="css/style.css">
   <script src="../commn/js/common.js" defer></script>
   <script src="js/form.js" defer></script>
@@ -99,18 +98,18 @@
       <section class="advance-form-section" aria-labelledby="form-title">
         <h2 class="visually-hidden" id="form-title">Web登録内容の入力</h2>
         <div class="advance-form-card registration-card">
-          <form class="advance-form" id="registration-form" method="dialog">
+          <form class="advance-form" id="registration-form" action="https://elevate-works.jp/web-registered/" method="post" enctype="multipart/form-data">
             <div class="advance-form__row">
               <label class="advance-form__label" for="registration-job_number"><span>お仕事No.</span> </label>
-              <div class="advance-form__control"><input id="registration-job_number" name="job_number" placeholder="お仕事情報に掲載のお仕事No.をご入力ください" type="text"></div>
+              <div class="advance-form__control"><input id="registration-job_number" name="job_no" placeholder="お仕事情報に掲載のお仕事No.をご入力ください" type="text"></div>
             </div>
             <div class="advance-form__row" role="group" aria-label="氏名（漢字）">
               <div class="advance-form__label"><span>氏名（漢字）</span> <span class="required-label">必須</span></div>
-              <div class="advance-form__control"><div class="registration-pair"><input id="registration-family_name" name="family_name" placeholder="姓" type="text" aria-label="姓"  required><input id="registration-given_name" name="given_name" placeholder="名" type="text" aria-label="名"  required></div></div>
+              <div class="advance-form__control"><div class="registration-pair"><input id="registration-family_name" name="last_name" placeholder="姓" type="text" aria-label="姓"  required><input id="registration-given_name" name="first_name" placeholder="名" type="text" aria-label="名"  required></div></div>
             </div>
             <div class="advance-form__row" role="group" aria-label="氏名（フリガナ）">
               <div class="advance-form__label"><span>氏名（フリガナ）</span> <span class="required-label">必須</span></div>
-              <div class="advance-form__control"><div class="registration-pair"><input id="registration-family_kana" name="family_kana" placeholder="セイ" type="text" aria-label="セイ"  required><input id="registration-given_kana" name="given_kana" placeholder="メイ" type="text" aria-label="メイ"  required></div></div>
+              <div class="advance-form__control"><div class="registration-pair"><input id="registration-family_kana" name="last_name_kana" placeholder="セイ" type="text" aria-label="セイ"  required><input id="registration-given_kana" name="first_name_kana" placeholder="メイ" type="text" aria-label="メイ"  required></div></div>
             </div>
             <div class="advance-form__row" role="group" aria-label="性別">
               <div class="advance-form__label"><span>性別</span> <span class="required-label">必須</span></div>
@@ -126,7 +125,7 @@
             </div>
             <div class="advance-form__row" role="group" aria-label="ご住所">
               <div class="advance-form__label"><span>ご住所</span> <span class="required-label">必須</span></div>
-              <div class="advance-form__control"><div class="registration-pair"><input id="registration-address" name="address" placeholder="都道府県・市区町村" type="text" aria-label="都道府県・市区町村"  required><input id="registration-building" name="building" placeholder="番地・建物名" type="text" aria-label="番地・建物名"  required></div></div>
+              <div class="advance-form__control"><div class="registration-pair"><input id="registration-address" name="address1" placeholder="都道府県・市区町村" type="text" aria-label="都道府県・市区町村"  required><input id="registration-building" name="address2" placeholder="番地・建物名" type="text" aria-label="番地・建物名"  required></div></div>
             </div>
             <div class="advance-form__row">
               <label class="advance-form__label" for="registration-phone"><span>電話番号</span> <span class="required-label">必須</span></label>
@@ -138,33 +137,27 @@
             </div>
             <div class="advance-form__row">
               <label class="advance-form__label" for="registration-photo"><span>顔写真の添付</span> </label>
-              <div class="advance-form__control"><div class="file-control"><input id="registration-photo" name="photo" type="file" accept=".jpg,.jpeg,.png,.gif,.heic,image/jpeg,image/png,image/gif,image/heic" aria-describedby="photo-help"></div><p class="advance-form__help" id="photo-help">※ファイル容量は、5MBまででお願いします。<br>※ファイル形式は、JPEG、PNG、GIF、HEICのいずれかでお願いします。</p></div>
+              <div class="advance-form__control"><div class="file-control"><input id="registration-photo" name="face_photo" type="file" accept=".jpg,.jpeg,.png,.gif,.heic,image/jpeg,image/png,image/gif,image/heic" aria-describedby="photo-help"></div><p class="advance-form__help" id="photo-help">※ファイル容量は、5MBまででお願いします。<br>※ファイル形式は、（JPEG、PNG、GIF、HEIC）のいずれかでお願いします。</p></div>
             </div>
             <div class="advance-form__row" role="group" aria-label="通勤手段">
               <div class="advance-form__label"><span>通勤手段</span> <span class="required-label">必須</span></div>
-              <div class="advance-form__control"><div class="registration-options"><label class="check-control"><input type="checkbox" name="commute" value="徒歩" aria-describedby="commute-help"> 徒歩</label><label class="check-control"><input type="checkbox" name="commute" value="自転車" aria-describedby="commute-help"> 自転車</label><label class="check-control"><input type="checkbox" name="commute" value="公共交通機関" aria-describedby="commute-help"> 公共交通機関</label><label class="check-control"><input type="checkbox" name="commute" value="バイク" aria-describedby="commute-help"> バイク</label><label class="check-control"><input type="checkbox" name="commute" value="車" aria-describedby="commute-help"> 車</label></div><p class="advance-form__help" id="commute-help">※可能なものを全て選択してください</p></div>
+              <div class="advance-form__control"><div class="registration-options"><label class="check-control"><input type="checkbox" name="commute_method[]" value="徒歩" aria-describedby="commute-help"> 徒歩</label><label class="check-control"><input type="checkbox" name="commute_method[]" value="自転車" aria-describedby="commute-help"> 自転車</label><label class="check-control"><input type="checkbox" name="commute_method[]" value="公共交通機関" aria-describedby="commute-help"> 公共交通機関</label><label class="check-control"><input type="checkbox" name="commute_method[]" value="バイク" aria-describedby="commute-help"> バイク</label><label class="check-control"><input type="checkbox" name="commute_method[]" value="車" aria-describedby="commute-help"> 車</label></div><p class="advance-form__help" id="commute-help">※可能なものを全て選択してください</p></div>
             </div>
             <div class="advance-form__row">
               <label class="advance-form__label" for="registration-notes"><span>備考</span> </label>
-              <div class="advance-form__control"><textarea id="registration-notes" name="notes" rows="5" placeholder="※希望条件などをご入力ください"></textarea></div>
+              <div class="advance-form__control"><textarea id="registration-notes" name="remarks" rows="5" placeholder="※希望条件などをご入力ください"></textarea></div>
             </div>
             <div class="advance-form__consent">
               <p id="privacy-help">個人情報の取り扱いについて <a href="../privacy/index.html" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a>をご確認頂き、同意の上送信してください。</p>
-              <label class="check-control"><input type="checkbox" name="privacy" required aria-describedby="privacy-help"> 同意する</label>
+              <label class="check-control"><input type="checkbox" name="policy_chk" value="1" required aria-describedby="privacy-help"> 同意する</label>
             </div>
-            <button class="advance-form__submit hover-fade" id="registration-confirm" type="button" disabled>確認画面へ進む <span aria-hidden="true">→</span></button>
-            <noscript><p>入力内容を確認するにはJavaScriptを有効にしてください。</p></noscript>
+            <input type="hidden" name="send_flg" value="1">
+            <button class="advance-form__submit hover-fade" type="submit" name="enter" value="確認画面へ進む">確認画面へ進む <span aria-hidden="true">→</span></button>
           </form>
         </div>
       </section>
     </div>
   </main>
-  <dialog class="transportation-confirmation" id="registration-confirmation" aria-labelledby="confirmation-title">
-    <h2 id="confirmation-title">Web登録内容の確認</h2>
-    <dl id="registration-summary"></dl>
-    <p class="advance-form__help">現在は入力内容の確認のみご利用いただけます。登録はまだ送信されていません。</p>
-    <form method="dialog"><button class="advance-form__submit hover-fade" autofocus>入力内容を修正する <span aria-hidden="true">←</span></button></form>
-  </dialog>
   <footer class="top-footer">
     <div class="top-footer__inner">
       <div class="footer-brand">

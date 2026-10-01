@@ -27,9 +27,7 @@
   <link rel="stylesheet" href="../commn/css/site-shell.css">
   <link rel="stylesheet" href="../service/css/style.css">
   <link rel="stylesheet" href="../advance-payment/css/style.css">
-  <link rel="stylesheet" href="css/style.css">
   <script src="../commn/js/common.js" defer></script>
-  <script src="js/form.js" defer></script>
   <link rel="stylesheet" href="../commn/css/experience.css">
 </head>
 <body>
@@ -94,7 +92,7 @@
         <h2 class="visually-hidden" id="form-title">交通費申請内容の入力</h2>
         <div class="advance-form-card" data-reveal>
           <p class="advance-form__intro">交通費の申請をご希望の方は、専用フォームより必要事項をご入力のうえ、申請手続きを行ってください。<br>申請内容を確認後、順次対応させていただきます。</p>
-          <form class="advance-form" id="transportation-form" method="dialog">
+          <form class="advance-form" id="transportation-form" action="https://elevate-works.jp/transportation-expenses/" method="post">
             <div class="advance-form__row">
               <label class="advance-form__label" for="transportation-name">氏名 <span class="required-label">必須</span></label>
               <div class="advance-form__control">
@@ -104,44 +102,31 @@
             <div class="advance-form__row">
               <label class="advance-form__label" for="transportation-id">ID <span class="required-label">必須</span></label>
               <div class="advance-form__control">
-                <input id="transportation-id" name="staff_id" type="text" inputmode="numeric" autocomplete="off" placeholder="例）12345" aria-describedby="transportation-id-help" required>
-                <p class="advance-form__help" id="transportation-id-help">※ID未取得の方は、「00000」と入力してください。</p>
+                <input id="transportation-id" name="id" type="text" inputmode="numeric" autocomplete="off" placeholder="例）12345" aria-describedby="transportation-id-help" required>
+                <p class="advance-form__help" id="transportation-id-help">※ID未取得の方は、「00000」と入力ください</p>
               </div>
             </div>
             <div class="advance-form__row">
               <label class="advance-form__label" for="transportation-detail"><span>日付・就業先・通勤方法</span> <span class="required-label">必須</span></label>
               <div class="advance-form__control">
-                <textarea id="transportation-detail" name="commute_detail" rows="5" placeholder="例）12月17日○○会社 車、12月18日△△会社 電車で泉大津駅～岸和田駅420円" aria-describedby="transportation-detail-help" required></textarea>
+                <textarea id="transportation-detail" name="message" rows="5" placeholder="例）12月17日○○会社 車、12月18日△△会社 電車で泉大津駅～岸和田駅420円" aria-describedby="transportation-detail-help" required></textarea>
                 <p class="advance-form__help" id="transportation-detail-help">※交通機関をご利用の場合は、区間とかかった費用をご入力ください。</p>
               </div>
             </div>
             <div class="advance-form__consent">
               <p id="transportation-privacy-help">個人情報の取り扱いについて<a class="hover-underline" href="../privacy/index.html">プライバシーポリシー</a>をご確認頂き、同意の上送信してください。</p>
               <label class="check-control" for="transportation-privacy">
-                <input id="transportation-privacy" name="privacy_consent" type="checkbox" aria-describedby="transportation-privacy-help" required>
+                <input id="transportation-privacy" name="policy_chk" value="1" type="checkbox" aria-describedby="transportation-privacy-help" required>
                 <span>同意する</span>
               </label>
             </div>
-            <button class="advance-form__submit hover-fade" type="button" id="transportation-confirm" disabled>確認画面へ進む <span aria-hidden="true">→</span></button>
-            <noscript><p class="advance-form__help">入力内容を確認するにはJavaScriptを有効にしてください。</p></noscript>
+            <input type="hidden" name="send_flg" value="1">
+            <button class="advance-form__submit hover-fade" type="submit" name="enter" value="確認画面へ進む">確認画面へ進む <span aria-hidden="true">→</span></button>
           </form>
         </div>
       </section>
     </div>
   </main>
-  <dialog class="transportation-confirmation" id="transportation-confirmation" aria-labelledby="confirmation-title">
-    <h2 id="confirmation-title">交通費申請内容の確認</h2>
-    <dl>
-      <div><dt>氏名</dt><dd data-confirm="name"></dd></div>
-      <div><dt>ID</dt><dd data-confirm="staff_id"></dd></div>
-      <div><dt>日付・就業先・通勤方法</dt><dd data-confirm="commute_detail"></dd></div>
-      <div><dt>個人情報の取り扱い</dt><dd>同意する</dd></div>
-    </dl>
-    <p class="advance-form__help">現在は入力内容の確認のみご利用いただけます。申請はまだ送信されていません。</p>
-    <form method="dialog">
-      <button class="advance-form__submit hover-fade" autofocus>入力内容を修正する <span aria-hidden="true">←</span></button>
-    </form>
-  </dialog>
   <footer class="top-footer">
     <div class="top-footer__inner">
       <div class="footer-brand">

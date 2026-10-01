@@ -3,6 +3,53 @@
 (() => {
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
+  const initHomeLoader = () => {
+    const root = document.documentElement;
+    const loader = document.querySelector("[data-home-loader]");
+    if (!root.classList.contains("has-home-loader") || !loader) return;
+    let closing = false;
+    let done = false;
+    let minimumTimer;
+    let deadlineTimer;
+    let exitTimer;
+    const complete = () => {
+      if (done) return;
+      done = true;
+      clearTimeout(exitTimer);
+      root.classList.remove("has-home-loader");
+      loader.classList.remove("is-exiting");
+      document.body.classList.remove("is-page-entering");
+      document.dispatchEvent(new Event("elevate:page-transition-complete"));
+    };
+    const close = (immediate = false) => {
+      if (closing) return;
+      closing = true;
+      clearTimeout(minimumTimer);
+      clearTimeout(deadlineTimer);
+      if (immediate) { complete(); return; }
+      loader.classList.add("is-exiting");
+      exitTimer = window.setTimeout(complete, 720);
+    };
+    const ready = () => {
+      if (closing) return;
+      minimumTimer = window.setTimeout(() => close(), Math.max(0, 2600 - performance.now()));
+    };
+    reducedMotion.addEventListener("change", (event) => { if (event.matches) close(true); });
+    window.addEventListener("pageshow", (event) => { if (event.persisted) close(true); });
+    deadlineTimer = window.setTimeout(() => close(), 4500);
+    if (document.readyState === "complete") ready();
+    else window.addEventListener("load", ready, { once: true });
+  };
+
+  const initSecurityNotice = () => {
+    const notice = document.querySelector("#security-notice");
+    const close = notice?.querySelector("[data-notice-close]");
+    close?.addEventListener("click", () => {
+      notice.classList.add("is-closing");
+      window.setTimeout(() => notice.remove(), 300);
+    });
+  };
+
   const initHeroWordmark = () => {
     const wordmark = document.querySelector(".hero-wordmark");
     if (!wordmark) return;
@@ -122,6 +169,8 @@
     });
   };
 
+  initHomeLoader();
+  initSecurityNotice();
   initHeroWordmark();
   initInterviewSlider();
   initBackToTop();
