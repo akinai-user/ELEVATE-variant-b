@@ -344,7 +344,6 @@ html { scroll-padding-top: calc(var(--sticky-header-height, 80px) + 20px); }
   35% { transform: translate3d(var(--orb-x), var(--orb-y), 0) rotate(var(--orb-turn)); }
   70% { transform: translate3d(calc(var(--orb-x) * -0.5), calc(var(--orb-y) * 0.4), 0) rotate(calc(var(--orb-turn) * -0.5)); }
 }
-.is-loading .floating-background__orb,
 .menu-open .floating-background__orb,
 .modal-open .floating-background__orb { animation-play-state: paused; }
 @media (max-width: 767px) {

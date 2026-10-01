@@ -299,7 +299,7 @@
     };
     let observing = false;
     const observeWhenReady = () => {
-      if (observing || reducedMotion.matches || document.body.matches(".is-loading, .is-page-entering")) return;
+      if (observing || reducedMotion.matches || document.body.matches(".is-page-entering")) return;
       observing = true;
       candidates.forEach((element) => observer.observe(element));
     };
@@ -317,8 +317,7 @@
         animation.cancel();
       });
     });
-    if (document.body.matches(".is-loading, .is-page-entering")) {
-      document.addEventListener("elevate:opening-complete", observeWhenReady, { once: true });
+    if (document.body.matches(".is-page-entering")) {
       document.addEventListener("elevate:page-transition-complete", observeWhenReady, { once: true });
     } else {
       observeWhenReady();
@@ -363,11 +362,10 @@
     };
 
     const playWhenReady = () => {
-      if (document.body.matches(".is-loading, .is-page-entering")) return;
+      if (document.body.matches(".is-page-entering")) return;
       play();
     };
-    if (document.body.matches(".is-loading, .is-page-entering")) {
-      document.addEventListener("elevate:opening-complete", playWhenReady, { once: true });
+    if (document.body.matches(".is-page-entering")) {
       document.addEventListener("elevate:page-transition-complete", playWhenReady, { once: true });
     } else {
       requestAnimationFrame(play);
@@ -772,6 +770,9 @@
   };
 
   updateCurrentYear();
+  if (document.documentElement.classList.contains("has-home-loader")) {
+    document.body.classList.add("is-page-entering");
+  }
   initMascotGuides();
   initStickyHeader();
   initMenu();

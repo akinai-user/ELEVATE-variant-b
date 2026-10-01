@@ -22,21 +22,8 @@
 
 .renewal-form .renewal-button { display: flex; margin: 0 auto; }
 
-.renewal-dialog { width: min(720px,calc(100% - 32px)); max-height: 85dvh; padding: 32px; border: 1px solid var(--line); border-radius: 16px; color: var(--navy); }
-
-.renewal-dialog::backdrop { background: rgb(8 6 53 / 60%); }
-
-.renewal-dialog h2 { margin-top: 0; }
-
-.renewal-dialog dt { font-weight: 700; margin-top: 20px; }
-
-.renewal-dialog dd { margin: 4px 0 0; padding-bottom: 14px; border-bottom: 1px solid var(--line); white-space: pre-wrap; overflow-wrap: anywhere; }
-
-.renewal-dialog__note { padding: 16px; background: #f6f2ff; font-size: 13px; }
-
 @media (max-width: 767px) {
   .renewal-form { padding: 12px 22px 30px; }
   .renewal-form__row { grid-template-columns: 1fr; gap: 14px; }
   .renewal-form__row > label { justify-content: flex-start; padding: 0; }
-  .renewal-dialog { padding: 24px 20px; }
 }

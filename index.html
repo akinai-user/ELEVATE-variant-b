@@ -7,6 +7,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&amp;display=swap" rel="stylesheet" />
     <script>
+      try {
+        if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches &&
+            sessionStorage.getItem('elevate:page-transition') !== '1') {
+          document.documentElement.classList.add('has-home-loader');
+        }
+      } catch {
+        if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+          document.documentElement.classList.add('has-home-loader');
+        }
+      }
       if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches &&
           'IntersectionObserver' in window && Element.prototype.animate) {
         document.documentElement.classList.add('motion-booting');
@@ -30,8 +40,6 @@
     <link rel="stylesheet" href="commn/css/site-shell.css" />
     <link rel="stylesheet" href="commn/vendor/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/loading.css" />
-    <script src="js/loading.js" defer></script>
     <script src="commn/js/common.js" defer></script>
     <script src="commn/vendor/swiper/swiper-bundle.min.js" defer></script>
     <script src="js/script.js" defer></script>
@@ -41,6 +49,23 @@
 
   <body class="page-art">
     <a class="skip-link" href="#main">本文へスキップ</a>
+    <div class="home-loader" data-home-loader role="status" aria-label="ページを読み込んでいます">
+      <div class="home-loader__glow" aria-hidden="true"></div>
+      <div class="home-loader__orbit home-loader__orbit--outer" aria-hidden="true"></div>
+      <div class="home-loader__orbit home-loader__orbit--inner" aria-hidden="true"></div>
+      <span class="home-loader__spark home-loader__spark--one" aria-hidden="true"></span>
+      <span class="home-loader__spark home-loader__spark--two" aria-hidden="true"></span>
+      <span class="home-loader__spark home-loader__spark--three" aria-hidden="true"></span>
+      <div class="home-loader__content">
+        <div class="home-loader__mascot-wrap" aria-hidden="true">
+          <img class="home-loader__mascot" src="images/common/mascots/ere.png" alt="" width="1254" height="1254" fetchpriority="high" decoding="async" />
+        </div>
+        <p class="home-loader__eyebrow">PEOPLE × TECHNOLOGY</p>
+        <div class="home-loader__wordmark" aria-hidden="true"><span>E</span><span>L</span><span>E</span><span>V</span><span>A</span><span>T</span><span>E</span></div>
+        <p class="home-loader__message">新しい可能性へ、出発。</p>
+        <div class="home-loader__track" aria-hidden="true"><span></span></div>
+      </div>
+    </div>
     <div class="floating-background" aria-hidden="true">
       <img class="floating-background__orb" src="images/common/floating-orb-01.webp" alt="" width="1254" height="1254" decoding="async" />
       <img class="floating-background__orb" src="images/common/floating-orb-02.webp" alt="" width="1254" height="1254" decoding="async" />
@@ -49,14 +74,6 @@
       <img class="floating-background__orb" src="images/common/floating-orb-05.webp" alt="" width="1254" height="1254" decoding="async" />
       <img class="floating-background__orb" src="images/common/floating-orb-06.webp" alt="" width="1254" height="1254" decoding="async" />
     </div>
-    <dialog class="loading-screen" id="loading-screen" aria-label="ELEVATE オープニング">
-      <canvas class="loading-screen__canvas" aria-hidden="true"></canvas>
-      <p class="loading-screen__message" aria-live="polite">人の力と技術力。働く未来を創造する。</p>
-      <div class="loading-screen__bottom">
-        <button class="loading-screen__skip" type="button" autofocus>SKIP <span aria-hidden="true">↗</span></button>
-      </div>
-      <div class="loading-screen__progress" aria-hidden="true"></div>
-    </dialog>
     <header class="top-header">
       <div class="top-header__inner">
         <a
@@ -109,6 +126,16 @@
         </div>
       </div>
     </header>
+
+    <aside class="security-notice" id="security-notice" aria-labelledby="security-notice-title">
+      <button class="security-notice__close" type="button" aria-label="注意喚起を閉じる" data-notice-close>×</button>
+      <p class="security-notice__label">IMPORTANT NOTICE</p>
+      <h2 id="security-notice-title">【注意喚起】当社の電話番号を装ったフィッシングメールについて</h2>
+      <p>現在、野村證券を装ったフィッシングメールにおいて、当社の電話番号が問い合わせ先として無断で使用されている事例が確認されています。</p>
+      <p>当社は当該メールおよびその内容とは一切関係ございません。記載されているリンクへのアクセスや、個人情報の入力等は行わないようご注意ください。</p>
+      <p>本件に関するお問い合わせを当社へいただいておりますが、当社では詳細についてお答えすることができません。ご不明点がある場合は、野村證券の公式窓口または公式サイトをご確認ください。</p>
+      <p>皆さまにはご心配とご迷惑をおかけしておりますが、何卒ご理解のほどお願い申し上げます。</p>
+    </aside>
 
     <main id="main">
       <section class="hero">
@@ -183,9 +210,33 @@
           </div>
         </div>
       </section>
+      <section class="section interview" id="voices">
+        <div class="section__inner">
+          <div
+            data-reveal
+            class="section-heading section-heading--split section-heading--compact"
+          >
+            <div>
+              <p class="eyebrow">CUSTOMER VOICES</p>
+              <h2>お客様の声</h2>
+            </div>
+            <p class="section-heading__copy">
+              サービスをご利用いただいたお客様の声をご紹介します。
+            </p>
+          </div>
+          <!-- NOTE-VOICES:START -->
+          <div class="voices-empty">
+            <p class="voices-empty__label">COMING SOON</p>
+            <h3>お客様の声は、ただいま準備中です。</h3>
+            <p>サービスをご利用いただいたお客様のストーリーを、順次ご紹介します。</p>
+          </div>
+          <div class="voices-more"><a class="text-link hover-underline" href="https://note.com/elevate/magazines" target="_blank" rel="noopener noreferrer">noteで事例を見る <span aria-hidden="true">↗</span><span class="voices-sr-only">（別タブで開く）</span></a></div>
+          <!-- NOTE-VOICES:END -->
+        </div>
+      </section>
       <section class="section news" id="news">
-        <div class="section__inner news__layout">
-          <div class="news__main">
+        <div class="section__inner">
+          <div>
             <div data-reveal class="section-heading section-heading--line">
               <div>
                 <p class="eyebrow">NEWS</p>
@@ -196,7 +247,7 @@
               <li class="news-item">
                 <time datetime="2025-12-25">2025.12.25</time
                 ><strong
-                  >年末年始休業のため、12/30〜1/4の期間はお問い合わせ対応を休止させていただきます。</strong
+                  >年末年始休業のため、12/30～1/4の期間は前払い申請をお休みとさせていただきます。ご不便をおかけいたしますが、何卒ご了承くださいませ。</strong
                 >
               </li>
               <li class="news-item">
@@ -211,16 +262,6 @@
               </li>
             </ul>
           </div>
-          <aside data-reveal class="news-message">
-            <img
-              src="images/top/news-message.webp"
-              alt="都市の風景とALWAYS NEW POSSIBILITIESのメッセージ"
-              width="1254"
-              height="1254"
-              loading="lazy"
-              decoding="async"
-            />
-          </aside>
         </div>
       </section>
       <section class="section seekers">
@@ -283,190 +324,8 @@
           </div>
         </div>
       </section>
-      <section class="section interview">
-        <div class="section__inner">
-          <div
-            data-reveal
-            class="section-heading section-heading--split section-heading--compact"
-          >
-            <div>
-              <p class="eyebrow">INTERVIEW</p>
-              <h2>社員インタビュー</h2>
-            </div>
-            <p class="section-heading__copy">
-              ELEVATEで働く仲間たちのリアルな声をご紹介します。
-            </p>
-          </div>
-          <div class="carousel-wrap">
-            <button
-              class="carousel-arrow carousel-arrow--prev"
-              type="button"
-              aria-label="前のインタビュー"
-              data-carousel-prev
-            >
-              ←
-            </button>
-            <div
-              class="swiper interview-slider"
-              id="interview-list"
-              aria-label="社員インタビュー"
-            >
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <button
-                    type="button"
-                    class="interview-card hover-image hover-lift"
-                    data-interview="1"
-                    aria-haspopup="dialog"
-                    aria-controls="interview-modal"
-                  >
-                    <div>
-                      <span class="card-number">01</span
-                      ><img
-                        src="images/top/interview-01.webp"
-                        alt="営業職の男性社員"
-                        width="2172"
-                        height="724"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <h3>
-                      自分に合う仕事と出会い、<br />新しい一歩を踏み出す。
-                    </h3>
-                    <p><span>人材紹介</span><span>営業</span></p>
-                  </button>
-                </div>
-                <div class="swiper-slide">
-                  <button
-                    type="button"
-                    class="interview-card hover-image hover-lift"
-                    data-interview="2"
-                    aria-haspopup="dialog"
-                    aria-controls="interview-modal"
-                  >
-                    <div>
-                      <span class="card-number">02</span
-                      ><img
-                        src="images/top/interview-02.webp"
-                        alt="事務職の女性社員"
-                        width="2172"
-                        height="724"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <h3>経験を活かして、<br />次のキャリアへ。</h3>
-                    <p><span>人材紹介</span><span>事務</span></p>
-                  </button>
-                </div>
-                <div class="swiper-slide">
-                  <button
-                    type="button"
-                    class="interview-card hover-image hover-lift"
-                    data-interview="3"
-                    aria-haspopup="dialog"
-                    aria-controls="interview-modal"
-                  >
-                    <div>
-                      <span class="card-number">03</span
-                      ><img
-                        src="images/top/interview-03.webp"
-                        alt="エンジニア職の男性社員"
-                        width="2172"
-                        height="724"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <h3>スキルを強みに、<br />自分らしい働き方を。</h3>
-                    <p><span>DX事業</span><span>エンジニア</span></p>
-                  </button>
-                </div>
-                <div class="swiper-slide">
-                  <button
-                    type="button"
-                    class="interview-card hover-image hover-lift"
-                    data-interview="4"
-                    aria-haspopup="dialog"
-                    aria-controls="interview-modal"
-                  >
-                    <div>
-                      <span class="card-number">04</span
-                      ><img
-                        src="images/top/interview-01.webp"
-                        alt="営業職の男性社員"
-                        width="2172"
-                        height="724"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <h3>人と企業をつなぎ、<br />ともに成長していく。</h3>
-                    <p><span>人材紹介</span><span>コーディネーター</span></p>
-                  </button>
-                </div>
-                <div class="swiper-slide">
-                  <button
-                    type="button"
-                    class="interview-card hover-image hover-lift"
-                    data-interview="5"
-                    aria-haspopup="dialog"
-                    aria-controls="interview-modal"
-                  >
-                    <div>
-                      <span class="card-number">05</span
-                      ><img
-                        src="images/top/interview-02.webp"
-                        alt="事務職の女性社員"
-                        width="2172"
-                        height="724"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <h3>小さな挑戦の積み重ねが、<br />未来の自信になる。</h3>
-                    <p><span>人材紹介</span><span>営業サポート</span></p>
-                  </button>
-                </div>
-              </div>
-              <div class="swiper-pagination"></div>
-            </div>
-            <button
-              class="carousel-arrow carousel-arrow--next"
-              type="button"
-              aria-label="次のインタビュー"
-              data-carousel-next
-            >
-              →
-            </button>
-          </div>
-        </div>
-      </section>
     </main>
 
-    <dialog
-      class="interview-modal"
-      id="interview-modal"
-      aria-labelledby="interview-modal-title"
-    >
-      <button
-        class="interview-modal__close hover-fade"
-        type="button"
-        aria-label="インタビューを閉じる"
-        autofocus
-      ></button>
-      <img class="interview-modal__image" alt="" width="2172" height="724" decoding="async" />
-      <div class="interview-modal__body">
-        <p class="eyebrow">INTERVIEW <span data-modal-number></span></p>
-        <h2 id="interview-modal-title"></h2>
-        <p class="interview-modal__role"></p>
-        <p class="interview-modal__notice">
-          ※掲載準備中のサンプルインタビューです。内容は仮のものです。
-        </p>
-        <div class="interview-modal__content"></div>
-      </div>
-    </dialog>
 
     <footer class="top-footer">
       <div class="top-footer__inner">
