@@ -169,10 +169,6 @@
   text-align: left;
 }
 
-.ai-reason h3 {
-  text-wrap: balance;
-}
-
 .ai-process {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));

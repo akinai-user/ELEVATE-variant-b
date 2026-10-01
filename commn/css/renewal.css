@@ -4,8 +4,6 @@
 
 .renewal-page { --renewal-muted: #696580; }
 
-.renewal-phrase { white-space: nowrap; }
-
 .renewal-hero { min-height: 440px; }
 
 .renewal-hero__inner { width: var(--page-width); display: grid; grid-template-columns: 1.15fr 1fr; align-items: center; gap: 30px; padding: 64px 0 72px; }
@@ -14,7 +12,7 @@
 
 .renewal-eyebrow { margin: 0 0 20px; color: var(--violet); font-size: 12px; font-weight: 800; letter-spacing: .16em; }
 
-.renewal-hero h1 { margin: 0; font-size: clamp(32px, 4.5vw, 60px); line-height: 1.4; letter-spacing: 0; text-wrap: balance; }
+.renewal-hero h1 { margin: 0; font-size: clamp(32px, 4.5vw, 60px); line-height: 1.4; letter-spacing: 0; }
 
 .renewal-hero__description { margin: 20px 0 0; max-width: 680px; font-size: 14px; font-weight: 600; line-height: 1.95; }
 
@@ -34,7 +32,7 @@
 
 .renewal-hero--center .renewal-hero__description { margin-inline: auto; max-width: 880px; }
 
-.renewal-hero__catch { margin: 12px 0 0; font-size: clamp(24px, 3.1vw, 42px); font-weight: 800; line-height: 1.55; text-wrap: balance; }
+.renewal-hero__catch { margin: 12px 0 0; font-size: clamp(24px, 3.1vw, 42px); font-weight: 800; line-height: 1.55; }
 
 .renewal-hero__catch span { color: var(--purple); }
 
@@ -58,7 +56,7 @@
 
 .renewal-heading { margin: 0 auto 36px; text-align: center; }
 
-.renewal-heading h2 { margin: 0; font-size: clamp(26px, 3vw, 40px); line-height: 1.5; text-wrap: balance; }
+.renewal-heading h2 { margin: 0; font-size: clamp(26px, 3vw, 40px); line-height: 1.5; }
 
 .renewal-heading > p:last-child:not(.renewal-eyebrow) { margin: 18px 0 0; font-size: 14px; font-weight: 600; }
 
@@ -72,7 +70,7 @@
 
 .renewal-number { display: grid; place-items: center; margin: 0 auto 22px; width: 62px; height: 62px; border-radius: 50%; background: #ece4ff; color: #7946f5; font-size: 30px; font-weight: 800; line-height: 1; }
 
-.renewal-feature h3, .renewal-link-card h3 { margin: 0 0 16px; font-size: clamp(18px,1.65vw,23px); line-height: 1.6; text-wrap: balance; }
+.renewal-feature h3, .renewal-link-card h3 { margin: 0 0 16px; font-size: clamp(18px,1.65vw,23px); line-height: 1.6; }
 
 .renewal-feature p, .renewal-link-card p { margin: 0; text-align: left; color: var(--renewal-muted); font-size: 14px; line-height: 1.9; }
 
@@ -94,7 +92,7 @@
 
 .renewal-split > img { width: 100%; border-radius: 42% 58% 46% 54% / 36% 45% 55% 64%; }
 
-.renewal-split h3 { font-size: 26px; text-wrap: balance; }
+.renewal-split h3 { font-size: 26px; }
 
 .renewal-original .inner { width: 100%; margin: 0; }
 
@@ -102,7 +100,7 @@
 
 .renewal-original .ttl02 { text-align: center; margin-bottom: 30px; }
 
-.renewal-original h2 { margin: 0; font-size: clamp(26px,3vw,40px); line-height: 1.5; text-wrap: balance; }
+.renewal-original h2 { margin: 0; font-size: clamp(26px,3vw,40px); line-height: 1.5; }
 
 .renewal-original h3 { font-size: 22px; }
 
