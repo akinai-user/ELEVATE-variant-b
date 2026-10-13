@@ -25,7 +25,7 @@
 | 業務請負 | `/service/staffing/contract-work/` | `service/staffing/contract-work/index.html` |
 | 人材紹介 | `/service/staffing/recruitment-agency/` | `service/staffing/recruitment-agency/index.html` |
 | システムエンジニアリングサービス | `/service/engineering/` | `service/engineering/index.html` |
-| AI導入サービス AI-LINK | `/service/ai/` | `service/ai/index.html` |
+| DX実装支援 KAKEHASHI | `/service/ai/` | `service/ai/index.html` |
 | お仕事紹介をご希望の方 | `/introduction/` | `introduction/index.html` |
 | 総合人材派遣サービス | `/introduction/staffing/` | `introduction/staffing/index.html` |
 | フリーランスエンジニア ELEVATE | `https://elevate-works.jp/lp/` | 外部の既存LPへ遷移 |
@@ -42,7 +42,7 @@
 
 各ページのディレクトリに `index.html` を配置しています。ページ固有のスタイルや処理が必要になった時点でCSS／JavaScriptを追加してください。TOP専用ファイルはルート直下の `css/style.css` と `js/script.js` です。
 
-AI-LINKはサービス階層を揃え、`service/ai/index.html` としています。旧ファイルからは新しいURLへ転送します。
+KAKEHASHIはサービス階層を揃え、`service/ai/index.html` としています。旧ファイルからは新しいURLへ転送します。
 
 前払い申請・交通費申請・LPはサイトマップのURLどおりルート直下です。メニュー上の親子関係とURLのディレクトリ階層は必ずしも一致しません。
 
@@ -148,7 +148,7 @@ NEWSは遷移しないテキスト表示です。ページトップボタンは�
 
 ## TOPの初期表示
 
-ローディング画面は表示せず、そのまま本文を表示します。背景の `ELEVATE` は `js/script.js` で、左から順にぼかしが解けながら浮かび上がります。動きを減らす設定では静止表示します。
+ローディング画面は表示せず、そのまま本文を表示します。背景のELEVATEロゴ画像は `js/script.js` で、左からぼかしが解けながら浮かび上がります。動きを減らす設定では静止表示します。
 
 ## セクションの装飾背景
 
@@ -178,7 +178,7 @@ TOPと共通背景は表示用にWebPを使用し、元のPNGは再編集用ソ�
 
 `images/common/mascots/` は、ご提供のキャラクター画像をもとに背景を透過したエレ・サポ・ミル・チャレのPNG素材です。各ページの見出しには配置せず、TOPではヒーローの左下、下層ページでは背景パネルとは独立させ、ヒーロー右下の縁に重ねて1体ずつ配置しています。見出しやボタンとは重ならない案内エリアを確保しています。画像内の紹介文はサイトへ追加していません。キャラクターをクリックするとページごとの案内を吹き出しに表示します。案内文は各HTMLの `data-mascot-guide` で編集できます。再クリック・閉じるボタン・外側のクリック・Escで閉じ、同時に開く吹き出しは1つです。キーボード操作とスマートフォンのタップに対応し、浮遊は動きを減らす設定で停止します。
 
-TOPはコピーを上段、ボタンを右下段にずらしたファーストビューです（SPもコピーの下にボタンを配置）。写真エリアは削除し、`ELEVATE` の文字が左から順にぼかしを解きながら現れ、薄い背景として残ります。再訪・ページ遷移にも対応し、動きを減らす設定では静止表示します。サービス一覧の写真は `object-fit: contain` で全体を表示します。お客様の声の記事画像は16:9のカードに合わせます。
+TOPはコピーを上段、ボタンを右下段にずらしたファーストビューです（SPもコピーの下にボタンを配置）。写真エリアは削除し、ELEVATEのロゴ画像が左からぼかしを解きながら現れ、薄い背景として残ります。再訪・ページ遷移にも対応し、動きを減らす設定では静止表示します。サービス一覧の写真は `object-fit: contain` で全体を表示します。お客様の声の記事画像は16:9のカードに合わせます。
 
 全ページに Google Fonts の M PLUS Rounded 1c を読み込み、`"M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", "Yu Gothic", system-ui, sans-serif` の順に適用しています。
 

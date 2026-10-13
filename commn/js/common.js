@@ -499,7 +499,12 @@
     layer.className = "page-transition";
     layer.setAttribute("aria-hidden", "true");
     mark.className = "page-transition__mark";
-    mark.textContent = "ELEVATE";
+    const logo = document.createElement("img");
+    logo.src = document.querySelector(".top-header .brand img").src;
+    logo.alt = "";
+    logo.width = 1300;
+    logo.height = 265;
+    mark.append(logo);
     layer.append(mark);
     document.body.append(layer);
     let leaving = false;
