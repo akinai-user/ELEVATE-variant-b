@@ -29,6 +29,52 @@
     window.addEventListener("scroll", syncShadow, { passive: true });
   };
 
+  const initBackToTop = () => {
+    const button = document.createElement("button");
+    button.className = "back-to-top";
+    button.type = "button";
+    button.setAttribute("aria-label", "ページ上部へ戻る");
+    button.dataset.backToTop = "";
+    button.hidden = true;
+
+    const arrow = document.createElement("span");
+    arrow.className = "back-to-top__arrow";
+    arrow.setAttribute("aria-hidden", "true");
+    arrow.textContent = "↑";
+    const label = document.createElement("span");
+    label.className = "back-to-top__label";
+    label.setAttribute("aria-hidden", "true");
+    label.textContent = "TOP";
+    button.append(arrow, label);
+    document.body.append(button);
+
+    const hero = document.querySelector(".hero-shell, .hero");
+    const header = document.querySelector(".top-header");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let framePending = false;
+    const sync = () => {
+      const headerHeight = header?.getBoundingClientRect().height || 0;
+      button.hidden = hero
+        ? hero.getBoundingClientRect().bottom > headerHeight
+        : window.scrollY < Math.max(400, window.innerHeight * 0.6);
+      framePending = false;
+    };
+    const scheduleSync = () => {
+      if (framePending) return;
+      framePending = true;
+      requestAnimationFrame(sync);
+    };
+
+    sync();
+    window.addEventListener("scroll", scheduleSync, { passive: true });
+    window.addEventListener("resize", scheduleSync);
+    window.addEventListener("pageshow", scheduleSync);
+    if (hero && "ResizeObserver" in window) new ResizeObserver(scheduleSync).observe(hero);
+    button.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: reducedMotion.matches ? "auto" : "smooth" });
+    });
+  };
+
   const initMenu = () => {
     const button = document.querySelector("[data-menu-button]");
     const navigation = document.querySelector("#global-nav");
@@ -775,6 +821,7 @@
   }
   initMascotGuides();
   initStickyHeader();
+  initBackToTop();
   initMenu();
   initServiceMenu();
   initPageTransitions();

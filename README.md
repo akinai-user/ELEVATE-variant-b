@@ -144,7 +144,7 @@ RSS取得失敗・不正なXML・記事があるのに有効な記事を取得�
 
 参考: [noteのRSS公式説明](https://www.help-note.com/hc/ja/articles/4402395202841)、[GitHub Pagesのワークフロー](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages)。
 
-NEWSは遷移しないテキスト表示です。ページトップボタンはFV下端が固定ヘッダーの下に入ると右下に表示されます。SCROLLアイコンはホバー・フォーカス時に下へ6px動きます。
+NEWSは遷移しないテキスト表示です。ページトップボタンは全ページ共通で、ヒーローの下端が固定ヘッダーの下に入ると右下に表示されます。ヒーローのないページでは一定距離スクロールすると表示されます。SCROLLアイコンはホバー・フォーカス時に下へ6px動きます。
 
 ## TOPの初期表示
 

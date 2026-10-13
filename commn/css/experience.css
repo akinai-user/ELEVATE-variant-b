@@ -491,13 +491,101 @@ body { font-family: var(--site-font); }
 }
 @media print { .page-guide { display: none; } }
 
-/* Keep the panel clipped; its companion overlaps the outside edge independently. */
-.hero-shell { position: relative; width: var(--page-width); margin: 8px auto 48px; }
-.hero-shell > .dx-hero { width: 100%; margin: 0; }
-.hero-shell > .page-guide { position: absolute; right: 32px; bottom: -80px; width: auto; padding: 0; background: transparent; }
+/* Internal page openings share the TOP page's open canvas and quiet wordmark. */
+.hero-shell {
+  position: relative;
+  width: var(--page-width);
+  margin: 16px auto 76px;
+}
+.hero-shell > .dx-hero {
+  width: 100%;
+  min-height: 360px;
+  margin: 0;
+  border-block: 1px solid var(--line);
+  border-radius: 0;
+  background: radial-gradient(circle at 84% 50%, rgb(101 64 232 / 7%), transparent 37%);
+  overflow: clip;
+}
+.hero-shell > .dx-hero::before {
+  content: "";
+  z-index: 0;
+  top: 50%;
+  right: -0.08em;
+  bottom: auto;
+  left: auto;
+  width: clamp(300px, 56vw, 720px);
+  height: auto;
+  aspect-ratio: 1300 / 265;
+  border-radius: 0;
+  background: url("../../images/common/logo.png") center / contain no-repeat;
+  opacity: 0.08;
+  transform: translateY(-50%);
+}
+.hero-shell > .dx-hero::after {
+  content: "";
+  z-index: 2;
+  top: 0;
+  right: auto;
+  bottom: auto;
+  left: 0;
+  width: clamp(88px, 12vw, 168px);
+  height: 3px;
+  border-radius: 0;
+  background: linear-gradient(90deg, var(--purple), #9a7cf4);
+  transform: none;
+}
+.hero-shell .dx-orb,
+.hero-shell .renewal-hero__visual,
+.hero-shell .registration-hero__visual { display: none; }
+.hero-shell .renewal-hero__inner,
+.hero-shell .renewal-hero--center .renewal-hero__inner,
+.hero-shell .registration-hero__inner {
+  display: block;
+  width: 100%;
+  padding: clamp(56px, 7vw, 96px) clamp(0px, 4vw, 56px);
+  text-align: left;
+}
+.hero-shell .renewal-hero__copy,
+.hero-shell .registration-hero__copy { max-width: 820px; }
+.hero-shell .renewal-hero h1,
+.hero-shell .advance-hero h1,
+.hero-shell .registration-hero h1 {
+  font-size: clamp(34px, 4.2vw, 58px);
+  line-height: 1.42;
+  letter-spacing: 0.01em;
+}
+.hero-shell .renewal-hero .renewal-eyebrow,
+.hero-shell .dx-eyebrow { margin-bottom: 18px; font-size: 13px; }
+.hero-shell .renewal-hero__description,
+.hero-shell .advance-hero__description { max-width: 48em; margin-top: 24px; line-height: 1.9; }
+.hero-shell .advance-hero .dx-hero__inner {
+  width: 100%;
+  padding: clamp(56px, 7vw, 96px) clamp(0px, 4vw, 56px);
+  text-align: left;
+}
+.hero-shell > .page-guide {
+  position: absolute;
+  right: 12px;
+  bottom: -52px;
+  width: auto;
+  padding: 0;
+  background: transparent;
+}
 @media (max-width: 767px) {
-  .hero-shell { margin-top: 0; }
-  .hero-shell > .page-guide { right: 24px; bottom: -76px; }
+  .hero-shell { margin: 0 auto 64px; }
+  .hero-shell > .dx-hero { min-height: 0; background: radial-gradient(circle at 100% 35%, rgb(101 64 232 / 5%), transparent 55%); }
+  .hero-shell > .dx-hero::before { right: -70px; width: clamp(250px, 90vw, 400px); opacity: 0.05; }
+  .hero-shell .renewal-hero__inner,
+  .hero-shell .renewal-hero--center .renewal-hero__inner,
+  .hero-shell .registration-hero__inner,
+  .hero-shell .advance-hero .dx-hero__inner { padding: 52px 0 68px; }
+  .hero-shell .renewal-hero h1,
+  .hero-shell .advance-hero h1,
+  .hero-shell .registration-hero h1 { font-size: clamp(29px, 8vw, 38px); line-height: 1.5; }
+  .hero-shell .renewal-hero__description,
+  .hero-shell .advance-hero__description { margin-top: 18px; font-size: 13px; }
+  .hero-shell > .page-guide { right: 0; bottom: -44px; }
+  .hero-shell .page-guide__mascot { width: 72px; }
 }
 
 /* note customer stories: static cards and the pre-publication state. */
