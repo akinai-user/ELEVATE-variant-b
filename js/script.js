@@ -138,40 +138,8 @@
     });
   };
 
-  const initBackToTop = () => {
-    const button = document.querySelector("[data-back-to-top]");
-    const hero = document.querySelector(".hero");
-    if (!button || !hero) return;
-
-    const header = document.querySelector(".top-header");
-    let framePending = false;
-    const sync = () => {
-      const headerHeight = header?.getBoundingClientRect().height || 0;
-      button.hidden = hero.getBoundingClientRect().bottom > headerHeight;
-      framePending = false;
-    };
-    const scheduleSync = () => {
-      if (framePending) return;
-      framePending = true;
-      requestAnimationFrame(sync);
-    };
-
-    sync();
-    window.addEventListener("scroll", scheduleSync, { passive: true });
-    window.addEventListener("resize", scheduleSync);
-    window.addEventListener("pageshow", scheduleSync);
-    if ("ResizeObserver" in window) new ResizeObserver(scheduleSync).observe(hero);
-    button.addEventListener("click", () => {
-      window.scrollTo({
-        top: 0,
-        behavior: reducedMotion.matches ? "auto" : "smooth",
-      });
-    });
-  };
-
   initHomeLoader();
   initSecurityNotice();
   initHeroWordmark();
   initInterviewSlider();
-  initBackToTop();
 })();

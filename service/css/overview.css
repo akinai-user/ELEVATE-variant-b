@@ -28,8 +28,6 @@
 
 .overview-card__visual img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 55% 45% 48% 52% / 56% 40% 60% 44%; }
 
-#human-resources .overview-card__visual img { object-position: 68% center; }
-
 .overview-card__visual::before, .overview-card__visual::after { content: ""; position: absolute; z-index: 1; border-radius: 50%; pointer-events: none; }
 
 .overview-card__visual::before { width: 42px; height: 42px; top: 0; right: 4%; background: radial-gradient(circle at 30% 25%,#fff,#ecff8f 42%,#d2ee54 80%); }
@@ -43,6 +41,10 @@
 .overview-card__meta > span { width: 22px; height: 1px; background: #d7c9fa; }
 
 .overview-card__meta small { font-size: 7px; font-weight: 800; letter-spacing: .17em; }
+
+#human-resources .overview-card__meta { margin-bottom: 22px; }
+
+#human-resources .overview-card__meta b { font-size: 42px; }
 
 .overview-card h3 { margin: 0 0 8px; font-size: clamp(20px,1.9vw,26px); line-height: 1.45; }
 
