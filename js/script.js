@@ -65,13 +65,13 @@
       started = true;
       wordmark.classList.add("is-ready");
       if (reducedMotion.matches || !Element.prototype.animate) return;
-      wordmark.querySelectorAll("span").forEach((letter, index) => {
-        const animation = letter.animate([
-          { transform: "translateY(18px)", filter: "blur(10px)", opacity: 0 },
-          { transform: "translateY(0)", filter: "blur(0px)", opacity: 0.07 },
+      wordmark.querySelectorAll("img").forEach((logo) => {
+        const animation = logo.animate([
+          { clipPath: "inset(0 100% 0 0)", transform: "translateY(18px)", filter: "blur(10px)", opacity: 0 },
+          { clipPath: "inset(0 0 0 0)", transform: "translateY(0)", filter: "blur(0px)", opacity: 0.07 },
         ], {
           duration: 1500,
-          delay: 120 + index * 100,
+          delay: 120,
           easing: "cubic-bezier(0.22, 1, 0.36, 1)",
           fill: "both",
         });

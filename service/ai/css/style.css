@@ -1,19 +1,12 @@
 @charset "UTF-8";
 
-.ai-hero {
-  min-height: 540px;
-}
-
-.ai-hero .renewal-hero__inner {
-  padding-block: 72px;
-}
-
-.ai-hero h1 {
-  font-size: clamp(32px, 3.7vw, 50px);
-}
-
-.ai-hero h1 span {
+.ai-hero h1 .kh-title__accent {
   color: var(--purple);
+}
+
+.ai-hero h1 .kh-title__phrase {
+  display: inline-block;
+  white-space: nowrap;
 }
 
 .ai-hero__points {
@@ -241,22 +234,6 @@
 }
 
 @media (max-width: 767px) {
-  .ai-hero .renewal-hero__inner {
-    padding-block: 52px;
-  }
-
-  .ai-hero h1 {
-    font-size: clamp(27px, 7.5vw, 34px);
-  }
-
-  .ai-hero h1 br {
-    display: none;
-  }
-
-  .ai-hero h1 span {
-    display: inline;
-  }
-
   .ai-hero__points {
     flex-direction: column;
     align-items: flex-start;
@@ -347,4 +324,95 @@
   .ai-contact .renewal-button {
     width: 100%;
   }
+}
+
+/* KAKEHASHI content supplied in the v3 mock. */
+    /* KAKEHASHI page content. */
+    .kh-page .ai-hero__points { flex-wrap: wrap; row-gap: 10px; }
+    .kh-page .ai-hero__points li { white-space: nowrap; }
+    .kh-lead { margin: -22px 0 36px; max-width: 820px; font-size: 14px; font-weight: 600; line-height: 1.95; color: #3c3860; }
+
+    /* troubles */
+    .kh-troubles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: 0; padding: 0; list-style: none; }
+    .kh-troubles li { position: relative; padding: 24px 24px 24px 60px; border: 1px solid #ece8fb; border-radius: 14px; background: rgb(255 255 255 / 94%); box-shadow: 0 10px 30px rgb(38 27 110 / 4%); color: var(--navy); font-size: 15px; font-weight: 700; line-height: 1.8; }
+    .kh-troubles li::before { content: "✓"; position: absolute; left: 22px; top: 24px; display: grid; place-items: center; width: 26px; height: 26px; border-radius: 8px; background: #ece4ff; color: var(--purple); font-size: 14px; font-weight: 900; }
+    .kh-troubles li small { display: block; margin-top: 6px; color: var(--renewal-muted); font-size: 12.5px; font-weight: 600; line-height: 1.75; }
+    .kh-conclusion { margin: 28px 0 0; padding: 24px 32px; border-radius: 14px; color: #fff; background: linear-gradient(110deg, #6225f7, #382092); font-size: clamp(16px, 1.7vw, 21px); font-weight: 800; line-height: 1.75; }
+    .kh-conclusion small { display: block; margin-top: 8px; font-size: 13px; font-weight: 600; opacity: .88; line-height: 1.9; }
+
+    /* how we work */
+    .kh-how { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+    .kh-how article { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 20px; padding: 28px 28px 26px; border: 1px solid #ece8fb; border-radius: 14px; background: rgb(255 255 255 / 95%); box-shadow: 0 10px 30px rgb(38 27 110 / 4%); }
+    .kh-how .renewal-number { width: 56px; height: 56px; margin: 0; font-size: 24px; }
+    .kh-how h3 { margin: 4px 0 10px; font-size: clamp(18px, 1.6vw, 21px); line-height: 1.55; }
+    .kh-how p { margin: 0; color: var(--renewal-muted); font-size: 13.5px; line-height: 1.9; }
+    .kh-how q { display: block; margin: 0 0 10px; padding: 10px 14px; border-left: 3px solid #c9b8ff; background: #f8f5ff; color: var(--navy); font-size: 13.5px; font-weight: 700; quotes: none; }
+
+    /* for whom */
+    .kh-for { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+    .kh-for article { padding: 30px 26px 28px; border: 1px solid #ece8fb; border-radius: 14px; background: rgb(255 255 255 / 95%); box-shadow: 0 10px 30px rgb(38 27 110 / 4%); }
+    .kh-for .kh-tag { display: inline-block; margin-bottom: 14px; padding: 5px 12px; border-radius: 20px; background: #ece4ff; color: #7946f5; font-size: 11px; font-weight: 900; letter-spacing: .08em; }
+    .kh-for h3 { margin: 0 0 12px; font-size: clamp(18px, 1.6vw, 21px); line-height: 1.55; }
+    .kh-for p { margin: 0; color: var(--renewal-muted); font-size: 13.5px; line-height: 1.9; }
+    .kh-for p b { color: var(--navy); }
+
+    /* style of support */
+    .kh-style { display: grid; grid-template-columns: 1.25fr 1fr; gap: 20px; }
+    .kh-style article { padding: 30px 30px 28px; border: 1px solid #ece8fb; border-radius: 14px; background: rgb(255 255 255 / 95%); box-shadow: 0 10px 30px rgb(38 27 110 / 4%); }
+    .kh-style article:first-child { border-color: #d7cafa; background: linear-gradient(160deg, #f6f1ff, #fff 60%); }
+    .kh-style .kh-tag { display: inline-block; margin-bottom: 12px; padding: 5px 12px; border-radius: 20px; background: var(--navy); color: #fff; font-size: 11px; font-weight: 900; letter-spacing: .1em; }
+    .kh-style h3 { margin: 0 0 10px; font-size: 21px; line-height: 1.5; }
+    .kh-style p { margin: 0; color: #3c3860; font-size: 13.5px; font-weight: 600; line-height: 1.9; }
+    .kh-style ul { margin: 14px 0 0; padding: 0; list-style: none; display: grid; gap: 6px; }
+    .kh-style ul li { position: relative; padding-left: 20px; color: var(--renewal-muted); font-size: 13px; line-height: 1.8; }
+    .kh-style ul li::before { content: ""; position: absolute; left: 0; top: .7em; width: 8px; height: 8px; border-radius: 50%; background: var(--purple); }
+    .kh-flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 20px 0 0; padding: 0; list-style: none; counter-reset: f; }
+    .kh-flow li { position: relative; padding: 18px 18px 18px 54px; border: 1px solid #ece8fb; border-radius: 12px; background: rgb(255 255 255 / 95%); font-size: 13.5px; font-weight: 800; color: var(--navy); line-height: 1.6; }
+    .kh-flow li::before { counter-increment: f; content: counter(f); position: absolute; left: 16px; top: 16px; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--purple); color: #fff; font-size: 13px; font-weight: 900; }
+    .kh-flow li small { display: block; margin-top: 2px; color: var(--renewal-muted); font-size: 12px; font-weight: 600; }
+
+    /* case */
+    .kh-case { display: grid; grid-template-columns: 1fr 1.1fr; gap: 32px; align-items: center; padding: 36px 40px; border: 1px solid #ece8fb; border-radius: 16px; background: rgb(255 255 255 / 94%); box-shadow: 0 10px 30px rgb(38 27 110 / 4%); }
+    .kh-case__industry { margin: 0 0 12px; display: flex; gap: 12px; align-items: center; }
+    .kh-case__industry b { font-size: 15px; }
+    .kh-case__industry small { color: var(--renewal-muted); font-size: 11px; font-weight: 700; }
+    .kh-case h3 { margin: 0 0 14px; font-size: clamp(20px, 2vw, 26px); line-height: 1.55; }
+    .kh-case h3 span { color: var(--purple); }
+    .kh-case p { margin: 0; color: #3c3860; font-size: 14px; font-weight: 600; line-height: 1.95; }
+    .kh-case__list { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+    .kh-case__list li { display: grid; grid-template-columns: 1fr auto; gap: 14px; align-items: center; padding: 12px 16px; border-radius: 10px; background: #f6f2ff; font-size: 13px; font-weight: 600; color: var(--navy); line-height: 1.6; }
+    .kh-case__list li b { color: var(--purple); font-weight: 900; white-space: nowrap; }
+    .kh-note { margin: 16px 0 0; color: var(--renewal-muted); font-size: 11.5px; font-weight: 600; }
+
+    /* contact */
+    .kh-contact-note { margin: 14px 0 0 !important; font-size: 13px !important; opacity: .85; }
+
+    @media (max-width: 1000px) and (min-width: 768px) {
+      .kh-troubles, .kh-for { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .kh-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 767px) {
+      .kh-lead { font-size: 13px; margin: -12px 0 24px; }
+      .kh-troubles, .kh-how, .kh-for, .kh-style, .kh-flow, .kh-case { grid-template-columns: minmax(0, 1fr); }
+      .kh-troubles li { padding: 20px 20px 20px 56px; font-size: 14px; }
+      .kh-how article { grid-template-columns: 48px minmax(0, 1fr); gap: 14px; padding: 22px 20px; }
+      .kh-how .renewal-number { width: 48px; height: 48px; font-size: 20px; }
+      .kh-case, .kh-style article { padding: 24px 22px; }
+      .kh-conclusion { padding: 20px 22px; }
+    }
+
+/* KAKEHASHI uses the shared internal-page hero design. */
+.kh-page .ai-hero__points,
+.kh-page .ai-hero__actions { justify-content: flex-start; }
+.kh-page .ai-hero__actions .renewal-button + .renewal-button { margin-left: 0; }
+.kh-page .ai-contact { border-radius: var(--panel-radius); }
+
+@media (max-width: 767px) {
+  .kh-page .renewal-hero__description br { display: none; }
+  .kh-page .ai-hero__points { width: 100%; margin-inline: 0; }
+  .kh-page .ai-hero__points li { white-space: normal; }
+  .kh-page .ai-hero__actions .renewal-button { padding-inline: 18px; font-size: 12px; gap: 12px; }
+  .kh-case__industry { flex-wrap: wrap; }
+  .kh-case__list li { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .kh-case__list li b { white-space: normal; }
 }

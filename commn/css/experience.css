@@ -447,7 +447,7 @@ body { font-family: var(--site-font); }
 .hero__buttons { grid-column: 2; grid-row: 1; flex-direction: column; align-items: stretch; width: 100%; padding: 0; }
 .hero-wordmark { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; white-space: nowrap; pointer-events: none; user-select: none; color: var(--purple); opacity: 0; font-size: clamp(70px, 20vw, 340px); font-weight: 900; line-height: 1; letter-spacing: -0.055em; z-index: 0; }
 .hero-wordmark.is-ready { opacity: 1; }
-.hero-wordmark span { display: inline-block; opacity: 0.07; }
+.hero-wordmark img { display: block; width: min(94vw, 1500px); height: auto; opacity: 0.07; }
 @media (max-width: 767px) {
   .hero__inner { min-height: max(580px, calc(100svh - var(--sticky-header-height, 72px))); grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto; align-content: center; gap: 36px; padding-block: 80px; }
   .hero__copy { padding: 0; }
@@ -636,3 +636,7 @@ br.dn-w { display: none; }
   .renewal-button { gap: 16px; padding-inline: 20px; }
   .renewal-form__row > label, .advance-form__label { gap: 8px 12px; }
 }
+
+/* Use the official logo artwork in navigation transitions. */
+.page-transition__mark { padding: 0; }
+.page-transition__mark img { display: block; width: clamp(180px, 24vw, 320px); height: auto; }
