@@ -2,3 +2,7 @@
 
 _site/
 __pycache__/
+web-registered/mail-config.local.php
+contact/mail-config.local.php
+advance-payment/mail-config.local.php
+transportation-expenses/mail-config.local.php
