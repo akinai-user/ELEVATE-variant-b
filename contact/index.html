@@ -29,8 +29,10 @@
   <link rel="stylesheet" href="../service/css/style.css">
   <link rel="stylesheet" href="../commn/css/renewal.css">
   <link rel="stylesheet" href="css/style.css">
-<script src="js/form.js" defer></script>
+
   <link rel="stylesheet" href="../commn/css/experience.css">
+  <link rel="stylesheet" href="../commn/css/mail-form.css">
+  <script src="../commn/js/mail-form.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">本文へスキップ</a>
@@ -84,7 +86,9 @@
       </div>
     </div>
     <div class="renewal-content">
-      <form id="contact-form" class="renewal-form" action="./" method="post">
+      <div class="renewal-form" data-mail-flow>
+      <form id="contact-form" data-mail-form="contact" action="submit.php" method="post">
+            <noscript><p>確認画面を表示するには、JavaScriptを有効にしてください。</p></noscript>
         <div class="renewal-form__row"><label for="contact-name"><span>ご担当者名</span><span class="renewal-required">必須</span></label>
           <div><input class="form__input form__input--min" type="text" name="name" placeholder="例）山田太郎" value="" id="contact-name" required data-label="ご担当者名" autocomplete="name">
           </div>
@@ -111,8 +115,9 @@
         </div>
         <div class="renewal-consent">
           <p>個人情報の取り扱いについて<a href="../privacy/index.html" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a>をご確認頂き、同意の上送信してください。</p><label><input type="checkbox" name="policy_chk" value="1" required>同意する</label>
-        </div><input type="hidden" name="send_flg" value="1"><button class="renewal-button" type="submit" name="enter" value="確認画面へ進む">確認画面へ進む <span aria-hidden="true">→</span></button>
+        </div><input type="hidden" name="send_flg" value="1"><button class="renewal-button" type="submit" disabled name="enter" value="確認画面へ進む">確認画面へ進む <span aria-hidden="true">→</span></button>
       </form>
+      </div>
     </div>
   </main>
   <footer class="top-footer">

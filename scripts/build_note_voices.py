@@ -153,7 +153,8 @@ def build(config_path, output, fixture=None):
             continue
         target = output / source.name
         if source.is_dir():
-            shutil.copytree(source, target, dirs_exist_ok=True)
+            # GitHub Pages cannot execute PHP; never publish PHP source/config there.
+            shutil.copytree(source, target, dirs_exist_ok=True, ignore=shutil.ignore_patterns('*.php'))
         else:
             shutil.copy2(source, target)
     (output / 'index.html').write_text(html, encoding='utf-8')

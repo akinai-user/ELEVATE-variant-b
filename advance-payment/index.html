@@ -29,6 +29,8 @@
   <link rel="stylesheet" href="css/style.css">
   <script src="../commn/js/common.js" defer></script>
   <link rel="stylesheet" href="../commn/css/experience.css">
+  <link rel="stylesheet" href="../commn/css/mail-form.css">
+  <script src="../commn/js/mail-form.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">本文へスキップ</a>
@@ -93,7 +95,9 @@
         <div class="advance-form-card" data-reveal>
           <p class="advance-form__intro">給料の前払いをご希望の方は、専用フォームより必要事項をご入力のうえ、申請手続きを行ってください。申請内容を確認後、順次対応させていただきます。</p>
 
-          <form class="advance-form" action="./" method="post" enctype="multipart/form-data">
+          <div data-mail-flow>
+          <form data-mail-form="advance" class="advance-form" action="submit.php" method="post" enctype="multipart/form-data">
+            <noscript><p>確認画面を表示するには、JavaScriptを有効にしてください。</p></noscript>
             <div class="advance-form__row">
               <label class="advance-form__label" for="advance-name">氏名 <span class="required-label">必須</span></label>
               <div class="advance-form__control">
@@ -173,8 +177,9 @@
             </div>
 
             <input type="hidden" name="send_flg" value="1">
-            <button class="advance-form__submit hover-fade" type="submit" name="enter" value="確認画面へ進む">確認画面へ進む <span aria-hidden="true">→</span></button>
+            <button class="advance-form__submit hover-fade" type="submit" disabled name="enter" value="確認画面へ進む">確認画面へ進む <span aria-hidden="true">→</span></button>
           </form>
+          </div>
         </div>
       </section>
 

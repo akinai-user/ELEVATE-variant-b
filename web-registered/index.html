@@ -98,7 +98,8 @@
       <section class="advance-form-section" aria-labelledby="form-title">
         <h2 class="visually-hidden" id="form-title">Web登録内容の入力</h2>
         <div class="advance-form-card registration-card">
-          <form class="advance-form" id="registration-form" action="./" method="post" enctype="multipart/form-data">
+          <form class="advance-form" id="registration-form" action="submit.php" method="post" enctype="multipart/form-data">
+            <noscript><p>確認画面を表示するには、JavaScriptを有効にしてください。</p></noscript>
             <div class="advance-form__row">
               <label class="advance-form__label" for="registration-job_number"><span>お仕事No.</span> </label>
               <div class="advance-form__control"><input id="registration-job_number" name="job_no" placeholder="お仕事情報に掲載のお仕事No.をご入力ください" type="text"></div>
@@ -154,6 +155,21 @@
             <input type="hidden" name="send_flg" value="1">
             <button class="advance-form__submit hover-fade" type="submit" name="enter" value="確認画面へ進む">確認画面へ進む <span aria-hidden="true">→</span></button>
           </form>
+          <section id="registration-confirmation" hidden aria-labelledby="confirmation-title">
+            <h2 id="confirmation-title" class="registration-confirmation__title" tabindex="-1">登録内容の確認</h2>
+            <p>入力内容をご確認ください。修正する場合は「入力内容を修正する」からお戻りください。</p>
+            <dl id="registration-summary" class="registration-confirmation__summary"></dl>
+            <p id="registration-send-status" class="advance-form__help" role="status">送信の準備を確認しています。</p>
+            <div class="registration-confirmation__actions">
+              <button class="registration-confirmation__back hover-fade" id="registration-edit" type="button">入力内容を修正する</button>
+              <button class="advance-form__submit" id="registration-send" type="button" disabled aria-describedby="registration-send-status">この内容で送信する <span aria-hidden="true">→</span></button>
+            </div>
+          </section>
+          <section id="registration-complete" hidden aria-labelledby="complete-title">
+            <h2 id="complete-title" class="registration-confirmation__title" tabindex="-1">送信が完了しました</h2>
+            <p>Web登録のお申し込みをいただき、ありがとうございます。<br>内容を確認のうえ、担当者よりご連絡いたします。</p>
+            <p class="registration-confirmation__actions"><a class="registration-confirmation__back hover-fade" href="../index.html">トップページへ戻る</a></p>
+          </section>
         </div>
       </section>
     </div>
