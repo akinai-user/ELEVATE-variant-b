@@ -1,6 +1,7 @@
 .DS_Store
 
 _site/
+.local-notes/
 __pycache__/
 web-registered/mail-config.local.php
 contact/mail-config.local.php

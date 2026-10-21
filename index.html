@@ -224,14 +224,25 @@
               サービスをご利用いただいたお客様の声をご紹介します。
             </p>
           </div>
+          <div data-note-voices data-note-endpoint="commn/php/note-voices.php">
           <!-- NOTE-VOICES:START -->
-          <div class="voices-empty">
-            <p class="voices-empty__label">COMING SOON</p>
-            <h3>お客様の声は、ただいま準備中です。</h3>
-            <p>サービスをご利用いただいたお客様のストーリーを、順次ご紹介します。</p>
+          <div class="carousel-wrap">
+            <button class="carousel-arrow carousel-arrow--prev" type="button" aria-label="前のお客様の声" data-carousel-prev hidden>←</button>
+            <div class="swiper interview-slider" id="interview-list" aria-label="お客様の声">
+              <div class="swiper-wrapper"><div class="swiper-slide">
+                <a class="interview-card voice-card hover-image hover-lift" href="https://note.com/clever_macaw2454/n/n0684cf1072d0" target="_blank" rel="noopener noreferrer" aria-label="テスト01（note・別タブで開く）">
+                  <div class="voice-card__media"><img src="https://assets.st-note.com/production/uploads/images/326817125/rectangle_large_type_2_40c96e6f6b4d147d6e892597c3236f9a.png?width=800" alt="" width="1200" height="675" loading="lazy" decoding="async" /></div>
+                  <h3>テスト01</h3>
+                  <p class="voice-card__meta"><time datetime="2026-10-21">2026.10.21</time><span>noteで読む ↗</span></p>
+                </a>
+              </div></div>
+              <div class="swiper-pagination"></div>
+            </div>
+            <button class="carousel-arrow carousel-arrow--next" type="button" aria-label="次のお客様の声" data-carousel-next hidden>→</button>
           </div>
-          <div class="voices-more"><a class="text-link hover-underline" href="https://note.com/elevate/magazines" target="_blank" rel="noopener noreferrer">noteで事例を見る <span aria-hidden="true">↗</span><span class="voices-sr-only">（別タブで開く）</span></a></div>
+          <div class="voices-more"><a class="text-link hover-underline" href="https://note.com/clever_macaw2454" target="_blank" rel="noopener noreferrer">noteで事例を見る <span aria-hidden="true">↗</span><span class="voices-sr-only">（別タブで開く）</span></a></div>
           <!-- NOTE-VOICES:END -->
+          </div>
         </div>
       </section>
       <section class="section news" id="news">

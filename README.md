@@ -132,42 +132,37 @@ PHP対応のローカル環境で確認する場合は `php -S 127.0.0.1:8000` �
 
 ## お客様の声とnoteの連携
 
-サービス内容の直下に表示します。記事未設定・0件の間は「準備中」を表示し、サンプルのお客様の声は掲載しません。記事があれば画像・タイトル・投稿日をカード表示し、クリックでnoteを別タブで開きます。画像がない場合はELEVATEロゴを使います。PC3枚・タブレット2枚・スマートフォン約1枚のスライダーです。JavaScript無効時も記事リンクを利用できます。
+サービス内容の直下に、noteの記事画像・タイトル・投稿日を表示します。記事は別タブで開き、画像なしの場合はELEVATEロゴを使います。PC3枚・タブレット2枚・スマートフォン約1枚のスライダーです。
 
-### 連携先の設定
+### KAGOYAなどPHPサーバーでの自動更新（FileZilla）
 
-`config/note-voices.json` の `magazine_url` に専用マガジンのURL（`https://note.com/elevate/m/マガジンID`）を設定してください。空欄の間はRSSに接続しません。現在いただいている `https://note.com/elevate/magazines` はマガジン一覧なので、`collection_url` に設定済みです。一覧の全記事をお客様の声として取り込むことはありません。
+`index.html` が `js/script.js` から同一サーバーの `commn/php/note-voices.php` を呼び出します。現在はテスト用として、PHPが `https://note.com/clever_macaw2454/rss` を取得し、最新6件を返します。記事追加のたびの生成・再アップロードやcron設定は不要です。アカウントの公開記事すべてが対象です。
 
-- `magazine_url`: お客様の声専用マガジン。末尾に `/rss` を付けて取得します。
-- `collection_url`: 専用マガジン未設定時の「noteで事例を見る」のリンク先。
-- `limit`: 表示件数（1〜25、初期値6）。RSSの順序＝マガジン追加の新しい順を維持します。
+- ページを開く・リロードすると取得します。開いたままの画面を定期更新する処理はありません。
+- 取得結果はサーバーの一時領域に5分間保存します。5分経過後のアクセスで更新します。note側のRSS反映に遅れがある場合は、それに従います。
+- 取得失敗時は直前に取得した記事を返し、再試行を5分抑制します。初回取得もできなければ、HTMLに掲載済みの記事をそのまま表示します。
+- 正常なRSSが0件になれば準備中に切り替えます。最大6件で、7件目以降は古い記事から表示対象外になります。
+- PHP 8.1以上、SimpleXML、外部HTTPS通信、書き込み可能なPHP一時領域が必要です。通信にはcURLを優先し、未導入ならHTTPSストリームを使用します。
+- 取得元・件数はPHP冒頭の `SOURCE` / `LIMIT`、保存時間は `TTL` で管理します。公開URLや件数を変更する場合はこちらを更新します。下記の静的生成用JSONとは独立しています。
 
-### ローカル確認
+FileZilla用フォルダは `python3 scripts/prepare_stg.py` でデスクトップ直下の `ELEVATE-stg-upload/` に新規作成できます。既存フォルダを上書きしません。HTML・CSS・JS・画像・PHP・ローカルメール設定を含み、Git・ローカルメモ・テスト・ビルド設定・メール設定サンプルを除外します。フォルダの**中身**をステージングの公開フォルダへ配置してください。すでにサーバー側で送信元などを設定した `mail-config.local.php` は上書きしないでください。
 
-追加パッケージ不要、Python 3.9以上で生成できます。
+アップロード後は、サイト直下の `commn/php/note-voices.php` を開いてJSONの `cards` が返ることと、トップの記事表示を確認します。503の場合はPHP拡張・外部通信・一時領域を確認してください。KAGOYAの実契約環境での動作確認・公開はまだ実施していません。
+
+### ローカル確認・GitHub Pages向け静的生成
+
+`python3 -m unittest discover -s tests -v` でRSS解析・キャッシュ・障害時の保持・フォームを確認できます。PHPの表示確認は `php -S 127.0.0.1:8000` を実行し、`http://127.0.0.1:8000/` を開きます。静的プレビューやPHPなしの環境では、HTML内の記事表示を維持します。
+
+GitHub PagesはPHPを実行しないため、既存のPythonビルドとActionsを使います。`config/note-voices.json` の `magazine_url` を優先し、未設定なら `account_url` のRSSから最新 `limit` 件を取得します。両方空なら準備中です。`collection_url` は取得元が未設定の場合のリンク先です。
 
 ```sh
-python3 -m unittest discover -s tests -v
 python3 scripts/build_note_voices.py
 python3 -m http.server 8000 --directory _site
 ```
 
-生成先は `_site/` です。元の `index.html` は準備中表示を保ち、生成したHTMLの `NOTE-VOICES` マーカー内だけを書き換えます。公開するのは生成先です。オフラインで記事あり表示を確認する場合は `--fixture /path/to/sample-rss.xml --output /tmp/elevate-preview` を指定できます。
+`_site/` はPHPを除外した静的公開専用です。KAGOYAへのアップロードには使わないでください。`--update-source` を指定すると、実際のRSSで元の `index.html` も更新できます。オフライン確認には `--fixture /path/to/sample-rss.xml --output /tmp/elevate-preview` を使います。
 
-### GitHub Pagesでの自動更新を有効にする
-
-`.github/workflows/note-voices-pages.yml` が `main` へのpush・毎時23分（UTC）・手動実行でRSSを取得し、生成したサイトを公開します。ブラウザから直接RSSに接続せず、GitHub Actions上で取得します。
-
-1. この変更をGitHubの `main` に反映します。
-2. リポジトリの Settings → Pages → Build and deployment → Source を **GitHub Actions** に変更します（従来のmainブランチ直接公開からの変更が必要）。
-3. Actions → **Update note voices and publish site** → **Run workflow** で初回実行を確認します。
-4. 専用マガジン作成後に `magazine_url` を設定してpushします。
-
-現在は実装ファイルのみ用意済みで、GitHubへのpush・公開設定変更・実サイトへのデプロイは未実施です。GitHub Actionsの有効化と上記設定後に自動更新が始まります。スケジュールは混雑により遅延する場合があります。公開リポジトリでは60日間リポジトリに活動がないと定期実行が無効になるため、無効化通知が届いた場合は再有効化してください。
-
-RSS取得失敗・不正なXML・記事があるのに有効な記事を取得できない場合はビルドを失敗させ、デプロイしません。公開済みのサイトをそのまま維持します。正常な空のRSSの場合は「準備中」に更新するので、マガジンから全記事を外した場合も反映されます。取得元は公開マガジンだけに対応し、独自ドメインや認証が必要なRSSは対象外です。
-
-参考: [noteのRSS公式説明](https://www.help-note.com/hc/ja/articles/4402395202841)、[GitHub Pagesのワークフロー](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages)。
+`.github/workflows/note-voices-pages.yml` はmainへのpush・毎時23分（UTC）・手動実行で静的サイトを生成します。利用時はGitHub Settings → Pagesの公開元をGitHub Actionsに変更してください。GitHubへのpush・公開設定変更は未実施です。
 
 NEWSは遷移しないテキスト表示です。ページトップボタンは全ページ共通で、ヒーローの下端が固定ヘッダーの下に入ると右下に表示されます。ヒーローのないページでは一定距離スクロールすると表示されます。SCROLLアイコンはホバー・フォーカス時に下へ6px動きます。
 

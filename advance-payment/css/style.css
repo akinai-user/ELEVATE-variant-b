@@ -93,6 +93,49 @@
   padding-bottom: clamp(64px, 7vw, 96px);
 }
 
+.advance-holiday-notice {
+  margin-bottom: 24px;
+  padding: clamp(22px, 3vw, 32px);
+  border: 1px solid rgb(126 101 232 / 24%);
+  border-left: 4px solid var(--violet);
+  border-radius: 16px;
+  color: var(--navy);
+  background: #f4f0ff;
+}
+
+.advance-holiday-notice h2 {
+  margin: 0 0 12px;
+  font-size: clamp(17px, 2vw, 21px);
+  font-weight: 800;
+  line-height: 1.6;
+}
+
+.advance-holiday-notice p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.advance-holiday-notice__schedule {
+  display: grid;
+  gap: 12px;
+  margin: 20px 0 0;
+  font-size: clamp(14px, 1.6vw, 17px);
+  line-height: 1.7;
+}
+
+.advance-holiday-notice__schedule > div {
+  display: grid;
+  grid-template-columns: 140px minmax(0, 1fr);
+  gap: 8px 24px;
+}
+
+.advance-holiday-notice__schedule dt,
+.advance-holiday-notice__schedule dd {
+  margin: 0;
+  font-weight: 800;
+}
+
 .advance-form-card {
   display: grid;
   grid-template-columns: minmax(210px, 270px) minmax(0, 1fr);
@@ -344,6 +387,11 @@
 }
 
 @media (max-width: 767px) {
+  .advance-holiday-notice__schedule > div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2px;
+  }
+
   .advance-hero {
     min-height: 430px;
   }

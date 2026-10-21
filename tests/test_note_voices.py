@@ -2,6 +2,8 @@ import json
 from pathlib import Path
 import sys
 import tempfile
+import shutil
+import subprocess
 import unittest
 from unittest.mock import patch
 
@@ -18,6 +20,14 @@ def item(title='お客様の声', link='https://note.com/elevate/n/n123', extra=
 
 
 class NoteVoicesTest(unittest.TestCase):
+    @unittest.skipUnless(shutil.which('node'), 'Node is needed for live RSS frontend tests')
+    def test_live_frontend(self):
+        subprocess.run(['node', str(voices.ROOT / 'tests/note_voices_frontend.cjs')], check=True)
+
+    @unittest.skipUnless(shutil.which('php'), 'PHP is needed for live RSS backend tests')
+    def test_php_backend(self):
+        subprocess.run(['php', str(voices.ROOT / 'tests/note_voices_backend.php')], check=True)
+
     def test_note_namespace_thumbnail_and_date(self):
         cards = voices.parse_feed(feed(item(extra='<media:thumbnail>https://assets.st-note.com/example.jpg</media:thumbnail><pubDate>Wed, 30 Sep 2026 00:30:00 +0900</pubDate>')), 6)
         self.assertEqual(cards[0]['date'], '2026-09-30')
@@ -83,6 +93,19 @@ class NoteVoicesTest(unittest.TestCase):
             with patch.object(voices, 'fetch_feed', side_effect=TimeoutError('network timeout')):
                 with self.assertRaises(TimeoutError): voices.build(config, output)
             self.assertEqual(target.read_text(), 'previous successful page')
+
+    def test_account_feed_and_magazine_priority(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / 'config.json'
+            config = {'account_url': 'https://note.com/elevate/', 'collection_url': 'https://note.com/elevate/magazines'}
+            path.write_text(json.dumps(config))
+            self.assertEqual(voices.settings(path)[0], 'https://note.com/elevate')
+            config['magazine_url'] = 'https://note.com/elevate/m/m123'
+            path.write_text(json.dumps(config))
+            self.assertEqual(voices.settings(path)[0], config['magazine_url'])
+            config['account_url'] = 'https://example.com/elevate'
+            path.write_text(json.dumps(config))
+            with self.assertRaises(ValueError): voices.settings(path)
 
     def test_page_structure_and_replacement(self):
         source = (voices.ROOT / 'index.html').read_text()

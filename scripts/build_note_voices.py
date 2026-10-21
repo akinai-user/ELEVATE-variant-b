@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build note magazine cards into static HTML; no browser-side RSS dependency."""
+"""Build note RSS cards into static HTML; no browser-side RSS dependency."""
 import argparse
 from email.utils import parsedate_to_datetime
 from html import escape
@@ -35,13 +35,18 @@ def settings(path):
         magazine = note_url(magazine, r'/[A-Za-z0-9_-]+/m/[A-Za-z0-9_-]+')
         if not magazine:
             raise ValueError('magazine_urlには https://note.com/ユーザー名/m/マガジンID を設定してください（一覧URLは不可）。')
+    account = config.get('account_url', '')
+    if account:
+        account = note_url(account, r'/[A-Za-z0-9_-]+')
+        if not account:
+            raise ValueError('account_urlには https://note.com/ユーザー名 を設定してください。')
     collection = note_url(config.get('collection_url'), r'/[A-Za-z0-9_-]+/magazines')
     if not collection:
         raise ValueError('collection_urlにnoteのマガジン一覧URLを設定してください。')
     limit = config.get('limit', 6)
     if type(limit) is not int or not 1 <= limit <= 25:
         raise ValueError('limitは1〜25の整数にしてください。')
-    return magazine, collection, limit
+    return magazine or account, collection, limit
 
 
 def image_url(value):
@@ -135,7 +140,7 @@ def replace_block(source, block):
     return before + START + '\n          ' + block + '\n          ' + END + after
 
 
-def build(config_path, output, fixture=None):
+def build(config_path, output, fixture=None, update_source=False):
     magazine, collection, limit = settings(config_path)
     if fixture:
         cards = parse_feed(fixture.read_bytes(), limit)
@@ -146,6 +151,8 @@ def build(config_path, output, fixture=None):
     output = output.resolve()
     if output == ROOT or ROOT.is_relative_to(output) or (output.is_relative_to(ROOT) and output != ROOT / '_site'):
         raise ValueError('出力先にはソースとは別のディレクトリを指定してください。')
+    if update_source and fixture:
+        raise ValueError('fixtureではソースを更新できません。')
     output.mkdir(parents=True, exist_ok=True)
     excluded = {'_site', '.git', '.github', 'scripts', 'tests', 'config', '__pycache__', output.name}
     for source in ROOT.iterdir():
@@ -158,6 +165,8 @@ def build(config_path, output, fixture=None):
         else:
             shutil.copy2(source, target)
     (output / 'index.html').write_text(html, encoding='utf-8')
+    if update_source:
+        (ROOT / 'index.html').write_text(html, encoding='utf-8')
     print(f'note voices: {len(cards)} cards; output: {output}')
 
 
@@ -166,9 +175,10 @@ if __name__ == '__main__':
     parser.add_argument('--config', type=Path, default=ROOT / 'config/note-voices.json')
     parser.add_argument('--output', type=Path, default=ROOT / '_site')
     parser.add_argument('--fixture', type=Path, help='Local RSS for offline preview only')
+    parser.add_argument('--update-source', action='store_true', help='Also update index.html with live articles for direct hosting')
     args = parser.parse_args()
     try:
-        build(args.config, args.output, args.fixture)
+        build(args.config, args.output, args.fixture, args.update_source)
     except Exception as error:
         print(f'note voices build failed: {error}', file=sys.stderr)
         sys.exit(1)
