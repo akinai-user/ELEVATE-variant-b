@@ -136,7 +136,7 @@ PHP対応のローカル環境で確認する場合は `php -S 127.0.0.1:8000` �
 
 ### KAGOYAなどPHPサーバーでの自動更新（FileZilla）
 
-`index.html` が `js/script.js` から同一サーバーの `commn/php/note-voices.php` を呼び出します。現在はテスト用として、PHPが `https://note.com/clever_macaw2454/rss` を取得し、最新6件を返します。記事追加のたびの生成・再アップロードやcron設定は不要です。アカウントの公開記事すべてが対象です。
+`index.html` が `js/script.js` から同一サーバーの `commn/php/note-voices.php` を呼び出します。PHPが `https://note.com/elevate/rss` を取得し、最新6件を返します。記事追加のたびの生成・再アップロードやcron設定は不要です。アカウントの公開記事すべてが対象です。
 
 - ページを開く・リロードすると取得します。開いたままの画面を定期更新する処理はありません。
 - 取得結果はサーバーの一時領域に5分間保存します。5分経過後のアクセスで更新します。更新時は取得URLに時刻を付け、note側の配信キャッシュに残った古いRSSを避けます。

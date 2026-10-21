@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Elevate\NoteVoices;
 
 // Fixed public source; request parameters can never change the fetched URL.
-const SOURCE = 'https://note.com/clever_macaw2454';
+const SOURCE = 'https://note.com/elevate';
 const LIMIT = 6;
 const TTL = 300;
 const MAX_BYTES = 3000000;
