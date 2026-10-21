@@ -1,0 +1,326 @@
+{
+  "prepared_on": "2026-10-21",
+  "status": "draft_not_deployed",
+  "production_origin": "https://elevate-works.jp",
+  "staging_origin": "https://elevate-works.jp/stg",
+  "source_scope": "Received snapshot only; live production files and configuration are not a verified full backup.",
+  "forms_status": "Owner reports all four forms delivered to current recipients in staging. Production still unverified.",
+  "routes": [
+    {
+      "old_url": "/advance-payment/",
+      "new_url": "/advance-payment/",
+      "action": "keep_url",
+      "new_file": "advance-payment/index.html",
+      "explicit_index_aliases": [
+        "/advance-payment/index.php",
+        "/advance-payment/index.html"
+      ]
+    },
+    {
+      "old_url": "/company/",
+      "new_url": "/company/",
+      "action": "keep_url",
+      "new_file": "company/index.html",
+      "explicit_index_aliases": [
+        "/company/index.php",
+        "/company/index.html"
+      ]
+    },
+    {
+      "old_url": "/contact/",
+      "new_url": "/contact/",
+      "action": "keep_url",
+      "new_file": "contact/index.html",
+      "explicit_index_aliases": [
+        "/contact/index.php",
+        "/contact/index.html"
+      ]
+    },
+    {
+      "old_url": "/",
+      "new_url": "/",
+      "action": "keep_url",
+      "new_file": "index.html",
+      "explicit_index_aliases": [
+        "/index.php",
+        "/index.html"
+      ]
+    },
+    {
+      "old_url": "/introduction/faq/",
+      "new_url": "/introduction/faq/",
+      "action": "keep_url",
+      "new_file": "introduction/faq/index.html",
+      "explicit_index_aliases": [
+        "/introduction/faq/index.php",
+        "/introduction/faq/index.html"
+      ]
+    },
+    {
+      "old_url": "/introduction/",
+      "new_url": "/introduction/",
+      "action": "keep_url",
+      "new_file": "introduction/index.html",
+      "explicit_index_aliases": [
+        "/introduction/index.php",
+        "/introduction/index.html"
+      ]
+    },
+    {
+      "old_url": "/introduction/staffing/",
+      "new_url": "/introduction/staffing/",
+      "action": "keep_url",
+      "new_file": "introduction/staffing/index.html",
+      "explicit_index_aliases": [
+        "/introduction/staffing/index.php",
+        "/introduction/staffing/index.html"
+      ]
+    },
+    {
+      "old_url": "/privacy/",
+      "new_url": "/privacy/",
+      "action": "keep_url",
+      "new_file": "privacy/index.html",
+      "explicit_index_aliases": [
+        "/privacy/index.php",
+        "/privacy/index.html"
+      ]
+    },
+    {
+      "old_url": "/registered/",
+      "new_url": "/registered/",
+      "action": "keep_url",
+      "new_file": "registered/index.html",
+      "explicit_index_aliases": [
+        "/registered/index.php",
+        "/registered/index.html"
+      ]
+    },
+    {
+      "old_url": null,
+      "new_url": "/service/ai/",
+      "action": "new_page",
+      "new_file": "service/ai/index.html",
+      "explicit_index_aliases": [
+        "/service/ai/index.html"
+      ]
+    },
+    {
+      "old_url": null,
+      "new_url": "/service/development/",
+      "action": "new_page",
+      "new_file": "service/development/index.html",
+      "explicit_index_aliases": [
+        "/service/development/index.html"
+      ]
+    },
+    {
+      "old_url": null,
+      "new_url": "/service/dx/",
+      "action": "new_page",
+      "new_file": "service/dx/index.html",
+      "explicit_index_aliases": [
+        "/service/dx/index.html"
+      ]
+    },
+    {
+      "old_url": "/service/engineering/",
+      "new_url": "/service/engineering/",
+      "action": "keep_url",
+      "new_file": "service/engineering/index.html",
+      "explicit_index_aliases": [
+        "/service/engineering/index.php",
+        "/service/engineering/index.html"
+      ]
+    },
+    {
+      "old_url": "/service/",
+      "new_url": "/service/",
+      "action": "keep_url",
+      "new_file": "service/index.html",
+      "explicit_index_aliases": [
+        "/service/index.php",
+        "/service/index.html"
+      ]
+    },
+    {
+      "old_url": "/service/staffing/contract-work/",
+      "new_url": "/service/staffing/contract-work/",
+      "action": "keep_url",
+      "new_file": "service/staffing/contract-work/index.html",
+      "explicit_index_aliases": [
+        "/service/staffing/contract-work/index.php",
+        "/service/staffing/contract-work/index.html"
+      ]
+    },
+    {
+      "old_url": "/service/staffing/",
+      "new_url": "/service/staffing/",
+      "action": "keep_url",
+      "new_file": "service/staffing/index.html",
+      "explicit_index_aliases": [
+        "/service/staffing/index.php",
+        "/service/staffing/index.html"
+      ]
+    },
+    {
+      "old_url": "/service/staffing/recruitment-agency/",
+      "new_url": "/service/staffing/recruitment-agency/",
+      "action": "keep_url",
+      "new_file": "service/staffing/recruitment-agency/index.html",
+      "explicit_index_aliases": [
+        "/service/staffing/recruitment-agency/index.php",
+        "/service/staffing/recruitment-agency/index.html"
+      ]
+    },
+    {
+      "old_url": "/service/staffing/staffing-agency/",
+      "new_url": "/service/staffing/staffing-agency/",
+      "action": "keep_url",
+      "new_file": "service/staffing/staffing-agency/index.html",
+      "explicit_index_aliases": [
+        "/service/staffing/staffing-agency/index.php",
+        "/service/staffing/staffing-agency/index.html"
+      ]
+    },
+    {
+      "old_url": "/transportation-expenses/",
+      "new_url": "/transportation-expenses/",
+      "action": "keep_url",
+      "new_file": "transportation-expenses/index.html",
+      "explicit_index_aliases": [
+        "/transportation-expenses/index.php",
+        "/transportation-expenses/index.html"
+      ]
+    },
+    {
+      "old_url": "/web-registered/",
+      "new_url": "/web-registered/",
+      "action": "keep_url",
+      "new_file": "web-registered/index.html",
+      "explicit_index_aliases": [
+        "/web-registered/index.php",
+        "/web-registered/index.html"
+      ]
+    },
+    {
+      "old_url": "/contact/thanks/",
+      "old_index_alias": "/contact/thanks/index.php",
+      "new_url": "/contact/",
+      "action": "redirect_get_head_301",
+      "note": "Old thank-you URL goes to the form, never to a fabricated success screen."
+    },
+    {
+      "old_url": "/web-registered/thanks/",
+      "old_index_alias": "/web-registered/thanks/index.php",
+      "new_url": "/web-registered/",
+      "action": "redirect_get_head_301",
+      "note": "Old thank-you URL goes to the form, never to a fabricated success screen."
+    },
+    {
+      "old_url": "/advance-payment/thanks/",
+      "old_index_alias": "/advance-payment/thanks/index.php",
+      "new_url": "/advance-payment/",
+      "action": "redirect_get_head_301",
+      "note": "Old thank-you URL goes to the form, never to a fabricated success screen."
+    },
+    {
+      "old_url": "/transportation-expenses/thanks/",
+      "old_index_alias": "/transportation-expenses/thanks/index.php",
+      "new_url": "/transportation-expenses/",
+      "action": "redirect_get_head_301",
+      "note": "Old thank-you URL goes to the form, never to a fabricated success screen."
+    },
+    {
+      "old_url": "/human-register/",
+      "old_index_alias": "/human-register/index.php",
+      "new_url": "/web-registered/",
+      "action": "proposed_301_requires_owner_decision",
+      "note": "Separate old form: confirm replacement intent before enabling."
+    },
+    {
+      "old_url": "/human-register/thanks/",
+      "old_index_alias": "/human-register/thanks/index.php",
+      "new_url": "/web-registered/",
+      "action": "proposed_301_requires_owner_decision"
+    },
+    {
+      "old_url": "/service/engineering/ai-link-merged.html",
+      "new_url": "/service/ai/",
+      "action": "redirect_get_head_301"
+    }
+  ],
+  "retained": [
+    {
+      "path": "/lp/",
+      "action": "preserve_live_directory",
+      "note": "Preserve current assets, case data, admin config, child .htaccess, and external form integration."
+    },
+    {
+      "path": "/lp2/",
+      "action": "retire_after_verified_backup",
+      "note": "Not an exception to the new-site-only policy. Do not keep this old landing page published; check external links and choose 404/410 or a meaningful replacement before cutover."
+    },
+    {
+      "path": "/lp-thanks/",
+      "action": "preserve_lp_dependency",
+      "note": "Related LP thank-you page; preserve with /lp/ until external-form completion destination is verified."
+    },
+    {
+      "path": "/company/pdf/",
+      "action": "preserve_live_directory",
+      "snapshot_files": [
+        "dispatchbusinessstatus_2025.pdf",
+        "派遣事業状況2026.04.pdf",
+        "派遣事業状況2026.07.pdf"
+      ]
+    },
+    {
+      "path": "/common/",
+      "action": "preserve_pending_dependency_review",
+      "note": "Retain only files required by the surviving LP and new site. Back up old assets, then retire unreferenced ones; do not delete shared directories wholesale."
+    },
+    {
+      "path": "/web-registered/uploads/",
+      "action": "private_backup_do_not_republish",
+      "note": "Preserve existing submitted data; review access controls with owner. Do not bundle in new release."
+    },
+    {
+      "path": "/advance-payment/uploads/",
+      "action": "private_backup_do_not_republish",
+      "note": "Preserve existing submitted data; review access controls with owner. Do not bundle in new release."
+    },
+    {
+      "path": "/img/",
+      "action": "preserve_pending_dependency_review",
+      "note": "Retain only files required by the surviving LP and new site. Back up old assets, then retire unreferenced ones; do not delete shared directories wholesale."
+    },
+    {
+      "path": "/css/",
+      "action": "preserve_pending_dependency_review",
+      "note": "Retain only files required by the surviving LP and new site. Back up old assets, then retire unreferenced ones; do not delete shared directories wholesale."
+    },
+    {
+      "path": "/js/",
+      "action": "preserve_pending_dependency_review",
+      "note": "Retain only files required by the surviving LP and new site. Back up old assets, then retire unreferenced ones; do not delete shared directories wholesale."
+    }
+  ],
+  "missing_from_received_snapshot": [
+    "/vendor/autoload.php",
+    "/404.php",
+    "/lp/public_html/index.php"
+  ],
+  "unresolved": [
+    "Owner backup and rollback procedure",
+    "Live server/Apache override and TLS proxy configuration",
+    "Whether /human-register/ is replaced by /web-registered/",
+    "Whether old index.php query parameters or deep URLs have meaningful use",
+    "Retained LP search-index policy and live sitemap contents",
+    "LP2 retirement: confirm incoming links and any meaningful redirect; do not redirect all retired URLs to the home page."
+  ],
+  "method_policy": "Redirect GET/HEAD only; never forward legacy form POST bodies. Coordinate a cutover window and archive old form handlers after backup.",
+  "host_policy": "Propose https://elevate-works.jp; verify HTTPS and existing hostname redirects with administrator.",
+  "publication_policy": "Replace the old corporate site at the same domain and main page URLs. Only /lp/ and its dependencies remain as existing pages; preserve linked PDF documents and private backups.",
+  "release_operator": "The user will publish after production access is granted; currently staging access only."
+}

@@ -1,0 +1,46 @@
+# REVIEW DRAFT: merge into the LIVE document-root config; do not upload as-is.
+# Apache 2.4 + mod_rewrite required. KAGOYA administrator must verify overrides.
+# Never install this in /stg/. Back up live config first.
+# Keep existing TLS, PHP handlers, access controls, and LP configuration.
+# HTTPS enforcement is intentionally NOT included: check trusted proxy/TLS setup.
+# Prefer new HTML over leftover index.php. Check retained LP directory indexes.
+DirectoryIndex index.html index.php
+RewriteEngine On
+
+# Do not redirect the staging directory or unknown hosts.
+RewriteRule ^stg(?:/|$) - [L]
+RewriteCond %{HTTP_HOST} !^(?:www\.)?(?:elevate-works\.jp|accorl\.jp)(?::[0-9]+)?$ [NC]
+RewriteRule ^ - [L]
+
+# Old AI page: one permanent hop to the new canonical URL.
+RewriteCond %{REQUEST_METHOD} ^(?:GET|HEAD)$
+RewriteRule ^service/engineering/ai-link-merged\.html$ https://elevate-works.jp/service/ai/ [R=301,L,NE]
+
+# Old completion URLs: send visitors to the form, not a false success state.
+RewriteCond %{REQUEST_METHOD} ^(?:GET|HEAD)$
+RewriteRule ^(contact|web-registered|advance-payment|transportation-expenses)/thanks(?:/index\.php|/)?$ https://elevate-works.jp/$1/ [R=301,L,NE]
+
+# Only explicit browser requests for managed index files are canonicalized.
+# THE_REQUEST prevents an internal DirectoryIndex lookup from looping.
+RewriteCond %{REQUEST_METHOD} ^(?:GET|HEAD)$
+RewriteCond %{THE_REQUEST} "\s/+[^?\s]*index\.(?:php|html)(?:[?\s])" [NC]
+RewriteRule ^((?:service/staffing/recruitment\-agency|service/staffing/staffing\-agency|service/staffing/contract\-work|transportation\-expenses|introduction/staffing|service/development|service/engineering|introduction/faq|service/staffing|advance\-payment|web\-registered|introduction|registered|service/ai|service/dx|company|contact|privacy|service)/)?index\.(?:php|html)$ https://elevate-works.jp/$1 [R=301,L,NE]
+
+# Canonical trailing slash for exact managed page directories.
+RewriteCond %{REQUEST_METHOD} ^(?:GET|HEAD)$
+RewriteRule ^(service/staffing/recruitment\-agency|service/staffing/staffing\-agency|service/staffing/contract\-work|transportation\-expenses|introduction/staffing|service/development|service/engineering|introduction/faq|service/staffing|advance\-payment|web\-registered|introduction|registered|service/ai|service/dx|company|contact|privacy|service)$ https://elevate-works.jp/$1/ [R=301,L,NE]
+
+# Preserve existing legacy-domain handling and normalize www for GET/HEAD.
+# Enable only for hostnames owned by the operator with working DNS and TLS.
+RewriteCond %{REQUEST_METHOD} ^(?:GET|HEAD)$
+RewriteCond %{HTTP_HOST} ^(?:www\.elevate-works\.jp|(?:www\.)?accorl\.jp)(?::[0-9]+)?$ [NC]
+RewriteRule ^ https://elevate-works.jp%{REQUEST_URI} [R=301,L,NE]
+
+# OWNER DECISION REQUIRED: separate old registration form -> Web registration.
+# Uncomment only after confirming both old form and old thank-you replacement.
+# RewriteCond %{REQUEST_METHOD} ^(?:GET|HEAD)$
+# RewriteRule ^human-register(?:/index\.php|/thanks(?:/index\.php|/)?|/)?$ https://elevate-works.jp/web-registered/ [R=301,L,NE]
+
+# No global PHP redirect: submit.php, note JSON endpoint, and LP PHP must work.
+# No unknown-URL -> homepage redirect. Unknown pages should return a real 404.
+# Do not copy old fallback-to-PHP / WordPress rules without checking live use.
