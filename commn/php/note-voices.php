@@ -63,7 +63,9 @@ function parseFeed(string $raw): array
 
 function fetchFeed(): string
 {
-    $url = SOURCE . '/rss';
+    // note's CDN can retain a stale response at the bare RSS URL. Each actual
+    // refresh gets a distinct URL; our private five-minute cache limits traffic.
+    $url = SOURCE . '/rss?_elevate_refresh=' . time();
     if (function_exists('curl_init')) {
         $raw = '';
         $curl = curl_init($url);
@@ -73,7 +75,7 @@ function fetchFeed(): string
             CURLOPT_FOLLOWLOCATION => false,
             CURLOPT_PROTOCOLS => CURLPROTO_HTTPS,
             CURLOPT_USERAGENT => 'ELEVATE-Website-RSS/1.0',
-            CURLOPT_HTTPHEADER => ['Accept: application/rss+xml, application/xml, text/xml'],
+            CURLOPT_HTTPHEADER => ['Accept: application/rss+xml, application/xml, text/xml', 'Cache-Control: no-cache'],
             CURLOPT_WRITEFUNCTION => static function ($handle, string $chunk) use (&$raw): int {
                 if (strlen($raw) + strlen($chunk) > MAX_BYTES) return 0;
                 $raw .= $chunk;
@@ -87,7 +89,7 @@ function fetchFeed(): string
     }
     $context = stream_context_create(['http' => [
         'timeout' => 8, 'follow_location' => 0,
-        'header' => "User-Agent: ELEVATE-Website-RSS/1.0\r\nAccept: application/rss+xml\r\n",
+        'header' => "User-Agent: ELEVATE-Website-RSS/1.0\r\nAccept: application/rss+xml\r\nCache-Control: no-cache\r\n",
     ]]);
     $raw = @file_get_contents($url, false, $context, 0, MAX_BYTES + 1);
     if ($raw === false || !preg_match('~^HTTP/\S+ 200\b~', $http_response_header[0] ?? '')) {
@@ -152,7 +154,8 @@ function respond(): void
         return;
     }
     try {
-        $directory = sys_get_temp_dir() . '/elevate-note-' . hash('sha256', __FILE__ . SOURCE);
+        // Discard caches populated by the old, potentially stale bare RSS URL.
+        $directory = sys_get_temp_dir() . '/elevate-note-' . hash('sha256', __FILE__ . SOURCE . ':fresh-rss-v2');
         $cards = articles($directory, __NAMESPACE__ . '\\fetchFeed', time());
         echo json_encode(['cards' => $cards, 'destination' => SOURCE], JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR);
     } catch (\Throwable $error) {
