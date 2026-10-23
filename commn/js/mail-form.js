@@ -59,6 +59,9 @@
       if (prefix === "contact" && form.elements.email.value !== form.elements.email_chk.value) {
         form.elements.email_chk.setCustomValidity("メールアドレスが一致していません。");
       }
+      if (prefix === "transportation" && form.elements.id.value.trim() === "00000") {
+        form.elements.id.setCustomValidity("ID「00000」では申請できません。取得済みのIDを入力してください。");
+      }
     };
     fields.forEach(([input]) => {
       input.addEventListener("input", validate);

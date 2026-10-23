@@ -72,6 +72,9 @@ try {
         if ($fields[$name] === '') formResponse(422, ['message' => $label . 'を入力してください。']);
     }
     if ($fields['policy_chk'] !== '1') formResponse(422, ['message' => '個人情報の取り扱いに同意してください。']);
+    if (ELEVATE_FORM === 'transportation' && $fields['id'] === '00000') {
+        formResponse(422, ['message' => 'ID「00000」では申請できません。取得済みのIDを入力してください。']);
+    }
     if (isset($fields['email']) && (!filter_var($fields['email'], FILTER_VALIDATE_EMAIL) || preg_match('/[\r\n]/', $fields['email']))) formResponse(422, ['message' => 'メールアドレスを確認してください。']);
     if (ELEVATE_FORM === 'contact') {
         if ($fields['email'] !== $fields['email_chk']) formResponse(422, ['message' => 'メールアドレスが一致していません。']);

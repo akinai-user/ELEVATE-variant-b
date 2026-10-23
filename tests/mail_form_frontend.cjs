@@ -53,9 +53,22 @@ const submit = form => form.handlers.submit({ preventDefault() {} });
       fields.email_chk.value = fields.email.value;
     }
     if (kind === 'advance') {
+      fields.id.value = '00000';
       fields.attachment2.files[0].size = 6 * 1024 * 1024;
       submit(form); assert(fields.attachment2.error); assert.equal(calls.length, 0);
       fields.attachment2.files[0].size = 100;
+    }
+    if (kind === 'transportation') {
+      for (const identifier of ['00000', ' 00000 ', '\t00000\n']) {
+        fields.id.value = identifier;
+        submit(form);
+        assert(fields.id.error.includes('00000'));
+        assert.equal(calls.length, 0);
+        assert.equal(nodes['[data-confirm]'].hidden, true);
+      }
+      fields.id.value = '00001';
+      fields.id.handlers.input();
+      assert.equal(fields.id.error, '');
     }
     submit(form); await tick();
     assert(form.hidden); assert.equal(nodes['[data-confirm]'].hidden, false);

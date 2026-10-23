@@ -159,10 +159,21 @@ class RegistrationTests(unittest.TestCase):
         if directory == 'contact':
             data.update(company='テスト企業', email='person@example.invalid', email_chk='person@example.invalid', tel='09000000000')
         else:
-            data.update(id='00000')
+            data.update(id='12345' if directory == 'transportation-expenses' else '00000')
         if directory == 'advance-payment':
             data.update(days='2', email='person@example.invalid', checkbox01='同意する')
         return data
+
+    def test_transportation_rejects_placeholder_id(self):
+        data = self.other_form('transportation-expenses')
+        for identifier in ['00000', ' 00000 ', '\t00000\n']:
+            with self.subTest(identifier=identifier):
+                status, result = self.request({**data, 'id': identifier}, endpoint='transportation-expenses')
+                self.assertEqual(status, 422)
+                self.assertIn('00000', result['message'])
+                self.assertFalse(self.mail.exists())
+        # Rejected requests must still allow correction and submission with a real ID.
+        self.assertEqual(self.request({**data, 'id': '00001'}, endpoint='transportation-expenses'), (200, {'ok': True}))
 
     def test_other_forms_mail_and_retry(self):
         for directory, recipient in [('contact', 'contact'), ('advance-payment', 'advance'), ('transportation-expenses', 'transportation')]:
