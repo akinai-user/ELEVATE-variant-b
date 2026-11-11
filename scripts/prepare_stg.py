@@ -7,7 +7,7 @@ import shutil
 ROOT = Path(__file__).resolve().parents[1]
 DIRECTORIES = (
     'advance-payment', 'commn', 'company', 'contact', 'css', 'images',
-    'introduction', 'js', 'privacy', 'registered', 'service',
+    'human-register', 'introduction', 'js', 'privacy', 'registered', 'service',
     'transportation-expenses', 'web-registered',
 )
 
@@ -17,7 +17,7 @@ def prepare(output):
     if output == ROOT or output.is_relative_to(ROOT):
         raise ValueError('アップロード用フォルダは作業ディレクトリの外に指定してください。')
     output.mkdir(parents=True, exist_ok=False)
-    for name in ('index.html', 'favicon.ico', '.nojekyll'):
+    for name in ('index.html', 'index.php', 'favicon.ico', '.nojekyll'):
         shutil.copy2(ROOT / name, output / name)
     for name in DIRECTORIES:
         shutil.copytree(ROOT / name, output / name,

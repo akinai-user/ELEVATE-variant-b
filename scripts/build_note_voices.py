@@ -156,7 +156,7 @@ def build(config_path, output, fixture=None, update_source=False):
     output.mkdir(parents=True, exist_ok=True)
     excluded = {'_site', '.git', '.github', 'scripts', 'tests', 'config', '__pycache__', output.name}
     for source in ROOT.iterdir():
-        if source.name in excluded or source.name.startswith('.') and source.name != '.nojekyll' or source.suffix == '.md':
+        if source.name in excluded or source.name.startswith('.') and source.name != '.nojekyll' or source.suffix in {'.md', '.php'}:
             continue
         target = output / source.name
         if source.is_dir():

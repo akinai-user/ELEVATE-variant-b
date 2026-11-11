@@ -14,7 +14,8 @@
       "explicit_index_aliases": [
         "/advance-payment/index.php",
         "/advance-payment/index.html"
-      ]
+      ],
+      "legacy_php_file": "advance-payment/index.php"
     },
     {
       "old_url": "/company/",
@@ -24,7 +25,8 @@
       "explicit_index_aliases": [
         "/company/index.php",
         "/company/index.html"
-      ]
+      ],
+      "legacy_php_file": "company/index.php"
     },
     {
       "old_url": "/contact/",
@@ -34,7 +36,8 @@
       "explicit_index_aliases": [
         "/contact/index.php",
         "/contact/index.html"
-      ]
+      ],
+      "legacy_php_file": "contact/index.php"
     },
     {
       "old_url": "/",
@@ -44,7 +47,8 @@
       "explicit_index_aliases": [
         "/index.php",
         "/index.html"
-      ]
+      ],
+      "legacy_php_file": "index.php"
     },
     {
       "old_url": "/introduction/faq/",
@@ -54,7 +58,8 @@
       "explicit_index_aliases": [
         "/introduction/faq/index.php",
         "/introduction/faq/index.html"
-      ]
+      ],
+      "legacy_php_file": "introduction/faq/index.php"
     },
     {
       "old_url": "/introduction/",
@@ -64,7 +69,8 @@
       "explicit_index_aliases": [
         "/introduction/index.php",
         "/introduction/index.html"
-      ]
+      ],
+      "legacy_php_file": "introduction/index.php"
     },
     {
       "old_url": "/introduction/staffing/",
@@ -74,7 +80,8 @@
       "explicit_index_aliases": [
         "/introduction/staffing/index.php",
         "/introduction/staffing/index.html"
-      ]
+      ],
+      "legacy_php_file": "introduction/staffing/index.php"
     },
     {
       "old_url": "/privacy/",
@@ -84,7 +91,8 @@
       "explicit_index_aliases": [
         "/privacy/index.php",
         "/privacy/index.html"
-      ]
+      ],
+      "legacy_php_file": "privacy/index.php"
     },
     {
       "old_url": "/registered/",
@@ -94,7 +102,8 @@
       "explicit_index_aliases": [
         "/registered/index.php",
         "/registered/index.html"
-      ]
+      ],
+      "legacy_php_file": "registered/index.php"
     },
     {
       "old_url": null,
@@ -131,7 +140,8 @@
       "explicit_index_aliases": [
         "/service/engineering/index.php",
         "/service/engineering/index.html"
-      ]
+      ],
+      "legacy_php_file": "service/engineering/index.php"
     },
     {
       "old_url": "/service/",
@@ -141,7 +151,8 @@
       "explicit_index_aliases": [
         "/service/index.php",
         "/service/index.html"
-      ]
+      ],
+      "legacy_php_file": "service/index.php"
     },
     {
       "old_url": "/service/staffing/contract-work/",
@@ -151,7 +162,8 @@
       "explicit_index_aliases": [
         "/service/staffing/contract-work/index.php",
         "/service/staffing/contract-work/index.html"
-      ]
+      ],
+      "legacy_php_file": "service/staffing/contract-work/index.php"
     },
     {
       "old_url": "/service/staffing/",
@@ -161,7 +173,8 @@
       "explicit_index_aliases": [
         "/service/staffing/index.php",
         "/service/staffing/index.html"
-      ]
+      ],
+      "legacy_php_file": "service/staffing/index.php"
     },
     {
       "old_url": "/service/staffing/recruitment-agency/",
@@ -171,7 +184,8 @@
       "explicit_index_aliases": [
         "/service/staffing/recruitment-agency/index.php",
         "/service/staffing/recruitment-agency/index.html"
-      ]
+      ],
+      "legacy_php_file": "service/staffing/recruitment-agency/index.php"
     },
     {
       "old_url": "/service/staffing/staffing-agency/",
@@ -181,7 +195,8 @@
       "explicit_index_aliases": [
         "/service/staffing/staffing-agency/index.php",
         "/service/staffing/staffing-agency/index.html"
-      ]
+      ],
+      "legacy_php_file": "service/staffing/staffing-agency/index.php"
     },
     {
       "old_url": "/transportation-expenses/",
@@ -191,7 +206,8 @@
       "explicit_index_aliases": [
         "/transportation-expenses/index.php",
         "/transportation-expenses/index.html"
-      ]
+      ],
+      "legacy_php_file": "transportation-expenses/index.php"
     },
     {
       "old_url": "/web-registered/",
@@ -201,7 +217,8 @@
       "explicit_index_aliases": [
         "/web-registered/index.php",
         "/web-registered/index.html"
-      ]
+      ],
+      "legacy_php_file": "web-registered/index.php"
     },
     {
       "old_url": "/contact/thanks/",
@@ -235,14 +252,15 @@
       "old_url": "/human-register/",
       "old_index_alias": "/human-register/index.php",
       "new_url": "/web-registered/",
-      "action": "proposed_301_requires_owner_decision",
-      "note": "Separate old form: confirm replacement intent before enabling."
+      "action": "redirect_get_head_301",
+      "note": "Legacy personnel registration bookmarks open the current Web registration form."
     },
     {
       "old_url": "/human-register/thanks/",
       "old_index_alias": "/human-register/thanks/index.php",
       "new_url": "/web-registered/",
-      "action": "proposed_301_requires_owner_decision"
+      "action": "redirect_get_head_301",
+      "note": "Legacy personnel registration bookmarks open the current Web registration form."
     },
     {
       "old_url": "/service/engineering/ai-link-merged.html",
@@ -314,7 +332,6 @@
   "unresolved": [
     "Owner backup and rollback procedure",
     "Live server/Apache override and TLS proxy configuration",
-    "Whether /human-register/ is replaced by /web-registered/",
     "Whether old index.php query parameters or deep URLs have meaningful use",
     "Retained LP search-index policy and live sitemap contents",
     "LP2 retirement: confirm incoming links and any meaningful redirect; do not redirect all retired URLs to the home page."
@@ -322,5 +339,6 @@
   "method_policy": "Redirect GET/HEAD only; never forward legacy form POST bodies. Coordinate a cutover window and archive old form handlers after backup.",
   "host_policy": "Propose https://elevate-works.jp; verify HTTPS and existing hostname redirects with administrator.",
   "publication_policy": "Replace the old corporate site at the same domain and main page URLs. Only /lp/ and its dependencies remain as existing pages; preserve linked PDF documents and private backups.",
-  "release_operator": "The user will publish after production access is granted; currently staging access only."
+  "release_operator": "The user will publish after production access is granted; currently staging access only.",
+  "bookmark_policy": "Keep the 17 existing page paths and serve their index.php aliases with the new HTML at the same URL. Legacy registration and completion URLs redirect to current input forms. PHP compatibility files work under a staging subdirectory too."
 }

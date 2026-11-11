@@ -43,7 +43,7 @@ class ApacheRedirectTests(unittest.TestCase):
                 page = document_root / route['new_file']
                 page.parent.mkdir(parents=True, exist_ok=True)
                 page.write_text('NEW PAGE')
-                page.with_suffix('.php').write_text('OLD PAGE')
+                page.with_suffix('.php').write_text('NEW PAGE')
         for name in ['lp/index.php', 'lp2/index.php', 'human-register/index.php',
                      'commn/php/note-voices.php', 'contact/submit.php', 'stg/index.html']:
             path = document_root / name
@@ -101,7 +101,7 @@ class ApacheRedirectTests(unittest.TestCase):
         with response:
             return response.status, response.headers.get('Location')
 
-    def test_main_pages_keep_urls_and_index_aliases_redirect(self):
+    def test_main_pages_keep_php_urls_and_redirect_html_aliases(self):
         for route in PLAN['routes']:
             if 'new_file' not in route:
                 continue
@@ -109,6 +109,10 @@ class ApacheRedirectTests(unittest.TestCase):
                 self.assertEqual(self.request(route['new_url'])[0], 200)
                 target = PLAN['production_origin'] + route['new_url']
                 for alias in route['explicit_index_aliases']:
+                    if alias.endswith('.php'):
+                        self.assertEqual(self.request(alias)[0], 200)
+                        self.assertEqual(self.request(alias + '?source=old')[0], 200)
+                        continue
                     self.assertEqual(self.request(alias), (301, target))
                     self.assertEqual(self.request(alias + '?source=old')[1], target + '?source=old')
                 if route['new_url'] != '/':
@@ -123,8 +127,8 @@ class ApacheRedirectTests(unittest.TestCase):
                 self.assertEqual(self.request(alias), (301, target))
                 self.assertEqual(self.request(alias, method='HEAD'), (301, target))
 
-    def test_apis_lps_staging_and_pending_form_are_not_redirected(self):
-        for path in ['/lp/index.php', '/lp2/index.php', '/human-register/',
+    def test_apis_lps_and_staging_are_not_redirected(self):
+        for path in ['/lp/index.php', '/lp2/index.php',
                      '/commn/php/note-voices.php', '/contact/submit.php', '/stg/index.html']:
             with self.subTest(path=path):
                 self.assertEqual(self.request(path)[0], 200)
