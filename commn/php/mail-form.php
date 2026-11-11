@@ -120,7 +120,7 @@ try {
     $headers = ['From' => $config['from'], 'MIME-Version' => '1.0', 'Content-Type' => 'multipart/mixed; boundary="' . $boundary . '"'];
     if (isset($fields['email'])) $headers['Reply-To'] = $fields['email'];
     $state['attempt'] = time();
-    $subject = '=?UTF-8?B?' . base64_encode('【ELEVATE】' . $definition['title']) . '?=';
+    $subject = '=?UTF-8?B?' . base64_encode('【株式会社エレベート】' . $definition['title']) . '?=';
     if (!mail($config['to'], $subject, $body, $headers)) formResponse(502, ['message' => '送信を完了できませんでした。時間をおいて再度お試しいただくか、お電話でお問い合わせください。']);
     $state['sent'] = true;
     $state['digest'] = $digest;

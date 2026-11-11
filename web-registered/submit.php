@@ -139,7 +139,7 @@ try {
     $body .= '--' . $boundary . "--\r\n";
     $headers = ['From' => $config['from'], 'Reply-To' => $fields['email'], 'MIME-Version' => '1.0', 'Content-Type' => 'multipart/mixed; boundary="' . $boundary . '"'];
     $_SESSION['registration_attempt'] = time();
-    $subject = '=?UTF-8?B?' . base64_encode('【ELEVATE】Web登録のお申し込み') . '?=';
+    $subject = '=?UTF-8?B?' . base64_encode('【株式会社エレベート】Web登録のお申し込み') . '?=';
     if (!mail($config['to'], $subject, $body, $headers)) {
         respond(502, ['message' => '送信を完了できませんでした。時間をおいて再度お試しいただくか、お電話でお問い合わせください。']);
     }
